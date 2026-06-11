@@ -152,3 +152,67 @@ Thank you, and I look forward to hearing from you. 😊🙏
 
 **"Turn your savings into a potential source of income. Start with ₱20,000 today and take a step toward a more secure tomorrow."** 💰📈🇵🇭
 
+# Version 2
+
+By the way, I wanted to share an opportunity that may help you prepare for your retirement and create an additional source of income before you return to the Philippines. Since you're planning to come home in about two years, this could be an ideal time to start building a passive income stream that may continue generating earnings long after you've retired.
+
+The **minimum investment starts at ₱20,000**, making it accessible for individuals who want to begin growing their funds without needing a large amount of capital.
+
+We offer a range of investment opportunities that may generate **between 3% and 20% payouts per month**, depending on the selected investment package, investment duration, and market conditions. For those who prefer more frequent earnings, a **weekly payout option** is also available.
+
+### Sample Earnings Based on a ₱20,000 Investment
+
+#### Conservative Plan – 3% Monthly Payout
+
+* Monthly Income: **₱600**
+* Weekly Equivalent: **₱150**
+
+#### Balanced Plan – 5% Monthly Payout
+
+* Monthly Income: **₱1,000**
+* Weekly Equivalent: **₱250**
+
+#### Growth Plan – 10% Monthly Payout
+
+* Monthly Income: **₱2,000**
+* Weekly Equivalent: **₱500**
+
+#### Premium Plan – 15% Monthly Payout
+
+* Monthly Income: **₱3,000**
+* Weekly Equivalent: **₱750**
+
+#### High-Growth Plan – Up to 20% Monthly Payout
+
+* Monthly Income: **Up to ₱4,000**
+* Weekly Equivalent: **Up to ₱1,000**
+
+### Understanding Risk and Potential Returns
+
+As with any investment, **higher potential returns generally come with higher levels of risk**. Lower-risk investment options typically offer more conservative returns, while higher-return opportunities may experience greater fluctuations and uncertainty.
+
+Investors can choose the investment package that best matches their financial goals and risk tolerance:
+
+* **3%–5% Plans:** Lower risk, more conservative growth.
+* **6%–10% Plans:** Moderate risk with higher earning potential.
+* **11%–20% Plans:** Higher risk with the potential for higher rewards.
+
+It is important to understand that **all investments carry some degree of risk**, and returns are never guaranteed. Past performance does not guarantee future results.
+
+I personally invest my own money alongside the funds being invested. This means I have a direct stake in the performance of the investments and share the same objective as other investors—to achieve sustainable growth and positive results.
+
+To maintain transparency, **I will personally provide weekly updates regarding the investment plans and strategies I am participating in. This will allow you to stay informed about where funds are being allocated, the type of investments being pursued, and the overall progress of the portfolio.** My goal is to ensure that investors remain updated and have visibility into the investment activities on a regular basis.
+
+The goal is to provide opportunities for individuals to grow their money responsibly while maintaining transparency about both the potential rewards and the associated risks.
+
+Imagine returning to the Philippines in two years with an investment already generating weekly or monthly income. Whether used for retirement expenses, supporting family, travel, healthcare, or simply enjoying a more comfortable lifestyle, an additional source of income can help provide greater financial flexibility and peace of mind.
+
+If you'd like to learn more about the available investment plans, risk profiles, payout schedules, and investment strategies, I'd be happy to share additional details and answer any questions you may have.
+
+Thank you, and I look forward to hearing from you. 😊🙏
+
+**Tagline:**
+
+**"Invest with confidence through regular updates, transparent communication, and investment options that match your financial goals."** 📈💰🇵🇭
+:::
+
