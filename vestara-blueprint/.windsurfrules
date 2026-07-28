@@ -1,0 +1,39 @@
+# Vestara AI OS — Windsurf Instructions
+
+## Identity
+You are a specialist AI engineer on the Vestara team.
+Follow the AI Constitution: vestara-blueprint/00-governance/01-ai-constitution.md
+
+## Where the Code Is
+All active implementation: `vestara-ai-core/`
+Blueprint (frozen architecture): `vestara-blueprint/`
+
+## Workflow (VSDE)
+1. Read PRODUCT-PRINCIPLES.md and VSDE standard
+2. Read relevant Capability Specification Package (CSP)
+3. Specifications before implementation — never start coding without a complete CSP
+4. Implement against existing contracts (architecture is frozen)
+5. Write tests (Vitest, sql.js in-memory)
+6. Verify: pnpm test && bash build-order.sh
+
+## Architecture
+- WorkspaceRuntime is the orchestration boundary (CLI imports only this)
+- RepositoryWorkspace is the canonical domain object
+- 22 packages in dependency order (build-order.sh)
+- sql.js (WASM) for SQLite — NOT better-sqlite3
+- OpenCode is the sole AI provider
+- AI is optional — all pipelines degrade gracefully
+
+## Engineering Rules
+- Zero any types
+- kebab-case for filenames
+- No code comments unless asked
+- No console.log (use @vestara/logger)
+- Every public interface in @vestara/shared
+- Event-driven via EventBus (pattern matching with * wildcards)
+
+## NEVER DO
+- Modify blueprint documents without ADR
+- Add comments unless asked
+- Assume better-sqlite3 (use sql.js)
+- Add emoji unless explicitly requested

@@ -1,0 +1,96 @@
+name: Blueprint CI
+
+on:
+  push:
+    branches: [main, develop]
+    paths:
+      - 'vestara-blueprint/**'
+  pull_request:
+    paths:
+      - 'vestara-blueprint/**'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate frontmatter
+        run: |
+          echo "Validating frontmatter on all markdown files..."
+          errors=0
+          for file in $(find vestara-blueprint -name '*.md' -not -name 'AGENTS.md' -not -name 'CLAUDE.md'); do
+            if ! head -1 "$file" | grep -q '^---$'; then
+              echo "MISSING frontmatter: $file"
+              errors=$((errors + 1))
+            fi
+          done
+          if [ $errors -gt 0 ]; then
+            echo "Found $errors files without frontmatter"
+            exit 1
+          fi
+          echo "All files have frontmatter. ✓"
+
+      - name: Validate required files exist
+        run: |
+          echo "Checking required files..."
+          required_files=(
+            "vestara-blueprint/VESTARA_CONSTITUTION.md"
+            "vestara-blueprint/AI_INSTRUCTION.md"
+            "vestara-blueprint/AI_AGENTS.md"
+            "vestara-blueprint/AI_RULES.md"
+            "vestara-blueprint/AI_CONTEXT.md"
+            "vestara-blueprint/AGENTS.md"
+            "vestara-blueprint/README.md"
+            "vestara-blueprint/00-governance/01-ai-constitution.md"
+            "vestara-blueprint/00-governance/02-engineering-rules.md"
+            "vestara-blueprint/00-governance/03-ai-development-lifecycle.md"
+            "vestara-blueprint/00-governance/04-decision-log.md"
+            "vestara-blueprint/00-governance/05-compatibility.md"
+            "vestara-blueprint/00-governance/06-ai-development-framework.md"
+          )
+          missing=0
+          for file in "${required_files[@]}"; do
+            if [ ! -f "$file" ]; then
+              echo "MISSING: $file"
+              missing=$((missing + 1))
+            fi
+          done
+          if [ $missing -gt 0 ]; then
+            echo "Found $missing missing required files"
+            exit 1
+          fi
+          echo "All required files present. ✓"
+
+      - name: Check for broken internal links
+        run: |
+          echo "Checking internal links..."
+          # Simple check: ensure referenced files exist
+          errors=0
+          for file in $(find vestara-blueprint -name '*.md'); do
+            for link in $(grep -oP 'vestara-blueprint/[^\s)]+' "$file" 2>/dev/null); do
+              # Remove anchors if present
+              target="${link%#*}"
+              if [ ! -f "$target" ] && [ ! -d "$target" ]; then
+                echo "BROKEN LINK in $file: $link"
+                errors=$((errors + 1))
+              fi
+            done
+          done
+          if [ $errors -gt 0 ]; then
+            echo "Found $errors broken links"
+            exit 1
+          fi
+          echo "No broken links found. ✓"
+
+      - name: Summary
+        run: |
+          echo "=========================================="
+          echo "  Vestara Blueprint CI — All checks pass"
+          echo "=========================================="
+          echo ""
+          echo "Volume stats:"
+          for dir in vestara-blueprint/0* vestara-blueprint/1* vestara-blueprint/9*; do
+            count=$(find "$dir" -name '*.md' | wc -l)
+            echo "  $(basename $dir): $count documents"
+          done

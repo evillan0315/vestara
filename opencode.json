@@ -1,0 +1,23 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "default_agent": "vestara-build",
+  "agent": {
+    "vestara-build": {
+      "mode": "primary",
+      "model": "opencode/deepseek-v4-flash-free"
+    },
+    "vestara-plan": {
+      "mode": "primary",
+      "model": "opencode/deepseek-v4-flash-free"
+    },
+    "vestara-review": {
+      "mode": "subagent",
+      "model": "opencode/deepseek-v4-flash-free"
+    }
+  },
+  "instructions": [
+    "AGENTS.md",
+    "vestara-ai-core/README.md",
+    "vestara-ai-core/CONTRIBUTING.md"
+  ]
+}

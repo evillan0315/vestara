@@ -1,0 +1,2889 @@
+{
+  "schemaVersion": 1,
+  "id": "7240cd35da50c7d4",
+  "name": "vestara",
+  "fingerprint": {
+    "id": "7240cd35da50c7d4",
+    "name": "vestara",
+    "canonicalPath": "/home/eddie/projects/vestara",
+    "gitRoot": "/home/eddie/projects/vestara",
+    "gitRemote": null,
+    "gitBranch": "main",
+    "gitCommit": null,
+    "repositoryHash": "e3b0c44298fc1c14",
+    "fingerprintedAt": "2026-07-24T07:25:27.746Z"
+  },
+  "analysis": {
+    "name": "vestara",
+    "language": "typescript",
+    "buildTool": "nx",
+    "isMonorepo": true,
+    "fileCount": 1247,
+    "totalSizeKB": 9511,
+    "packageCount": 34,
+    "dependencyCount": 162,
+    "entryPoints": [],
+    "risks": [
+      {
+        "category": "large-file",
+        "severity": "medium",
+        "location": "vestara-ai-core/apps/cli/src/repl-workspace.js",
+        "detail": "2362 lines (threshold: 2000)"
+      },
+      {
+        "category": "large-file",
+        "severity": "medium",
+        "location": "vestara-ai-core/apps/cli/src/repl-workspace.ts",
+        "detail": "2404 lines (threshold: 2000)"
+      },
+      {
+        "category": "todo-hotspot",
+        "severity": "medium",
+        "location": "thoughts/plans/epic-001-repository-comprehension.md",
+        "detail": "17 TODO/FIXME/HACK markers"
+      },
+      {
+        "category": "missing-tests",
+        "severity": "low",
+        "location": ".opencode",
+        "detail": "No test directory, test files, or test script found"
+      },
+      {
+        "category": "missing-tests",
+        "severity": "low",
+        "location": "vestara-ai-core/apps/workspace",
+        "detail": "No test directory, test files, or test script found"
+      }
+    ],
+    "packages": [
+      {
+        "name": "(unnamed)",
+        "path": ".opencode",
+        "dependencies": [
+          "@opencode-ai/plugin"
+        ],
+        "devDependencies": [],
+        "isPrivate": false
+      },
+      {
+        "name": "@vestara/api",
+        "path": "vestara-ai-core/apps/api",
+        "dependencies": [
+          "@vestara/events",
+          "@vestara/kernel",
+          "@vestara/workspace",
+          "@vestara/provider-runtime",
+          "@vestara/provider-opencode",
+          "@vestara/event-bus",
+          "ws",
+          "sql.js"
+        ],
+        "devDependencies": [
+          "@types/ws",
+          "@types/node",
+          "vitest"
+        ],
+        "isPrivate": true
+      },
+      {
+        "name": "@vestara/cli",
+        "path": "vestara-ai-core/apps/cli",
+        "dependencies": [
+          "@vestara/kernel",
+          "@vestara/shared",
+          "@vestara/state-runtime",
+          "@vestara/context",
+          "@vestara/conversation",
+          "@vestara/provider-runtime",
+          "@vestara/provider-opencode",
+          "@vestara/workspace",
+          "@vestara/events-server"
+        ],
+        "devDependencies": [
+          "vitest"
+        ],
+        "isPrivate": true
+      },
+      {
+        "name": "@vestara/workspace-ui",
+        "path": "vestara-ai-core/apps/workspace",
+        "dependencies": [
+          "@emotion/react",
+          "@emotion/styled",
+          "@mui/icons-material",
+          "@mui/material",
+          "@xterm/addon-fit",
+          "@xterm/xterm",
+          "react",
+          "react-dom",
+          "react-router-dom",
+          "xterm"
+        ],
+        "devDependencies": [
+          "@tailwindcss/vite",
+          "@types/react",
+          "@types/react-dom",
+          "@vitejs/plugin-react",
+          "tailwindcss",
+          "typescript",
+          "vite"
+        ],
+        "isPrivate": true
+      },
+      {
+        "name": "vestara-ai-core",
+        "path": "vestara-ai-core",
+        "dependencies": [
+          "sql.js"
+        ],
+        "devDependencies": [
+          "@biomejs/biome",
+          "@types/better-sqlite3",
+          "@types/node",
+          "better-sqlite3",
+          "typedoc",
+          "vitest"
+        ],
+        "isPrivate": true
+      },
+      {
+        "name": "@vestara/action",
+        "path": "vestara-ai-core/packages/action",
+        "dependencies": [
+          "@vestara/shared",
+          "@vestara/permission",
+          "@vestara/event-bus",
+          "@vestara/logger",
+          "@vestara/stream"
+        ],
+        "devDependencies": [
+          "vitest"
+        ],
+        "isPrivate": true
+      },
+      {
+        "name": "@vestara/cognitive",
+        "path": "vestara-ai-core/packages/cognitive",
+        "dependencies": [
+          "@vestara/shared",
+          "@vestara/logger",
+          "@vestara/event-bus",
+          "@vestara/memory",
+          "@vestara/stream"
+        ],
+        "devDependencies": [
+          "vitest"
+        ],
+        "isPrivate": true
+      },
+      {
+        "name": "@vestara/configuration",
+        "path": "vestara-ai-core/packages/configuration",
+        "dependencies": [
+          "@vestara/shared"
+        ],
+        "devDependencies": [
+          "vitest"
+        ],
+        "isPrivate": true
+      },
+      {
+        "name": "@vestara/context",
+        "path": "vestara-ai-core/packages/context",
+        "dependencies": [
+          "@vestara/shared"
+        ],
+        "devDependencies": [
+          "vitest"
+        ],
+        "isPrivate": true
+      },
+      {
+        "name": "@vestara/conversation",
+        "path": "vestara-ai-core/packages/conversation",
+        "dependencies": [
+          "@vestara/shared",
+          "@vestara/context",
+          "@vestara/stream",
+          "@vestara/event-bus",
+          "@vestara/logger"
+        ],
+        "devDependencies": [
+          "vitest"
+        ],
+        "isPrivate": true
+      },
+      {
+        "name": "@vestara/event-bus",
+        "path": "vestara-ai-core/packages/event-bus",
+        "dependencies": [
+          "@vestara/shared"
+        ],
+        "devDependencies": [
+          "vitest"
+        ],
+        "isPrivate": true
+      },
+      {
+        "name": "@vestara/events",
+        "path": "vestara-ai-core/packages/events",
+        "dependencies": [],
+        "devDependencies": [
+          "vitest"
+        ],
+        "isPrivate": true
+      },
+      {
+        "name": "@vestara/events-server",
+        "path": "vestara-ai-core/packages/events-server",
+        "dependencies": [
+          "@vestara/workspace"
+        ],
+        "devDependencies": [
+          "vitest"
+        ],
+        "isPrivate": true
+      },
+      {
+        "name": "@vestara/health",
+        "path": "vestara-ai-core/packages/health",
+        "dependencies": [
+          "@vestara/shared",
+          "@vestara/logger",
+          "@vestara/service-registry"
+        ],
+        "devDependencies": [
+          "vitest"
+        ],
+        "isPrivate": true
+      },
+      {
+        "name": "@vestara/kernel",
+        "path": "vestara-ai-core/packages/kernel",
+        "dependencies": [
+          "@vestara/shared",
+          "@vestara/configuration",
+          "@vestara/logger",
+          "@vestara/metrics",
+          "@vestara/event-bus",
+          "@vestara/service-registry",
+          "@vestara/health"
+        ],
+        "devDependencies": [
+          "vitest"
+        ],
+        "isPrivate": true
+      },
+      {
+        "name": "@vestara/knowledge",
+        "path": "vestara-ai-core/packages/knowledge",
+        "dependencies": [
+          "@vestara/shared",
+          "@vestara/logger",
+          "@vestara/event-bus",
+          "@vestara/cognitive",
+          "@vestara/stream",
+          "sql.js"
+        ],
+        "devDependencies": [
+          "vitest"
+        ],
+        "isPrivate": true
+      },
+      {
+        "name": "@vestara/logger",
+        "path": "vestara-ai-core/packages/logger",
+        "dependencies": [
+          "@vestara/shared"
+        ],
+        "devDependencies": [
+          "vitest"
+        ],
+        "isPrivate": true
+      },
+      {
+        "name": "@vestara/memory",
+        "path": "vestara-ai-core/packages/memory",
+        "dependencies": [
+          "@vestara/shared",
+          "@vestara/logger",
+          "@vestara/event-bus",
+          "@vestara/stream",
+          "@vestara/state-runtime",
+          "sql.js"
+        ],
+        "devDependencies": [
+          "vitest"
+        ],
+        "isPrivate": true
+      },
+      {
+        "name": "@vestara/metrics",
+        "path": "vestara-ai-core/packages/metrics",
+        "dependencies": [
+          "@vestara/shared",
+          "@vestara/logger"
+        ],
+        "devDependencies": [
+          "vitest"
+        ],
+        "isPrivate": true
+      },
+      {
+        "name": "@vestara/os-controller",
+        "path": "vestara-ai-core/packages/os-controller",
+        "dependencies": [
+          "@vestara/workspace"
+        ],
+        "devDependencies": [
+          "vitest"
+        ],
+        "isPrivate": true
+      },
+      {
+        "name": "@vestara/permission",
+        "path": "vestara-ai-core/packages/permission",
+        "dependencies": [],
+        "devDependencies": [
+          "vitest"
+        ],
+        "isPrivate": true
+      },
+      {
+        "name": "@vestara/provider-runtime",
+        "path": "vestara-ai-core/packages/provider-runtime",
+        "dependencies": [
+          "@vestara/shared",
+          "@vestara/logger",
+          "@vestara/event-bus",
+          "@vestara/service-registry"
+        ],
+        "devDependencies": [
+          "vitest"
+        ],
+        "isPrivate": true
+      },
+      {
+        "name": "@vestara/provider-opencode",
+        "path": "vestara-ai-core/packages/providers/opencode",
+        "dependencies": [
+          "@vestara/shared",
+          "@vestara/stream",
+          "@vestara/provider-runtime"
+        ],
+        "devDependencies": [
+          "vitest"
+        ],
+        "isPrivate": true
+      },
+      {
+        "name": "@vestara/reasoning",
+        "path": "vestara-ai-core/packages/reasoning",
+        "dependencies": [
+          "@vestara/shared",
+          "@vestara/logger",
+          "@vestara/event-bus",
+          "@vestara/stream",
+          "@vestara/cognitive"
+        ],
+        "devDependencies": [
+          "vitest"
+        ],
+        "isPrivate": true
+      },
+      {
+        "name": "@vestara/service-registry",
+        "path": "vestara-ai-core/packages/service-registry",
+        "dependencies": [
+          "@vestara/shared",
+          "@vestara/logger",
+          "@vestara/event-bus"
+        ],
+        "devDependencies": [
+          "vitest"
+        ],
+        "isPrivate": true
+      },
+      {
+        "name": "@vestara/shared",
+        "path": "vestara-ai-core/packages/shared",
+        "dependencies": [],
+        "devDependencies": [
+          "vitest"
+        ],
+        "isPrivate": true
+      },
+      {
+        "name": "@vestara/state-runtime",
+        "path": "vestara-ai-core/packages/state-runtime",
+        "dependencies": [
+          "@vestara/shared",
+          "@vestara/logger",
+          "@vestara/event-bus",
+          "sql.js"
+        ],
+        "devDependencies": [
+          "vitest"
+        ],
+        "isPrivate": true
+      },
+      {
+        "name": "@vestara/stream",
+        "path": "vestara-ai-core/packages/stream",
+        "dependencies": [
+          "@vestara/shared",
+          "@vestara/event-bus",
+          "@vestara/logger"
+        ],
+        "devDependencies": [
+          "vitest"
+        ],
+        "isPrivate": true
+      },
+      {
+        "name": "@vestara/tools-filesystem",
+        "path": "vestara-ai-core/packages/tools/filesystem",
+        "dependencies": [
+          "@vestara/shared",
+          "@vestara/action",
+          "@vestara/stream"
+        ],
+        "devDependencies": [
+          "vitest"
+        ],
+        "isPrivate": true
+      },
+      {
+        "name": "@vestara/tools-knowledge",
+        "path": "vestara-ai-core/packages/tools/knowledge",
+        "dependencies": [
+          "@vestara/shared",
+          "@vestara/action"
+        ],
+        "devDependencies": [
+          "vitest"
+        ],
+        "isPrivate": true
+      },
+      {
+        "name": "@vestara/tools-memory",
+        "path": "vestara-ai-core/packages/tools/memory",
+        "dependencies": [
+          "@vestara/shared",
+          "@vestara/action"
+        ],
+        "devDependencies": [
+          "vitest"
+        ],
+        "isPrivate": true
+      },
+      {
+        "name": "@vestara/tools-project",
+        "path": "vestara-ai-core/packages/tools/project",
+        "dependencies": [
+          "@vestara/shared",
+          "@vestara/action"
+        ],
+        "devDependencies": [
+          "vitest"
+        ],
+        "isPrivate": true
+      },
+      {
+        "name": "@vestara/tools-shell",
+        "path": "vestara-ai-core/packages/tools/shell",
+        "dependencies": [
+          "@vestara/shared",
+          "@vestara/action"
+        ],
+        "devDependencies": [
+          "vitest"
+        ],
+        "isPrivate": true
+      },
+      {
+        "name": "@vestara/workspace",
+        "path": "vestara-ai-core/packages/workspace",
+        "dependencies": [
+          "@vestara/context",
+          "@vestara/conversation",
+          "@vestara/event-bus",
+          "@vestara/knowledge",
+          "@vestara/logger",
+          "@vestara/memory",
+          "@vestara/reasoning",
+          "@vestara/shared",
+          "@vestara/stream"
+        ],
+        "devDependencies": [
+          "vitest"
+        ],
+        "isPrivate": true
+      }
+    ],
+    "dependencyGraph": {
+      "nodes": [
+        "(unnamed)",
+        "@opencode-ai/plugin",
+        "@vestara/api",
+        "@vestara/events",
+        "@vestara/kernel",
+        "@vestara/workspace",
+        "@vestara/provider-runtime",
+        "@vestara/provider-opencode",
+        "@vestara/event-bus",
+        "ws",
+        "sql.js",
+        "@types/ws",
+        "@types/node",
+        "vitest",
+        "@vestara/cli",
+        "@vestara/shared",
+        "@vestara/state-runtime",
+        "@vestara/context",
+        "@vestara/conversation",
+        "@vestara/events-server",
+        "@vestara/workspace-ui",
+        "@emotion/react",
+        "@emotion/styled",
+        "@mui/icons-material",
+        "@mui/material",
+        "@xterm/addon-fit",
+        "@xterm/xterm",
+        "react",
+        "react-dom",
+        "react-router-dom",
+        "xterm",
+        "@tailwindcss/vite",
+        "@types/react",
+        "@types/react-dom",
+        "@vitejs/plugin-react",
+        "tailwindcss",
+        "typescript",
+        "vite",
+        "vestara-ai-core",
+        "@biomejs/biome",
+        "@types/better-sqlite3",
+        "better-sqlite3",
+        "typedoc",
+        "@vestara/action",
+        "@vestara/permission",
+        "@vestara/logger",
+        "@vestara/stream",
+        "@vestara/cognitive",
+        "@vestara/memory",
+        "@vestara/configuration",
+        "@vestara/health",
+        "@vestara/service-registry",
+        "@vestara/metrics",
+        "@vestara/knowledge",
+        "@vestara/os-controller",
+        "@vestara/reasoning",
+        "@vestara/tools-filesystem",
+        "@vestara/tools-knowledge",
+        "@vestara/tools-memory",
+        "@vestara/tools-project",
+        "@vestara/tools-shell"
+      ],
+      "edges": [
+        {
+          "source": "(unnamed)",
+          "target": "@opencode-ai/plugin",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/api",
+          "target": "@vestara/events",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/api",
+          "target": "@vestara/kernel",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/api",
+          "target": "@vestara/workspace",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/api",
+          "target": "@vestara/provider-runtime",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/api",
+          "target": "@vestara/provider-opencode",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/api",
+          "target": "@vestara/event-bus",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/api",
+          "target": "ws",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/api",
+          "target": "sql.js",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/api",
+          "target": "@types/ws",
+          "type": "devDependency"
+        },
+        {
+          "source": "@vestara/api",
+          "target": "@types/node",
+          "type": "devDependency"
+        },
+        {
+          "source": "@vestara/api",
+          "target": "vitest",
+          "type": "devDependency"
+        },
+        {
+          "source": "@vestara/cli",
+          "target": "@vestara/kernel",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/cli",
+          "target": "@vestara/shared",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/cli",
+          "target": "@vestara/state-runtime",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/cli",
+          "target": "@vestara/context",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/cli",
+          "target": "@vestara/conversation",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/cli",
+          "target": "@vestara/provider-runtime",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/cli",
+          "target": "@vestara/provider-opencode",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/cli",
+          "target": "@vestara/workspace",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/cli",
+          "target": "@vestara/events-server",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/cli",
+          "target": "vitest",
+          "type": "devDependency"
+        },
+        {
+          "source": "@vestara/workspace-ui",
+          "target": "@emotion/react",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/workspace-ui",
+          "target": "@emotion/styled",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/workspace-ui",
+          "target": "@mui/icons-material",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/workspace-ui",
+          "target": "@mui/material",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/workspace-ui",
+          "target": "@xterm/addon-fit",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/workspace-ui",
+          "target": "@xterm/xterm",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/workspace-ui",
+          "target": "react",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/workspace-ui",
+          "target": "react-dom",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/workspace-ui",
+          "target": "react-router-dom",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/workspace-ui",
+          "target": "xterm",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/workspace-ui",
+          "target": "@tailwindcss/vite",
+          "type": "devDependency"
+        },
+        {
+          "source": "@vestara/workspace-ui",
+          "target": "@types/react",
+          "type": "devDependency"
+        },
+        {
+          "source": "@vestara/workspace-ui",
+          "target": "@types/react-dom",
+          "type": "devDependency"
+        },
+        {
+          "source": "@vestara/workspace-ui",
+          "target": "@vitejs/plugin-react",
+          "type": "devDependency"
+        },
+        {
+          "source": "@vestara/workspace-ui",
+          "target": "tailwindcss",
+          "type": "devDependency"
+        },
+        {
+          "source": "@vestara/workspace-ui",
+          "target": "typescript",
+          "type": "devDependency"
+        },
+        {
+          "source": "@vestara/workspace-ui",
+          "target": "vite",
+          "type": "devDependency"
+        },
+        {
+          "source": "vestara-ai-core",
+          "target": "sql.js",
+          "type": "dependency"
+        },
+        {
+          "source": "vestara-ai-core",
+          "target": "@biomejs/biome",
+          "type": "devDependency"
+        },
+        {
+          "source": "vestara-ai-core",
+          "target": "@types/better-sqlite3",
+          "type": "devDependency"
+        },
+        {
+          "source": "vestara-ai-core",
+          "target": "@types/node",
+          "type": "devDependency"
+        },
+        {
+          "source": "vestara-ai-core",
+          "target": "better-sqlite3",
+          "type": "devDependency"
+        },
+        {
+          "source": "vestara-ai-core",
+          "target": "typedoc",
+          "type": "devDependency"
+        },
+        {
+          "source": "vestara-ai-core",
+          "target": "vitest",
+          "type": "devDependency"
+        },
+        {
+          "source": "@vestara/action",
+          "target": "@vestara/shared",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/action",
+          "target": "@vestara/permission",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/action",
+          "target": "@vestara/event-bus",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/action",
+          "target": "@vestara/logger",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/action",
+          "target": "@vestara/stream",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/action",
+          "target": "vitest",
+          "type": "devDependency"
+        },
+        {
+          "source": "@vestara/cognitive",
+          "target": "@vestara/shared",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/cognitive",
+          "target": "@vestara/logger",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/cognitive",
+          "target": "@vestara/event-bus",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/cognitive",
+          "target": "@vestara/memory",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/cognitive",
+          "target": "@vestara/stream",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/cognitive",
+          "target": "vitest",
+          "type": "devDependency"
+        },
+        {
+          "source": "@vestara/configuration",
+          "target": "@vestara/shared",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/configuration",
+          "target": "vitest",
+          "type": "devDependency"
+        },
+        {
+          "source": "@vestara/context",
+          "target": "@vestara/shared",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/context",
+          "target": "vitest",
+          "type": "devDependency"
+        },
+        {
+          "source": "@vestara/conversation",
+          "target": "@vestara/shared",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/conversation",
+          "target": "@vestara/context",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/conversation",
+          "target": "@vestara/stream",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/conversation",
+          "target": "@vestara/event-bus",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/conversation",
+          "target": "@vestara/logger",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/conversation",
+          "target": "vitest",
+          "type": "devDependency"
+        },
+        {
+          "source": "@vestara/event-bus",
+          "target": "@vestara/shared",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/event-bus",
+          "target": "vitest",
+          "type": "devDependency"
+        },
+        {
+          "source": "@vestara/events",
+          "target": "vitest",
+          "type": "devDependency"
+        },
+        {
+          "source": "@vestara/events-server",
+          "target": "@vestara/workspace",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/events-server",
+          "target": "vitest",
+          "type": "devDependency"
+        },
+        {
+          "source": "@vestara/health",
+          "target": "@vestara/shared",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/health",
+          "target": "@vestara/logger",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/health",
+          "target": "@vestara/service-registry",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/health",
+          "target": "vitest",
+          "type": "devDependency"
+        },
+        {
+          "source": "@vestara/kernel",
+          "target": "@vestara/shared",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/kernel",
+          "target": "@vestara/configuration",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/kernel",
+          "target": "@vestara/logger",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/kernel",
+          "target": "@vestara/metrics",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/kernel",
+          "target": "@vestara/event-bus",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/kernel",
+          "target": "@vestara/service-registry",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/kernel",
+          "target": "@vestara/health",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/kernel",
+          "target": "vitest",
+          "type": "devDependency"
+        },
+        {
+          "source": "@vestara/knowledge",
+          "target": "@vestara/shared",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/knowledge",
+          "target": "@vestara/logger",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/knowledge",
+          "target": "@vestara/event-bus",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/knowledge",
+          "target": "@vestara/cognitive",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/knowledge",
+          "target": "@vestara/stream",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/knowledge",
+          "target": "sql.js",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/knowledge",
+          "target": "vitest",
+          "type": "devDependency"
+        },
+        {
+          "source": "@vestara/logger",
+          "target": "@vestara/shared",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/logger",
+          "target": "vitest",
+          "type": "devDependency"
+        },
+        {
+          "source": "@vestara/memory",
+          "target": "@vestara/shared",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/memory",
+          "target": "@vestara/logger",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/memory",
+          "target": "@vestara/event-bus",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/memory",
+          "target": "@vestara/stream",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/memory",
+          "target": "@vestara/state-runtime",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/memory",
+          "target": "sql.js",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/memory",
+          "target": "vitest",
+          "type": "devDependency"
+        },
+        {
+          "source": "@vestara/metrics",
+          "target": "@vestara/shared",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/metrics",
+          "target": "@vestara/logger",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/metrics",
+          "target": "vitest",
+          "type": "devDependency"
+        },
+        {
+          "source": "@vestara/os-controller",
+          "target": "@vestara/workspace",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/os-controller",
+          "target": "vitest",
+          "type": "devDependency"
+        },
+        {
+          "source": "@vestara/permission",
+          "target": "vitest",
+          "type": "devDependency"
+        },
+        {
+          "source": "@vestara/provider-runtime",
+          "target": "@vestara/shared",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/provider-runtime",
+          "target": "@vestara/logger",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/provider-runtime",
+          "target": "@vestara/event-bus",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/provider-runtime",
+          "target": "@vestara/service-registry",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/provider-runtime",
+          "target": "vitest",
+          "type": "devDependency"
+        },
+        {
+          "source": "@vestara/provider-opencode",
+          "target": "@vestara/shared",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/provider-opencode",
+          "target": "@vestara/stream",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/provider-opencode",
+          "target": "@vestara/provider-runtime",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/provider-opencode",
+          "target": "vitest",
+          "type": "devDependency"
+        },
+        {
+          "source": "@vestara/reasoning",
+          "target": "@vestara/shared",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/reasoning",
+          "target": "@vestara/logger",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/reasoning",
+          "target": "@vestara/event-bus",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/reasoning",
+          "target": "@vestara/stream",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/reasoning",
+          "target": "@vestara/cognitive",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/reasoning",
+          "target": "vitest",
+          "type": "devDependency"
+        },
+        {
+          "source": "@vestara/service-registry",
+          "target": "@vestara/shared",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/service-registry",
+          "target": "@vestara/logger",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/service-registry",
+          "target": "@vestara/event-bus",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/service-registry",
+          "target": "vitest",
+          "type": "devDependency"
+        },
+        {
+          "source": "@vestara/shared",
+          "target": "vitest",
+          "type": "devDependency"
+        },
+        {
+          "source": "@vestara/state-runtime",
+          "target": "@vestara/shared",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/state-runtime",
+          "target": "@vestara/logger",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/state-runtime",
+          "target": "@vestara/event-bus",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/state-runtime",
+          "target": "sql.js",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/state-runtime",
+          "target": "vitest",
+          "type": "devDependency"
+        },
+        {
+          "source": "@vestara/stream",
+          "target": "@vestara/shared",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/stream",
+          "target": "@vestara/event-bus",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/stream",
+          "target": "@vestara/logger",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/stream",
+          "target": "vitest",
+          "type": "devDependency"
+        },
+        {
+          "source": "@vestara/tools-filesystem",
+          "target": "@vestara/shared",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/tools-filesystem",
+          "target": "@vestara/action",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/tools-filesystem",
+          "target": "@vestara/stream",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/tools-filesystem",
+          "target": "vitest",
+          "type": "devDependency"
+        },
+        {
+          "source": "@vestara/tools-knowledge",
+          "target": "@vestara/shared",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/tools-knowledge",
+          "target": "@vestara/action",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/tools-knowledge",
+          "target": "vitest",
+          "type": "devDependency"
+        },
+        {
+          "source": "@vestara/tools-memory",
+          "target": "@vestara/shared",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/tools-memory",
+          "target": "@vestara/action",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/tools-memory",
+          "target": "vitest",
+          "type": "devDependency"
+        },
+        {
+          "source": "@vestara/tools-project",
+          "target": "@vestara/shared",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/tools-project",
+          "target": "@vestara/action",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/tools-project",
+          "target": "vitest",
+          "type": "devDependency"
+        },
+        {
+          "source": "@vestara/tools-shell",
+          "target": "@vestara/shared",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/tools-shell",
+          "target": "@vestara/action",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/tools-shell",
+          "target": "vitest",
+          "type": "devDependency"
+        },
+        {
+          "source": "@vestara/workspace",
+          "target": "@vestara/context",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/workspace",
+          "target": "@vestara/conversation",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/workspace",
+          "target": "@vestara/event-bus",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/workspace",
+          "target": "@vestara/knowledge",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/workspace",
+          "target": "@vestara/logger",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/workspace",
+          "target": "@vestara/memory",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/workspace",
+          "target": "@vestara/reasoning",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/workspace",
+          "target": "@vestara/shared",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/workspace",
+          "target": "@vestara/stream",
+          "type": "dependency"
+        },
+        {
+          "source": "@vestara/workspace",
+          "target": "vitest",
+          "type": "devDependency"
+        }
+      ],
+      "cycles": []
+    },
+    "layers": [
+      {
+        "packageName": "(unnamed)",
+        "layer": "unknown",
+        "confidence": 0.5
+      },
+      {
+        "packageName": "@vestara/api",
+        "layer": "services",
+        "confidence": 0.65
+      },
+      {
+        "packageName": "@vestara/cli",
+        "layer": "services",
+        "confidence": 0.65
+      },
+      {
+        "packageName": "@vestara/workspace-ui",
+        "layer": "ui",
+        "confidence": 0.9
+      },
+      {
+        "packageName": "vestara-ai-core",
+        "layer": "unknown",
+        "confidence": 0.5
+      },
+      {
+        "packageName": "@vestara/action",
+        "layer": "infrastructure",
+        "confidence": 0.7
+      },
+      {
+        "packageName": "@vestara/cognitive",
+        "layer": "infrastructure",
+        "confidence": 0.7
+      },
+      {
+        "packageName": "@vestara/configuration",
+        "layer": "infrastructure",
+        "confidence": 0.7
+      },
+      {
+        "packageName": "@vestara/context",
+        "layer": "infrastructure",
+        "confidence": 0.7
+      },
+      {
+        "packageName": "@vestara/conversation",
+        "layer": "infrastructure",
+        "confidence": 0.7
+      },
+      {
+        "packageName": "@vestara/event-bus",
+        "layer": "infrastructure",
+        "confidence": 0.7
+      },
+      {
+        "packageName": "@vestara/events",
+        "layer": "unknown",
+        "confidence": 0.5
+      },
+      {
+        "packageName": "@vestara/events-server",
+        "layer": "unknown",
+        "confidence": 0.5
+      },
+      {
+        "packageName": "@vestara/health",
+        "layer": "services",
+        "confidence": 0.65
+      },
+      {
+        "packageName": "@vestara/kernel",
+        "layer": "services",
+        "confidence": 0.65
+      },
+      {
+        "packageName": "@vestara/knowledge",
+        "layer": "infrastructure",
+        "confidence": 0.7
+      },
+      {
+        "packageName": "@vestara/logger",
+        "layer": "infrastructure",
+        "confidence": 0.7
+      },
+      {
+        "packageName": "@vestara/memory",
+        "layer": "infrastructure",
+        "confidence": 0.7
+      },
+      {
+        "packageName": "@vestara/metrics",
+        "layer": "infrastructure",
+        "confidence": 0.7
+      },
+      {
+        "packageName": "@vestara/os-controller",
+        "layer": "unknown",
+        "confidence": 0.5
+      },
+      {
+        "packageName": "@vestara/permission",
+        "layer": "unknown",
+        "confidence": 0.5
+      },
+      {
+        "packageName": "@vestara/provider-runtime",
+        "layer": "services",
+        "confidence": 0.65
+      },
+      {
+        "packageName": "@vestara/provider-opencode",
+        "layer": "infrastructure",
+        "confidence": 0.7
+      },
+      {
+        "packageName": "@vestara/reasoning",
+        "layer": "infrastructure",
+        "confidence": 0.7
+      },
+      {
+        "packageName": "@vestara/service-registry",
+        "layer": "infrastructure",
+        "confidence": 0.7
+      },
+      {
+        "packageName": "@vestara/shared",
+        "layer": "contracts",
+        "confidence": 0.9
+      },
+      {
+        "packageName": "@vestara/state-runtime",
+        "layer": "infrastructure",
+        "confidence": 0.7
+      },
+      {
+        "packageName": "@vestara/stream",
+        "layer": "infrastructure",
+        "confidence": 0.7
+      },
+      {
+        "packageName": "@vestara/tools-filesystem",
+        "layer": "tools",
+        "confidence": 0.95
+      },
+      {
+        "packageName": "@vestara/tools-knowledge",
+        "layer": "tools",
+        "confidence": 0.95
+      },
+      {
+        "packageName": "@vestara/tools-memory",
+        "layer": "tools",
+        "confidence": 0.95
+      },
+      {
+        "packageName": "@vestara/tools-project",
+        "layer": "tools",
+        "confidence": 0.95
+      },
+      {
+        "packageName": "@vestara/tools-shell",
+        "layer": "tools",
+        "confidence": 0.95
+      },
+      {
+        "packageName": "@vestara/workspace",
+        "layer": "infrastructure",
+        "confidence": 0.7
+      }
+    ],
+    "healthScore": {
+      "overall": 7.9,
+      "categories": {
+        "codeQuality": 4.5,
+        "testCoverage": 9.4,
+        "dependencyHealth": 7.5,
+        "documentation": 10
+      }
+    },
+    "hasDocker": false,
+    "hasCI": false,
+    "detectedAt": "2026-07-24T07:25:28.534Z"
+  },
+  "knowledge": {
+    "version": 2,
+    "documents": 1089,
+    "chunks": 2008,
+    "lastIndexedAt": "2026-07-24T07:53:42.307Z"
+  },
+  "memory": {
+    "version": 1,
+    "count": 0,
+    "lastConsolidatedAt": null
+  },
+  "openedAt": "2026-07-24T07:25:28.536Z",
+  "lastOpenedAt": "2026-07-24T08:15:58.408Z",
+  "files": {
+    "count": 1247,
+    "totalSizeKB": 9546,
+    "byExtension": {
+      "json": 73,
+      "md": 220,
+      "githooks/pre-commit": 1,
+      "yml": 2,
+      "ts": 291,
+      "js": 147,
+      "map": 142,
+      "tsbuildinfo": 13,
+      "html": 324,
+      "tsx": 19,
+      "css": 3,
+      "sh": 6,
+      "nojekyll": 1,
+      "svg": 1,
+      "yaml": 1,
+      "vestara-ai-core/vestara-ai-core/src": 1,
+      "db": 1,
+      "windsurfrules": 1
+    },
+    "mtimeCache": {
+      ".opencode/package.json": "1784850652016",
+      ".opencode/skills/git-commit-push/SKILL.md": "1784850652044",
+      ".opencode/skills/testing-and-quality/SKILL.md": "1784850652045",
+      ".opencode/themes/vestara-dark.json": "1784850652045",
+      ".opencode/themes/vestara-light.json": "1784850652046",
+      ".opencode/themes/vestara-midnight.json": "1784850652046",
+      "AGENTS.md": "1784869488772",
+      "PHASE-3-HANDOFF.md": "1784819290481",
+      "PRODUCT-BACKLOG.md": "1784819290490",
+      "PRODUCT-CHARTER.md": "1784819290489",
+      "PRODUCT-ENGINEERING-CHARTER.md": "1784819290484",
+      "PRODUCT-PRINCIPLES.md": "1784819290486",
+      "README.md": "1784864879340",
+      "opencode.json": "1784851957978",
+      "thoughts/plans/epic-001-repository-comprehension.md": "1784822122629",
+      "vestara-ai-core/.githooks/pre-commit": "1784868997789",
+      "vestara-ai-core/.github/ISSUE_TEMPLATE/bug-report.md": "1784869476204",
+      "vestara-ai-core/.github/ISSUE_TEMPLATE/feature-request.md": "1784869477270",
+      "vestara-ai-core/.github/PULL_REQUEST_TEMPLATE.md": "1784869478323",
+      "vestara-ai-core/.github/workflows/ci.yml": "1784870587708",
+      "vestara-ai-core/CODE_OF_CONDUCT.md": "1784869482943",
+      "vestara-ai-core/CONTRIBUTING.md": "1784869480394",
+      "vestara-ai-core/README.md": "1784877455029",
+      "vestara-ai-core/SECURITY.md": "1784869481496",
+      "vestara-ai-core/apps/api/README.md": "1784867126636",
+      "vestara-ai-core/apps/api/__tests__/index.test.d.ts": "1784878798086",
+      "vestara-ai-core/apps/api/__tests__/index.test.js": "1784878798074",
+      "vestara-ai-core/apps/api/__tests__/index.test.js.map": "1784878798073",
+      "vestara-ai-core/apps/api/__tests__/index.test.ts": "1784868805691",
+      "vestara-ai-core/apps/api/package.json": "1784868582341",
+      "vestara-ai-core/apps/api/src/index.d.ts": "1784878798018",
+      "vestara-ai-core/apps/api/src/index.js": "1784878798018",
+      "vestara-ai-core/apps/api/src/index.js.map": "1784878798017",
+      "vestara-ai-core/apps/api/src/index.ts": "1784868805705",
+      "vestara-ai-core/apps/api/src/server.d.ts": "1784878798259",
+      "vestara-ai-core/apps/api/src/server.js": "1784878798121",
+      "vestara-ai-core/apps/api/src/server.js.map": "1784878798120",
+      "vestara-ai-core/apps/api/src/server.ts": "1784880927295",
+      "vestara-ai-core/apps/api/src/sql.d.ts": "1784831850675",
+      "vestara-ai-core/apps/api/src/workspace-context.d.ts": "1784878798084",
+      "vestara-ai-core/apps/api/src/workspace-context.js": "1784878798082",
+      "vestara-ai-core/apps/api/src/workspace-context.js.map": "1784878798082",
+      "vestara-ai-core/apps/api/src/workspace-context.ts": "1784875453904",
+      "vestara-ai-core/apps/api/tsconfig.json": "1784831850648",
+      "vestara-ai-core/apps/cli/README.md": "1784867126670",
+      "vestara-ai-core/apps/cli/__tests__/index.test.d.ts": "1784878798243",
+      "vestara-ai-core/apps/cli/__tests__/index.test.js": "1784878798243",
+      "vestara-ai-core/apps/cli/__tests__/index.test.js.map": "1784878798242",
+      "vestara-ai-core/apps/cli/__tests__/index.test.ts": "1784868805711",
+      "vestara-ai-core/apps/cli/package.json": "1784868582341",
+      "vestara-ai-core/apps/cli/src/commands/open.d.ts": "1784878798080",
+      "vestara-ai-core/apps/cli/src/commands/open.js": "1784878798078",
+      "vestara-ai-core/apps/cli/src/commands/open.js.map": "1784878798078",
+      "vestara-ai-core/apps/cli/src/commands/open.ts": "1784868864935",
+      "vestara-ai-core/apps/cli/src/index.d.ts": "1784878798164",
+      "vestara-ai-core/apps/cli/src/index.js": "1784878798150",
+      "vestara-ai-core/apps/cli/src/index.js.map": "1784878798150",
+      "vestara-ai-core/apps/cli/src/index.ts": "1784870784815",
+      "vestara-ai-core/apps/cli/src/repl-workspace.d.ts": "1784878798314",
+      "vestara-ai-core/apps/cli/src/repl-workspace.js": "1784878798294",
+      "vestara-ai-core/apps/cli/src/repl-workspace.js.map": "1784878798293",
+      "vestara-ai-core/apps/cli/src/repl-workspace.ts": "1784872898509",
+      "vestara-ai-core/apps/cli/tsconfig.json": "1784806616445",
+      "vestara-ai-core/apps/cli/tsconfig.tsbuildinfo": "1784804266180",
+      "vestara-ai-core/apps/workspace/README.md": "1784867126705",
+      "vestara-ai-core/apps/workspace/index.html": "1784828946410",
+      "vestara-ai-core/apps/workspace/package.json": "1784877594190",
+      "vestara-ai-core/apps/workspace/src/App.tsx": "1784879459376",
+      "vestara-ai-core/apps/workspace/src/components/ActionPanel.tsx": "1784875843220",
+      "vestara-ai-core/apps/workspace/src/components/ConnectionStatus.tsx": "1784873465055",
+      "vestara-ai-core/apps/workspace/src/components/EmptyState.tsx": "1784873462617",
+      "vestara-ai-core/apps/workspace/src/components/ShellLayout.tsx": "1784879463247",
+      "vestara-ai-core/apps/workspace/src/components/Sidebar.tsx": "1784868805813",
+      "vestara-ai-core/apps/workspace/src/components/Toast.tsx": "1784874909767",
+      "vestara-ai-core/apps/workspace/src/lib/api.ts": "1784876970654",
+      "vestara-ai-core/apps/workspace/src/lib/auth.tsx": "1784868805835",
+      "vestara-ai-core/apps/workspace/src/lib/connection.tsx": "1784875302650",
+      "vestara-ai-core/apps/workspace/src/lib/useEventStream.ts": "1784875317907",
+      "vestara-ai-core/apps/workspace/src/lib/ws.ts": "1784831968813",
+      "vestara-ai-core/apps/workspace/src/main.tsx": "1784873524862",
+      "vestara-ai-core/apps/workspace/src/pages/Agents.tsx": "1784876763046",
+      "vestara-ai-core/apps/workspace/src/pages/Artifacts.tsx": "1784876938570",
+      "vestara-ai-core/apps/workspace/src/pages/ChatPage.tsx": "1784880939607",
+      "vestara-ai-core/apps/workspace/src/pages/Dashboard.tsx": "1784875569692",
+      "vestara-ai-core/apps/workspace/src/pages/Login.tsx": "1784873491535",
+      "vestara-ai-core/apps/workspace/src/pages/Memory.tsx": "1784876934205",
+      "vestara-ai-core/apps/workspace/src/pages/SessionList.tsx": "1784873509570",
+      "vestara-ai-core/apps/workspace/src/pages/SessionView.tsx": "1784876966384",
+      "vestara-ai-core/apps/workspace/src/pages/Terminal.tsx": "1784878377455",
+      "vestara-ai-core/apps/workspace/src/styles/index.css": "1784868806012",
+      "vestara-ai-core/apps/workspace/tsconfig.json": "1784828933908",
+      "vestara-ai-core/apps/workspace/tsconfig.tsbuildinfo": "1784880948461",
+      "vestara-ai-core/apps/workspace/vite.config.d.ts": "1784878798244",
+      "vestara-ai-core/apps/workspace/vite.config.js": "1784878798243",
+      "vestara-ai-core/apps/workspace/vite.config.js.map": "1784878798243",
+      "vestara-ai-core/apps/workspace/vite.config.ts": "1784880454857",
+      "vestara-ai-core/biome.json": "1784868973280",
+      "vestara-ai-core/build-order.sh": "1784861729747",
+      "vestara-ai-core/docs/AI-OS-ARCHITECTURE.md": "1784861639811",
+      "vestara-ai-core/docs/AI-OS-ROADMAP.md": "1784861537877",
+      "vestara-ai-core/docs/ARCHITECTURE_TRACEABILITY.md": "1784802882983",
+      "vestara-ai-core/docs/ATS-002-explain.md": "1784825668742",
+      "vestara-ai-core/docs/ATS-010-workspace-ui.md": "1784831838224",
+      "vestara-ai-core/docs/CAPABILITY-REGISTRY.md": "1784859274457",
+      "vestara-ai-core/docs/CHANGELOG.md": "1784802896140",
+      "vestara-ai-core/docs/CONTRACT-CATALOG.md": "1784857752534",
+      "vestara-ai-core/docs/CONTRACT-ENTERPRISE.md": "1784857824211",
+      "vestara-ai-core/docs/DECISIONS.md": "1784824121807",
+      "vestara-ai-core/docs/DEFINITION_OF_LIVING.md": "1784813648539",
+      "vestara-ai-core/docs/IMPLEMENTATION_STATUS.md": "1784879713186",
+      "vestara-ai-core/docs/MILESTONES.md": "1784879697050",
+      "vestara-ai-core/docs/OPERATIONAL-PRINCIPLES.md": "1784870431859",
+      "vestara-ai-core/docs/PCS-001-repository-comprehension.md": "1784823803088",
+      "vestara-ai-core/docs/PCS-002-explain.md": "1784825816608",
+      "vestara-ai-core/docs/PCS-003-plan.md": "1784826590671",
+      "vestara-ai-core/docs/PCS-004-implement.md": "1784827226312",
+      "vestara-ai-core/docs/PCS-005-verify.md": "1784827341829",
+      "vestara-ai-core/docs/PCS-006-collaboration.md": "1784827582128",
+      "vestara-ai-core/docs/PCS-007-agent-runtime.md": "1784827834579",
+      "vestara-ai-core/docs/PCS-008-memory.md": "1784828070001",
+      "vestara-ai-core/docs/PCS-009-engineering-session.md": "1784828412569",
+      "vestara-ai-core/docs/PCS-010-workspace-ui.md": "1784831817004",
+      "vestara-ai-core/docs/PCS-011-agent-execution.md": "1784852625551",
+      "vestara-ai-core/docs/PCS-012-multi-repository.md": "1784852882715",
+      "vestara-ai-core/docs/PCS-013-enterprise.md": "1784853073162",
+      "vestara-ai-core/docs/PCS-014-plugin-ecosystem.md": "1784853442261",
+      "vestara-ai-core/docs/PCS-015-cloud-execution.md": "1784853598991",
+      "vestara-ai-core/docs/PCS-016-os-integration.md": "1784853639369",
+      "vestara-ai-core/docs/PCS-017-execution-engine.md": "1784855170844",
+      "vestara-ai-core/docs/PCS-018-predictive-engineering.md": "1784856830559",
+      "vestara-ai-core/docs/PCS-019-decision-intelligence.md": "1784857443293",
+      "vestara-ai-core/docs/PERFORMANCE_BASELINES.md": "1784870826206",
+      "vestara-ai-core/docs/PRODUCT-PRINCIPLES.md": "1784859428809",
+      "vestara-ai-core/docs/UX-002-explain.md": "1784825662415",
+      "vestara-ai-core/docs/UX-010-workspace-ui.md": "1784831828607",
+      "vestara-ai-core/docs/VSDE/README.md": "1784859567969",
+      "vestara-ai-core/docs/VSDE/VSDE-001-lifecycle.md": "1784859576619",
+      "vestara-ai-core/docs/VSDE/VSDE-002-capability-package.md": "1784859586543",
+      "vestara-ai-core/docs/VSDE/VSDE-003-artifact-contracts.md": "1784859727234",
+      "vestara-ai-core/docs/VSDE/VSDE-004-review-gates.md": "1784859603710",
+      "vestara-ai-core/docs/VSDE/VSDE-005-ci-pipeline.md": "1784859612466",
+      "vestara-ai-core/docs/VSDE/VSDE-006-capability-states.md": "1784859620466",
+      "vestara-ai-core/docs/api/.nojekyll": "1784873597330",
+      "vestara-ai-core/docs/api/PACKAGE_CATALOG.md": "1784873598413",
+      "vestara-ai-core/docs/api/assets/hierarchy.js": "1784873597524",
+      "vestara-ai-core/docs/api/assets/highlight.css": "1784873598273",
+      "vestara-ai-core/docs/api/assets/icons.js": "1784873598271",
+      "vestara-ai-core/docs/api/assets/icons.svg": "1784873598271",
+      "vestara-ai-core/docs/api/assets/main.js": "1784873598273",
+      "vestara-ai-core/docs/api/assets/navigation.js": "1784873597524",
+      "vestara-ai-core/docs/api/assets/search.js": "1784873597564",
+      "vestara-ai-core/docs/api/assets/style.css": "1784873598272",
+      "vestara-ai-core/docs/api/classes/action_src.DefaultActionRuntime.html": "1784873598219",
+      "vestara-ai-core/docs/api/classes/cognitive_src.DefaultCognitiveEngine.html": "1784873598253",
+      "vestara-ai-core/docs/api/classes/cognitive_src.DefaultObservationEngine.html": "1784873598253",
+      "vestara-ai-core/docs/api/classes/cognitive_src.DefaultUnderstandingEngine.html": "1784873598253",
+      "vestara-ai-core/docs/api/classes/configuration_src.ConfigurationManager.html": "1784873598253",
+      "vestara-ai-core/docs/api/classes/configuration_src.FileConfigSource.html": "1784873598253",
+      "vestara-ai-core/docs/api/classes/context_src.DefaultContextAssembler.html": "1784873598253",
+      "vestara-ai-core/docs/api/classes/conversation_src.DefaultConversationService.html": "1784873598254",
+      "vestara-ai-core/docs/api/classes/event-bus_src.InProcessEventBus.html": "1784873598254",
+      "vestara-ai-core/docs/api/classes/health_src.DefaultHealthManager.html": "1784873598254",
+      "vestara-ai-core/docs/api/classes/kernel_src.DefaultKernel.html": "1784873598254",
+      "vestara-ai-core/docs/api/classes/knowledge_src.DefaultChunkEngine.html": "1784873598255",
+      "vestara-ai-core/docs/api/classes/knowledge_src.DefaultDocumentParser.html": "1784873598255",
+      "vestara-ai-core/docs/api/classes/knowledge_src.DefaultKnowledgeEngine.html": "1784873598255",
+      "vestara-ai-core/docs/api/classes/knowledge_src.DefaultKnowledgeIndexer.html": "1784873598255",
+      "vestara-ai-core/docs/api/classes/knowledge_src.DefaultRepositoryAnalyzer.html": "1784873598255",
+      "vestara-ai-core/docs/api/classes/knowledge_src.KnowledgeStorage.html": "1784873598255",
+      "vestara-ai-core/docs/api/classes/logger_src.ConsoleSink.html": "1784873598255",
+      "vestara-ai-core/docs/api/classes/logger_src.FileSink.html": "1784873598255",
+      "vestara-ai-core/docs/api/classes/logger_src.StructuredLogger.html": "1784873598255",
+      "vestara-ai-core/docs/api/classes/memory_src.DefaultMemoryRuntime.html": "1784873598255",
+      "vestara-ai-core/docs/api/classes/metrics_src.MetricsRegistry.html": "1784873598256",
+      "vestara-ai-core/docs/api/classes/os-controller_src.LifecycleController.html": "1784873598256",
+      "vestara-ai-core/docs/api/classes/permission_src.DefaultPermissionEngine.html": "1784873598256",
+      "vestara-ai-core/docs/api/classes/provider-runtime_src.DefaultProviderManager.html": "1784873598256",
+      "vestara-ai-core/docs/api/classes/providers_opencode_src.OpenCodeProvider.html": "1784873598256",
+      "vestara-ai-core/docs/api/classes/reasoning_src.ConsensusStrategy.html": "1784873598256",
+      "vestara-ai-core/docs/api/classes/reasoning_src.DeepAnalysisStrategy.html": "1784873598256",
+      "vestara-ai-core/docs/api/classes/reasoning_src.DefaultReasoningRuntime.html": "1784873598256",
+      "vestara-ai-core/docs/api/classes/reasoning_src.DefaultStrategySelector.html": "1784873598256",
+      "vestara-ai-core/docs/api/classes/reasoning_src.DelegationStrategy.html": "1784873598256",
+      "vestara-ai-core/docs/api/classes/reasoning_src.FastResponseStrategy.html": "1784873598256",
+      "vestara-ai-core/docs/api/classes/reasoning_src.MultiStepPlanningStrategy.html": "1784873598256",
+      "vestara-ai-core/docs/api/classes/reasoning_src.ReflectionStrategy.html": "1784873598256",
+      "vestara-ai-core/docs/api/classes/reasoning_src.SelfCritiqueStrategy.html": "1784873598256",
+      "vestara-ai-core/docs/api/classes/reasoning_src.VerificationStrategy.html": "1784873598256",
+      "vestara-ai-core/docs/api/classes/service-registry_src.DefaultServiceRegistry.html": "1784873598258",
+      "vestara-ai-core/docs/api/classes/state-runtime_src.DefaultStateRuntime.html": "1784873598259",
+      "vestara-ai-core/docs/api/classes/stream_src.DefaultStreamProcessor.html": "1784873598259",
+      "vestara-ai-core/docs/api/classes/workspace_src.AccuracyStorage.html": "1784873598259",
+      "vestara-ai-core/docs/api/classes/workspace_src.AgentCoordinator.html": "1784873598259",
+      "vestara-ai-core/docs/api/classes/workspace_src.AgentDaemonService.html": "1784873598259",
+      "vestara-ai-core/docs/api/classes/workspace_src.AgentPermissionEngine.html": "1784873598260",
+      "vestara-ai-core/docs/api/classes/workspace_src.AgentRuntime.html": "1784873598260",
+      "vestara-ai-core/docs/api/classes/workspace_src.AgentStorage.html": "1784873598260",
+      "vestara-ai-core/docs/api/classes/workspace_src.AgentWorkflowService.html": "1784873598260",
+      "vestara-ai-core/docs/api/classes/workspace_src.AnalyticsService.html": "1784873598260",
+      "vestara-ai-core/docs/api/classes/workspace_src.AutoIndex.html": "1784873598260",
+      "vestara-ai-core/docs/api/classes/workspace_src.CapabilityService.html": "1784873598260",
+      "vestara-ai-core/docs/api/classes/workspace_src.ChangeSetStorage.html": "1784873598260",
+      "vestara-ai-core/docs/api/classes/workspace_src.CloudControllerService.html": "1784873598261",
+      "vestara-ai-core/docs/api/classes/workspace_src.CloudService.html": "1784873598261",
+      "vestara-ai-core/docs/api/classes/workspace_src.CloudStorage.html": "1784873598261",
+      "vestara-ai-core/docs/api/classes/workspace_src.CollaborationService.html": "1784873598261",
+      "vestara-ai-core/docs/api/classes/workspace_src.CollaborationStorage.html": "1784873598261",
+      "vestara-ai-core/docs/api/classes/workspace_src.DecisionService.html": "1784873598261",
+      "vestara-ai-core/docs/api/classes/workspace_src.DecisionStorage.html": "1784873598261",
+      "vestara-ai-core/docs/api/classes/workspace_src.DesktopService.html": "1784873598261",
+      "vestara-ai-core/docs/api/classes/workspace_src.EngineeringMemory.html": "1784873598261",
+      "vestara-ai-core/docs/api/classes/workspace_src.EnterpriseService.html": "1784873598261",
+      "vestara-ai-core/docs/api/classes/workspace_src.EnterpriseStorage.html": "1784873598261",
+      "vestara-ai-core/docs/api/classes/workspace_src.ExecutionEngine.html": "1784873598261",
+      "vestara-ai-core/docs/api/classes/workspace_src.ExplainService.html": "1784873598261",
+      "vestara-ai-core/docs/api/classes/workspace_src.HelpService.html": "1784873598261",
+      "vestara-ai-core/docs/api/classes/workspace_src.ImpactStorage.html": "1784873598261",
+      "vestara-ai-core/docs/api/classes/workspace_src.ImplementationService.html": "1784873598261",
+      "vestara-ai-core/docs/api/classes/workspace_src.KernelService.html": "1784873598262",
+      "vestara-ai-core/docs/api/classes/workspace_src.KnowledgeGraphStorage.html": "1784873598261",
+      "vestara-ai-core/docs/api/classes/workspace_src.MemoryService.html": "1784873598261",
+      "vestara-ai-core/docs/api/classes/workspace_src.MonitorService.html": "1784873598261",
+      "vestara-ai-core/docs/api/classes/workspace_src.OSSystemService.html": "1784873598261",
+      "vestara-ai-core/docs/api/classes/workspace_src.OrganizationService.html": "1784873598261",
+      "vestara-ai-core/docs/api/classes/workspace_src.OrganizationStorage.html": "1784873598261",
+      "vestara-ai-core/docs/api/classes/workspace_src.PlanStorage.html": "1784873598261",
+      "vestara-ai-core/docs/api/classes/workspace_src.PlanningService.html": "1784873598261",
+      "vestara-ai-core/docs/api/classes/workspace_src.PluginRegistry.html": "1784873598261",
+      "vestara-ai-core/docs/api/classes/workspace_src.PluginRuntime.html": "1784873598261",
+      "vestara-ai-core/docs/api/classes/workspace_src.PluginRuntimeService.html": "1784873598261",
+      "vestara-ai-core/docs/api/classes/workspace_src.PredictionService.html": "1784873598261",
+      "vestara-ai-core/docs/api/classes/workspace_src.PreferenceService.html": "1784873598261",
+      "vestara-ai-core/docs/api/classes/workspace_src.RepositoryIntelligence.html": "1784873598261",
+      "vestara-ai-core/docs/api/classes/workspace_src.RepositoryPresenter.html": "1784873598261",
+      "vestara-ai-core/docs/api/classes/workspace_src.SessionService.html": "1784873598261",
+      "vestara-ai-core/docs/api/classes/workspace_src.SessionStorage.html": "1784873598261",
+      "vestara-ai-core/docs/api/classes/workspace_src.SuggestionService.html": "1784873598261",
+      "vestara-ai-core/docs/api/classes/workspace_src.VerificationService.html": "1784873598261",
+      "vestara-ai-core/docs/api/classes/workspace_src.VerificationStorage.html": "1784873598261",
+      "vestara-ai-core/docs/api/classes/workspace_src.WorkflowService.html": "1784873598261",
+      "vestara-ai-core/docs/api/classes/workspace_src.WorkspaceManagerService.html": "1784873598261",
+      "vestara-ai-core/docs/api/classes/workspace_src.WorkspaceManifest.html": "1784873598261",
+      "vestara-ai-core/docs/api/classes/workspace_src.WorkspacePersistence.html": "1784873598261",
+      "vestara-ai-core/docs/api/classes/workspace_src.WorkspaceRuntime.html": "1784873598261",
+      "vestara-ai-core/docs/api/classes/workspace_src.WorkspaceSession.html": "1784873598262",
+      "vestara-ai-core/docs/api/functions/events-server_src.emitEvent.html": "1784873598225",
+      "vestara-ai-core/docs/api/functions/events-server_src.registerSession.html": "1784873598255",
+      "vestara-ai-core/docs/api/functions/events-server_src.startServer.html": "1784873598254",
+      "vestara-ai-core/docs/api/functions/events-server_src.subscribeToEventBus.html": "1784873598254",
+      "vestara-ai-core/docs/api/functions/os-controller_src.createDefaultManifest.html": "1784873598256",
+      "vestara-ai-core/docs/api/functions/os-controller_src.generateSystemdUnits.html": "1784873598256",
+      "vestara-ai-core/docs/api/functions/os-controller_src.generateTarget.html": "1784873598256",
+      "vestara-ai-core/docs/api/functions/os-controller_src.getServiceStatus.html": "1784873598257",
+      "vestara-ai-core/docs/api/functions/os-controller_src.getServicesByLayer.html": "1784873598256",
+      "vestara-ai-core/docs/api/functions/os-controller_src.renderManifest.html": "1784873598256",
+      "vestara-ai-core/docs/api/functions/os-controller_src.renderServiceStatus.html": "1784873598256",
+      "vestara-ai-core/docs/api/functions/tools_filesystem_src.createReadFileTool.html": "1784873598259",
+      "vestara-ai-core/docs/api/functions/tools_filesystem_src.createWriteFileTool.html": "1784873598259",
+      "vestara-ai-core/docs/api/functions/workspace_src.collectSystemState.html": "1784873598264",
+      "vestara-ai-core/docs/api/functions/workspace_src.createFingerprint.html": "1784873598264",
+      "vestara-ai-core/docs/api/functions/workspace_src.renderSystemState.html": "1784873598264",
+      "vestara-ai-core/docs/api/hierarchy.html": "1784873598253",
+      "vestara-ai-core/docs/api/index.html": "1784873598253",
+      "vestara-ai-core/docs/api/interfaces/action_src.ActionContext.html": "1784873598220",
+      "vestara-ai-core/docs/api/interfaces/action_src.ActionRuntime.html": "1784873598253",
+      "vestara-ai-core/docs/api/interfaces/action_src.Tool.html": "1784873598253",
+      "vestara-ai-core/docs/api/interfaces/cognitive_src.CognitiveEngine.html": "1784873598253",
+      "vestara-ai-core/docs/api/interfaces/cognitive_src.MemoryExtraction.html": "1784873598253",
+      "vestara-ai-core/docs/api/interfaces/cognitive_src.Observation.html": "1784873598253",
+      "vestara-ai-core/docs/api/interfaces/cognitive_src.ObservationEngine.html": "1784873598253",
+      "vestara-ai-core/docs/api/interfaces/cognitive_src.ProcessingResult.html": "1784873598253",
+      "vestara-ai-core/docs/api/interfaces/cognitive_src.UnderstandingEngine.html": "1784873598253",
+      "vestara-ai-core/docs/api/interfaces/cognitive_src.UnderstandingResult.html": "1784873598253",
+      "vestara-ai-core/docs/api/interfaces/configuration_src.ConfigurationProvider.html": "1784873598253",
+      "vestara-ai-core/docs/api/interfaces/context_src.ContextAssembler.html": "1784873598254",
+      "vestara-ai-core/docs/api/interfaces/context_src.ContextOptions.html": "1784873598253",
+      "vestara-ai-core/docs/api/interfaces/conversation_src.ConversationService.html": "1784873598254",
+      "vestara-ai-core/docs/api/interfaces/conversation_src.ProviderExecutor.html": "1784873598254",
+      "vestara-ai-core/docs/api/interfaces/conversation_src.SendOptions.html": "1784873598254",
+      "vestara-ai-core/docs/api/interfaces/conversation_src.SendResult.html": "1784873598254",
+      "vestara-ai-core/docs/api/interfaces/event-bus_src.EventBus.html": "1784873598254",
+      "vestara-ai-core/docs/api/interfaces/event-bus_src.EventBusMetrics.html": "1784873598254",
+      "vestara-ai-core/docs/api/interfaces/event-bus_src.SubscribeOptions.html": "1784873598254",
+      "vestara-ai-core/docs/api/interfaces/events_src.WorkspaceEvent.html": "1784873598254",
+      "vestara-ai-core/docs/api/interfaces/events_src.WsClientMessage.html": "1784873598254",
+      "vestara-ai-core/docs/api/interfaces/events_src.WsServerMessage.html": "1784873598254",
+      "vestara-ai-core/docs/api/interfaces/health_src.HealthCheckResult.html": "1784873598254",
+      "vestara-ai-core/docs/api/interfaces/health_src.HealthCheckSummary.html": "1784873598254",
+      "vestara-ai-core/docs/api/interfaces/health_src.HealthManager.html": "1784873598254",
+      "vestara-ai-core/docs/api/interfaces/health_src.OverallHealth.html": "1784873598254",
+      "vestara-ai-core/docs/api/interfaces/kernel_src.BootOptions.html": "1784873598254",
+      "vestara-ai-core/docs/api/interfaces/kernel_src.VestaraKernel.html": "1784873598254",
+      "vestara-ai-core/docs/api/interfaces/knowledge_src.ChunkEngine.html": "1784873598255",
+      "vestara-ai-core/docs/api/interfaces/knowledge_src.DocumentParser.html": "1784873598255",
+      "vestara-ai-core/docs/api/interfaces/knowledge_src.IndexReport.html": "1784873598255",
+      "vestara-ai-core/docs/api/interfaces/knowledge_src.KnowledgeChunk.html": "1784873598255",
+      "vestara-ai-core/docs/api/interfaces/knowledge_src.KnowledgeDocument.html": "1784873598255",
+      "vestara-ai-core/docs/api/interfaces/knowledge_src.KnowledgeEngine.html": "1784873598255",
+      "vestara-ai-core/docs/api/interfaces/knowledge_src.KnowledgeIndexer.html": "1784873598255",
+      "vestara-ai-core/docs/api/interfaces/knowledge_src.ProjectInfo.html": "1784873598255",
+      "vestara-ai-core/docs/api/interfaces/knowledge_src.RepositoryAnalyzer.html": "1784873598255",
+      "vestara-ai-core/docs/api/interfaces/knowledge_src.SearchResult.html": "1784873598255",
+      "vestara-ai-core/docs/api/interfaces/logger_src.LogSink.html": "1784873598255",
+      "vestara-ai-core/docs/api/interfaces/logger_src.Logger.html": "1784873598255",
+      "vestara-ai-core/docs/api/interfaces/memory_src.ConsolidationReport.html": "1784873598255",
+      "vestara-ai-core/docs/api/interfaces/memory_src.Memory.html": "1784873598255",
+      "vestara-ai-core/docs/api/interfaces/memory_src.MemoryInput.html": "1784873598256",
+      "vestara-ai-core/docs/api/interfaces/memory_src.MemoryRuntime.html": "1784873598256",
+      "vestara-ai-core/docs/api/interfaces/memory_src.MemorySearchResult.html": "1784873598256",
+      "vestara-ai-core/docs/api/interfaces/memory_src.MemoryStats.html": "1784873598256",
+      "vestara-ai-core/docs/api/interfaces/metrics_src.MetricsCollector.html": "1784873598256",
+      "vestara-ai-core/docs/api/interfaces/os-controller_src.AIOSManifest.html": "1784873598256",
+      "vestara-ai-core/docs/api/interfaces/os-controller_src.AIOSServiceDef.html": "1784873598256",
+      "vestara-ai-core/docs/api/interfaces/os-controller_src.ServiceStatus.html": "1784873598256",
+      "vestara-ai-core/docs/api/interfaces/permission_src.PermissionContext.html": "1784873598256",
+      "vestara-ai-core/docs/api/interfaces/permission_src.PermissionDecision.html": "1784873598256",
+      "vestara-ai-core/docs/api/interfaces/permission_src.PermissionEngine.html": "1784873598256",
+      "vestara-ai-core/docs/api/interfaces/provider-runtime_src.ProviderInfo.html": "1784873598256",
+      "vestara-ai-core/docs/api/interfaces/provider-runtime_src.ProviderManager.html": "1784873598256",
+      "vestara-ai-core/docs/api/interfaces/reasoning_src.ProviderExecutor.html": "1784873598256",
+      "vestara-ai-core/docs/api/interfaces/reasoning_src.ReasoningContext.html": "1784873598257",
+      "vestara-ai-core/docs/api/interfaces/reasoning_src.ReasoningMetrics.html": "1784873598257",
+      "vestara-ai-core/docs/api/interfaces/reasoning_src.ReasoningResult.html": "1784873598257",
+      "vestara-ai-core/docs/api/interfaces/reasoning_src.ReasoningRuntime.html": "1784873598257",
+      "vestara-ai-core/docs/api/interfaces/reasoning_src.ReasoningStrategy.html": "1784873598257",
+      "vestara-ai-core/docs/api/interfaces/reasoning_src.StrategySelector.html": "1784873598258",
+      "vestara-ai-core/docs/api/interfaces/service-registry_src.DependencyGraph.html": "1784873598258",
+      "vestara-ai-core/docs/api/interfaces/service-registry_src.ServiceEntry.html": "1784873598258",
+      "vestara-ai-core/docs/api/interfaces/service-registry_src.ServiceRegistry.html": "1784873598258",
+      "vestara-ai-core/docs/api/interfaces/shared_src.AIModel.html": "1784873598258",
+      "vestara-ai-core/docs/api/interfaces/shared_src.AIProvider.html": "1784873598258",
+      "vestara-ai-core/docs/api/interfaces/shared_src.ActionExecution.html": "1784873598258",
+      "vestara-ai-core/docs/api/interfaces/shared_src.ActionRequest.html": "1784873598258",
+      "vestara-ai-core/docs/api/interfaces/shared_src.BootError.html": "1784873598258",
+      "vestara-ai-core/docs/api/interfaces/shared_src.BootReport.html": "1784873598258",
+      "vestara-ai-core/docs/api/interfaces/shared_src.ChunkMetadata.html": "1784873598258",
+      "vestara-ai-core/docs/api/interfaces/shared_src.CompletionRequest.html": "1784873598258",
+      "vestara-ai-core/docs/api/interfaces/shared_src.CompletionResponse.html": "1784873598258",
+      "vestara-ai-core/docs/api/interfaces/shared_src.ConfigSource.html": "1784873598258",
+      "vestara-ai-core/docs/api/interfaces/shared_src.Conversation.html": "1784873598258",
+      "vestara-ai-core/docs/api/interfaces/shared_src.ConversationSummary.html": "1784873598258",
+      "vestara-ai-core/docs/api/interfaces/shared_src.HealthDependency.html": "1784873598258",
+      "vestara-ai-core/docs/api/interfaces/shared_src.HealthStatus.html": "1784873598258",
+      "vestara-ai-core/docs/api/interfaces/shared_src.HistogramSummary.html": "1784873598258",
+      "vestara-ai-core/docs/api/interfaces/shared_src.LifecycleEvent.html": "1784873598258",
+      "vestara-ai-core/docs/api/interfaces/shared_src.LogEntry.html": "1784873598258",
+      "vestara-ai-core/docs/api/interfaces/shared_src.Message.html": "1784873598258",
+      "vestara-ai-core/docs/api/interfaces/shared_src.MetricDefinition.html": "1784873598258",
+      "vestara-ai-core/docs/api/interfaces/shared_src.MetricSnapshot.html": "1784873598258",
+      "vestara-ai-core/docs/api/interfaces/shared_src.ProviderCapabilities.html": "1784873598258",
+      "vestara-ai-core/docs/api/interfaces/shared_src.ProviderHealthStatus.html": "1784873598258",
+      "vestara-ai-core/docs/api/interfaces/shared_src.ResourceDiagnosis.html": "1784873598258",
+      "vestara-ai-core/docs/api/interfaces/shared_src.ServiceDiagnosis.html": "1784873598258",
+      "vestara-ai-core/docs/api/interfaces/shared_src.ServiceInfo.html": "1784873598258",
+      "vestara-ai-core/docs/api/interfaces/shared_src.ServiceRegistryEvent.html": "1784873598258",
+      "vestara-ai-core/docs/api/interfaces/shared_src.StreamChunk.html": "1784873598258",
+      "vestara-ai-core/docs/api/interfaces/shared_src.StreamEvent.html": "1784873598258",
+      "vestara-ai-core/docs/api/interfaces/shared_src.SystemDiagnosis.html": "1784873598258",
+      "vestara-ai-core/docs/api/interfaces/shared_src.ToolDefinition.html": "1784873598258",
+      "vestara-ai-core/docs/api/interfaces/shared_src.ToolResult.html": "1784873598259",
+      "vestara-ai-core/docs/api/interfaces/shared_src.VestaraEvent.html": "1784873598259",
+      "vestara-ai-core/docs/api/interfaces/shared_src.VestaraService.html": "1784873598259",
+      "vestara-ai-core/docs/api/interfaces/state-runtime_src.ConversationStore.html": "1784873598259",
+      "vestara-ai-core/docs/api/interfaces/state-runtime_src.SettingsStore.html": "1784873598259",
+      "vestara-ai-core/docs/api/interfaces/state-runtime_src.StateRuntime.html": "1784873598259",
+      "vestara-ai-core/docs/api/interfaces/stream_src.ChunkOptions.html": "1784873598259",
+      "vestara-ai-core/docs/api/interfaces/stream_src.StreamOptions.html": "1784873598259",
+      "vestara-ai-core/docs/api/interfaces/stream_src.StreamProcessor.html": "1784873598259",
+      "vestara-ai-core/docs/api/interfaces/workspace_src.AgentDefinition.html": "1784873598261",
+      "vestara-ai-core/docs/api/interfaces/workspace_src.AgentExecution.html": "1784873598261",
+      "vestara-ai-core/docs/api/interfaces/workspace_src.AgentPermission.html": "1784873598262",
+      "vestara-ai-core/docs/api/interfaces/workspace_src.AgentWorkflow.html": "1784873598262",
+      "vestara-ai-core/docs/api/interfaces/workspace_src.Approval.html": "1784873598262",
+      "vestara-ai-core/docs/api/interfaces/workspace_src.ChangeSet.html": "1784873598262",
+      "vestara-ai-core/docs/api/interfaces/workspace_src.CollaborationComment.html": "1784873598262",
+      "vestara-ai-core/docs/api/interfaces/workspace_src.CollaborationRecord.html": "1784873598262",
+      "vestara-ai-core/docs/api/interfaces/workspace_src.DependencyEdge.html": "1784873598262",
+      "vestara-ai-core/docs/api/interfaces/workspace_src.DependencyGraph.html": "1784873598262",
+      "vestara-ai-core/docs/api/interfaces/workspace_src.DetectedRisk.html": "1784873598262",
+      "vestara-ai-core/docs/api/interfaces/workspace_src.DiscoveryResult.html": "1784873598262",
+      "vestara-ai-core/docs/api/interfaces/workspace_src.EngineeringSession.html": "1784873598262",
+      "vestara-ai-core/docs/api/interfaces/workspace_src.EntryPoint.html": "1784873598263",
+      "vestara-ai-core/docs/api/interfaces/workspace_src.FileChange.html": "1784873598263",
+      "vestara-ai-core/docs/api/interfaces/workspace_src.HealthCheckResult.html": "1784873598263",
+      "vestara-ai-core/docs/api/interfaces/workspace_src.KnowledgeNode.html": "1784873598263",
+      "vestara-ai-core/docs/api/interfaces/workspace_src.KnowledgeRelation.html": "1784873598263",
+      "vestara-ai-core/docs/api/interfaces/workspace_src.LayerAssignment.html": "1784873598263",
+      "vestara-ai-core/docs/api/interfaces/workspace_src.OpenResult.html": "1784873598263",
+      "vestara-ai-core/docs/api/interfaces/workspace_src.Ownership.html": "1784873598263",
+      "vestara-ai-core/docs/api/interfaces/workspace_src.PackageNode.html": "1784873598263",
+      "vestara-ai-core/docs/api/interfaces/workspace_src.Plan.html": "1784873598263",
+      "vestara-ai-core/docs/api/interfaces/workspace_src.PresentedSummary.html": "1784873598263",
+      "vestara-ai-core/docs/api/interfaces/workspace_src.RepositoryFingerprint.html": "1784873598263",
+      "vestara-ai-core/docs/api/interfaces/workspace_src.RepositoryProfile.html": "1784873598263",
+      "vestara-ai-core/docs/api/interfaces/workspace_src.RepositoryWorkspace.html": "1784873598263",
+      "vestara-ai-core/docs/api/interfaces/workspace_src.ServiceContract.html": "1784873598263",
+      "vestara-ai-core/docs/api/interfaces/workspace_src.SessionParticipant.html": "1784873598263",
+      "vestara-ai-core/docs/api/interfaces/workspace_src.SystemState.html": "1784873598263",
+      "vestara-ai-core/docs/api/interfaces/workspace_src.Task.html": "1784873598263",
+      "vestara-ai-core/docs/api/interfaces/workspace_src.VerificationCheck.html": "1784873598263",
+      "vestara-ai-core/docs/api/interfaces/workspace_src.VerificationReport.html": "1784873598263",
+      "vestara-ai-core/docs/api/interfaces/workspace_src.WorkerConfig.html": "1784873598263",
+      "vestara-ai-core/docs/api/interfaces/workspace_src.WorkerEvent.html": "1784873598263",
+      "vestara-ai-core/docs/api/interfaces/workspace_src.WorkflowInstance.html": "1784873598263",
+      "vestara-ai-core/docs/api/interfaces/workspace_src.WorkflowStep.html": "1784873598263",
+      "vestara-ai-core/docs/api/interfaces/workspace_src.WorkflowStepDef.html": "1784873598263",
+      "vestara-ai-core/docs/api/interfaces/workspace_src.WorkflowStepResult.html": "1784873598263",
+      "vestara-ai-core/docs/api/interfaces/workspace_src.WorkspaceEvent.html": "1784873598263",
+      "vestara-ai-core/docs/api/modules/action_src.html": "1784873598219",
+      "vestara-ai-core/docs/api/modules/cognitive_src.html": "1784873598253",
+      "vestara-ai-core/docs/api/modules/configuration_src.html": "1784873598253",
+      "vestara-ai-core/docs/api/modules/context_src.html": "1784873598254",
+      "vestara-ai-core/docs/api/modules/conversation_src.html": "1784873598254",
+      "vestara-ai-core/docs/api/modules/event-bus_src.html": "1784873598254",
+      "vestara-ai-core/docs/api/modules/events-server_src.html": "1784873598254",
+      "vestara-ai-core/docs/api/modules/events_src.html": "1784873598254",
+      "vestara-ai-core/docs/api/modules/health_src.html": "1784873598254",
+      "vestara-ai-core/docs/api/modules/kernel_src.html": "1784873598254",
+      "vestara-ai-core/docs/api/modules/knowledge_src.html": "1784873598255",
+      "vestara-ai-core/docs/api/modules/logger_src.html": "1784873598255",
+      "vestara-ai-core/docs/api/modules/memory_src.html": "1784873598255",
+      "vestara-ai-core/docs/api/modules/metrics_src.html": "1784873598256",
+      "vestara-ai-core/docs/api/modules/os-controller_src.html": "1784873598256",
+      "vestara-ai-core/docs/api/modules/permission_src.html": "1784873598256",
+      "vestara-ai-core/docs/api/modules/provider-runtime_src.html": "1784873598256",
+      "vestara-ai-core/docs/api/modules/providers_opencode_src.html": "1784873598256",
+      "vestara-ai-core/docs/api/modules/reasoning_src.html": "1784873598256",
+      "vestara-ai-core/docs/api/modules/service-registry_src.html": "1784873598258",
+      "vestara-ai-core/docs/api/modules/shared_src.html": "1784873598258",
+      "vestara-ai-core/docs/api/modules/state-runtime_src.html": "1784873598259",
+      "vestara-ai-core/docs/api/modules/stream_src.html": "1784873598259",
+      "vestara-ai-core/docs/api/modules/tools_filesystem_src.html": "1784873598259",
+      "vestara-ai-core/docs/api/modules/workspace_src.html": "1784873598259",
+      "vestara-ai-core/docs/api/types/cognitive_src.ObservationSource.html": "1784873598221",
+      "vestara-ai-core/docs/api/types/event-bus_src.EmitEvent.html": "1784873598254",
+      "vestara-ai-core/docs/api/types/events_src.WorkspaceEventActor.html": "1784873598254",
+      "vestara-ai-core/docs/api/types/events_src.WorkspaceEventChannel.html": "1784873598254",
+      "vestara-ai-core/docs/api/types/events_src.WorkspaceEventType.html": "1784873598254",
+      "vestara-ai-core/docs/api/types/memory_src.MemoryLayer.html": "1784873598256",
+      "vestara-ai-core/docs/api/types/memory_src.MemoryType.html": "1784873598256",
+      "vestara-ai-core/docs/api/types/reasoning_src.ReasoningStrategyId.html": "1784873598258",
+      "vestara-ai-core/docs/api/types/shared_src.ActionStatus.html": "1784873598259",
+      "vestara-ai-core/docs/api/types/shared_src.ChunkType.html": "1784873598259",
+      "vestara-ai-core/docs/api/types/shared_src.ConfigChangeHandler.html": "1784873598259",
+      "vestara-ai-core/docs/api/types/shared_src.ConversationStatus.html": "1784873598259",
+      "vestara-ai-core/docs/api/types/shared_src.EventHandler.html": "1784873598259",
+      "vestara-ai-core/docs/api/types/shared_src.KernelStatus.html": "1784873598259",
+      "vestara-ai-core/docs/api/types/shared_src.LogLevel.html": "1784873598259",
+      "vestara-ai-core/docs/api/types/shared_src.MessageRole.html": "1784873598259",
+      "vestara-ai-core/docs/api/types/shared_src.MetricType.html": "1784873598259",
+      "vestara-ai-core/docs/api/types/shared_src.PermissionLevel.html": "1784873598259",
+      "vestara-ai-core/docs/api/types/shared_src.ProviderStatus.html": "1784873598259",
+      "vestara-ai-core/docs/api/types/shared_src.ServiceRegistryEventType.html": "1784873598259",
+      "vestara-ai-core/docs/api/types/shared_src.ServiceStatus.html": "1784873598259",
+      "vestara-ai-core/docs/api/types/shared_src.Unsubscribe.html": "1784873598259",
+      "vestara-ai-core/docs/api/types/workspace_src.AgentCapability.html": "1784873598263",
+      "vestara-ai-core/docs/api/types/workspace_src.AgentExecutionStatus.html": "1784873598263",
+      "vestara-ai-core/docs/api/types/workspace_src.AgentRole.html": "1784873598263",
+      "vestara-ai-core/docs/api/types/workspace_src.ChangeSetStatus.html": "1784873598263",
+      "vestara-ai-core/docs/api/types/workspace_src.FileChangeStatus.html": "1784873598263",
+      "vestara-ai-core/docs/api/types/workspace_src.KnowledgeNodeType.html": "1784873598263",
+      "vestara-ai-core/docs/api/types/workspace_src.KnowledgeRelationType.html": "1784873598263",
+      "vestara-ai-core/docs/api/types/workspace_src.Layer.html": "1784873598263",
+      "vestara-ai-core/docs/api/types/workspace_src.PlanStatus.html": "1784873598263",
+      "vestara-ai-core/docs/api/types/workspace_src.ReviewStatus.html": "1784873598263",
+      "vestara-ai-core/docs/api/types/workspace_src.RiskCategory.html": "1784873598263",
+      "vestara-ai-core/docs/api/types/workspace_src.ServiceStatus.html": "1784873598264",
+      "vestara-ai-core/docs/api/types/workspace_src.SessionStatus.html": "1784873598263",
+      "vestara-ai-core/docs/api/types/workspace_src.TaskStatus.html": "1784873598264",
+      "vestara-ai-core/docs/api/types/workspace_src.VerificationStatus.html": "1784873598264",
+      "vestara-ai-core/docs/api/types/workspace_src.VerificationType.html": "1784873598264",
+      "vestara-ai-core/docs/api/types/workspace_src.WorkerType.html": "1784873598264",
+      "vestara-ai-core/docs/api/types/workspace_src.WorkspaceStatus.html": "1784873598264",
+      "vestara-ai-core/docs/api/variables/events_src.WORKSPACE_EVENT_CHANNELS.html": "1784873598227",
+      "vestara-ai-core/docs/api/variables/tools_filesystem_src.filesystemToolDefinitions.html": "1784873598259",
+      "vestara-ai-core/docs/artifacts/ChangeSet.md": "1784859645890",
+      "vestara-ai-core/docs/artifacts/CollaborationRecord.md": "1784859743462",
+      "vestara-ai-core/docs/artifacts/Decision.md": "1784859719555",
+      "vestara-ai-core/docs/artifacts/ImpactAssessment.md": "1784859710484",
+      "vestara-ai-core/docs/artifacts/Plan.md": "1784859636783",
+      "vestara-ai-core/docs/artifacts/RepositoryWorkspace.md": "1784859628907",
+      "vestara-ai-core/docs/artifacts/VerificationReport.md": "1784859701169",
+      "vestara-ai-core/docs/capabilities/CSP-001-open/ATS.md": "1784859112230",
+      "vestara-ai-core/docs/capabilities/CSP-001-open/CLI.md": "1784859103240",
+      "vestara-ai-core/docs/capabilities/CSP-001-open/DATA-MODEL.md": "1784859095615",
+      "vestara-ai-core/docs/capabilities/CSP-001-open/PCS.md": "1784859088023",
+      "vestara-ai-core/docs/capabilities/CSP-001-open/README.md": "1784859080098",
+      "vestara-ai-core/docs/capabilities/CSP-002-explain/DATA-MODEL.md": "1784859193366",
+      "vestara-ai-core/docs/capabilities/CSP-002-explain/PCS.md": "1784859185656",
+      "vestara-ai-core/docs/capabilities/CSP-002-explain/README.md": "1784859130105",
+      "vestara-ai-core/docs/capabilities/CSP-003-plan/ATS.md": "1784859209981",
+      "vestara-ai-core/docs/capabilities/CSP-003-plan/CLI.md": "1784859209983",
+      "vestara-ai-core/docs/capabilities/CSP-003-plan/README.md": "1784859148711",
+      "vestara-ai-core/docs/capabilities/CSP-004-implement/ATS.md": "1784859209988",
+      "vestara-ai-core/docs/capabilities/CSP-004-implement/CLI.md": "1784859209989",
+      "vestara-ai-core/docs/capabilities/CSP-004-implement/README.md": "1784859148714",
+      "vestara-ai-core/docs/capabilities/CSP-005-verify/README.md": "1784859148715",
+      "vestara-ai-core/docs/capabilities/CSP-006-collaborate/ATS.md": "1784859209998",
+      "vestara-ai-core/docs/capabilities/CSP-006-collaborate/CLI.md": "1784859209999",
+      "vestara-ai-core/docs/capabilities/CSP-006-collaborate/README.md": "1784859148717",
+      "vestara-ai-core/docs/capabilities/CSP-007-agent-runtime/README.md": "1784859261862",
+      "vestara-ai-core/docs/capabilities/CSP-008-memory/README.md": "1784859261883",
+      "vestara-ai-core/docs/capabilities/CSP-009-engineering-session/README.md": "1784859261906",
+      "vestara-ai-core/docs/capabilities/CSP-010-workspace-ui/README.md": "1784859261923",
+      "vestara-ai-core/docs/capabilities/CSP-011-agent-execution/README.md": "1784859261945",
+      "vestara-ai-core/docs/capabilities/CSP-012-multi-repository/README.md": "1784859261962",
+      "vestara-ai-core/docs/capabilities/CSP-013-enterprise/README.md": "1784859261978",
+      "vestara-ai-core/docs/capabilities/CSP-014-plugin-ecosystem/README.md": "1784859261995",
+      "vestara-ai-core/docs/capabilities/CSP-015-cloud-execution/README.md": "1784859262022",
+      "vestara-ai-core/docs/capabilities/CSP-016-os-integration/README.md": "1784859262040",
+      "vestara-ai-core/docs/capabilities/CSP-017-verify/14-checklist.md": "1784859735525",
+      "vestara-ai-core/docs/capabilities/CSP-017-verify/ARCHITECTURE.md": "1784858937785",
+      "vestara-ai-core/docs/capabilities/CSP-017-verify/ATS.md": "1784858963335",
+      "vestara-ai-core/docs/capabilities/CSP-017-verify/CLI.md": "1784858954718",
+      "vestara-ai-core/docs/capabilities/CSP-017-verify/DATA-MODEL.md": "1784858945624",
+      "vestara-ai-core/docs/capabilities/CSP-017-verify/PCS.md": "1784858929809",
+      "vestara-ai-core/docs/capabilities/CSP-017-verify/README.md": "1784858918775",
+      "vestara-ai-core/docs/capabilities/CSP-018-predictive-engineering/README.md": "1784859262056",
+      "vestara-ai-core/docs/capabilities/CSP-019-decision-intelligence/README.md": "1784859262073",
+      "vestara-ai-core/docs/standards/VSDE.md": "1784859418595",
+      "vestara-ai-core/package.json": "1784870096296",
+      "vestara-ai-core/packages/action/README.md": "1784867125681",
+      "vestara-ai-core/packages/action/__tests__/index.test.d.ts": "1784878798072",
+      "vestara-ai-core/packages/action/__tests__/index.test.js": "1784878798072",
+      "vestara-ai-core/packages/action/__tests__/index.test.js.map": "1784878798071",
+      "vestara-ai-core/packages/action/__tests__/index.test.ts": "1784868806031",
+      "vestara-ai-core/packages/action/package.json": "1784868457140",
+      "vestara-ai-core/packages/action/src/index.d.ts": "1784878798245",
+      "vestara-ai-core/packages/action/src/index.js": "1784878798085",
+      "vestara-ai-core/packages/action/src/index.js.map": "1784878798085",
+      "vestara-ai-core/packages/action/src/index.ts": "1784868865216",
+      "vestara-ai-core/packages/action/tsconfig.json": "1784811190244",
+      "vestara-ai-core/packages/cognitive/README.md": "1784867125709",
+      "vestara-ai-core/packages/cognitive/__tests__/index.test.d.ts": "1784878798022",
+      "vestara-ai-core/packages/cognitive/__tests__/index.test.js": "1784878798022",
+      "vestara-ai-core/packages/cognitive/__tests__/index.test.js.map": "1784878798021",
+      "vestara-ai-core/packages/cognitive/__tests__/index.test.ts": "1784868806042",
+      "vestara-ai-core/packages/cognitive/package.json": "1784868457140",
+      "vestara-ai-core/packages/cognitive/src/index.d.ts": "1784878798079",
+      "vestara-ai-core/packages/cognitive/src/index.js": "1784878798077",
+      "vestara-ai-core/packages/cognitive/src/index.js.map": "1784878798076",
+      "vestara-ai-core/packages/cognitive/src/index.ts": "1784868865366",
+      "vestara-ai-core/packages/cognitive/tsconfig.json": "1784814279652",
+      "vestara-ai-core/packages/configuration/README.md": "1784867125744",
+      "vestara-ai-core/packages/configuration/__tests__/index.test.d.ts": "1784878798076",
+      "vestara-ai-core/packages/configuration/__tests__/index.test.js": "1784878798075",
+      "vestara-ai-core/packages/configuration/__tests__/index.test.js.map": "1784878798075",
+      "vestara-ai-core/packages/configuration/__tests__/index.test.ts": "1784868806066",
+      "vestara-ai-core/packages/configuration/package.json": "1784868451092",
+      "vestara-ai-core/packages/configuration/src/index.d.ts": "1784878798027",
+      "vestara-ai-core/packages/configuration/src/index.js": "1784878798025",
+      "vestara-ai-core/packages/configuration/src/index.js.map": "1784878798025",
+      "vestara-ai-core/packages/configuration/src/index.ts": "1784868865253",
+      "vestara-ai-core/packages/configuration/tsconfig.json": "1784806616419",
+      "vestara-ai-core/packages/configuration/tsconfig.tsbuildinfo": "1784806579712",
+      "vestara-ai-core/packages/context/README.md": "1784867125779",
+      "vestara-ai-core/packages/context/__tests__/index.test.d.ts": "1784878798027",
+      "vestara-ai-core/packages/context/__tests__/index.test.js": "1784878798027",
+      "vestara-ai-core/packages/context/__tests__/index.test.js.map": "1784878798027",
+      "vestara-ai-core/packages/context/__tests__/index.test.ts": "1784868806100",
+      "vestara-ai-core/packages/context/package.json": "1784868457140",
+      "vestara-ai-core/packages/context/src/index.d.ts": "1784878798086",
+      "vestara-ai-core/packages/context/src/index.js": "1784878798085",
+      "vestara-ai-core/packages/context/src/index.js.map": "1784878798085",
+      "vestara-ai-core/packages/context/src/index.ts": "1784871279766",
+      "vestara-ai-core/packages/context/tsconfig.json": "1784809391595",
+      "vestara-ai-core/packages/conversation/README.md": "1784867125809",
+      "vestara-ai-core/packages/conversation/__tests__/index.test.d.ts": "1784878798077",
+      "vestara-ai-core/packages/conversation/__tests__/index.test.js": "1784878798077",
+      "vestara-ai-core/packages/conversation/__tests__/index.test.js.map": "1784878798077",
+      "vestara-ai-core/packages/conversation/__tests__/index.test.ts": "1784868806115",
+      "vestara-ai-core/packages/conversation/package.json": "1784868457141",
+      "vestara-ai-core/packages/conversation/src/index.d.ts": "1784878798242",
+      "vestara-ai-core/packages/conversation/src/index.js": "1784878798240",
+      "vestara-ai-core/packages/conversation/src/index.js.map": "1784878798240",
+      "vestara-ai-core/packages/conversation/src/index.ts": "1784871279288",
+      "vestara-ai-core/packages/conversation/tsconfig.json": "1784809391597",
+      "vestara-ai-core/packages/event-bus/README.md": "1784867125841",
+      "vestara-ai-core/packages/event-bus/__tests__/index.test.d.ts": "1784878798029",
+      "vestara-ai-core/packages/event-bus/__tests__/index.test.js": "1784878798029",
+      "vestara-ai-core/packages/event-bus/__tests__/index.test.js.map": "1784878798028",
+      "vestara-ai-core/packages/event-bus/__tests__/index.test.ts": "1784868806132",
+      "vestara-ai-core/packages/event-bus/package.json": "1784868451095",
+      "vestara-ai-core/packages/event-bus/src/index.d.ts": "1784878798231",
+      "vestara-ai-core/packages/event-bus/src/index.js": "1784878798088",
+      "vestara-ai-core/packages/event-bus/src/index.js.map": "1784878798088",
+      "vestara-ai-core/packages/event-bus/src/index.ts": "1784868865353",
+      "vestara-ai-core/packages/event-bus/tsconfig.json": "1784806616425",
+      "vestara-ai-core/packages/event-bus/tsconfig.tsbuildinfo": "1784806588250",
+      "vestara-ai-core/packages/events/README.md": "1784867125902",
+      "vestara-ai-core/packages/events/__tests__/index.test.d.ts": "1784878798056",
+      "vestara-ai-core/packages/events/__tests__/index.test.js": "1784878798056",
+      "vestara-ai-core/packages/events/__tests__/index.test.js.map": "1784878798056",
+      "vestara-ai-core/packages/events/__tests__/index.test.ts": "1784868806160",
+      "vestara-ai-core/packages/events/package.json": "1784868457141",
+      "vestara-ai-core/packages/events/src/index.d.ts": "1784878798105",
+      "vestara-ai-core/packages/events/src/index.js": "1784878798104",
+      "vestara-ai-core/packages/events/src/index.js.map": "1784878798104",
+      "vestara-ai-core/packages/events/src/index.ts": "1784868806166",
+      "vestara-ai-core/packages/events/tsconfig.json": "1784831846959",
+      "vestara-ai-core/packages/events-server/README.md": "1784867125934",
+      "vestara-ai-core/packages/events-server/__tests__/index.test.d.ts": "1784878798030",
+      "vestara-ai-core/packages/events-server/__tests__/index.test.js": "1784878798030",
+      "vestara-ai-core/packages/events-server/__tests__/index.test.js.map": "1784878798030",
+      "vestara-ai-core/packages/events-server/__tests__/index.test.ts": "1784868806169",
+      "vestara-ai-core/packages/events-server/package.json": "1784868457141",
+      "vestara-ai-core/packages/events-server/src/index.d.ts": "1784878798177",
+      "vestara-ai-core/packages/events-server/src/index.js": "1784878798176",
+      "vestara-ai-core/packages/events-server/src/index.js.map": "1784878798176",
+      "vestara-ai-core/packages/events-server/src/index.ts": "1784868865431",
+      "vestara-ai-core/packages/events-server/tsconfig.json": "1784860697118",
+      "vestara-ai-core/packages/health/README.md": "1784867125965",
+      "vestara-ai-core/packages/health/__tests__/index.test.d.ts": "1784878798106",
+      "vestara-ai-core/packages/health/__tests__/index.test.js": "1784878798106",
+      "vestara-ai-core/packages/health/__tests__/index.test.js.map": "1784878798106",
+      "vestara-ai-core/packages/health/__tests__/index.test.ts": "1784868806181",
+      "vestara-ai-core/packages/health/package.json": "1784868451098",
+      "vestara-ai-core/packages/health/src/index.d.ts": "1784878798061",
+      "vestara-ai-core/packages/health/src/index.js": "1784878798060",
+      "vestara-ai-core/packages/health/src/index.js.map": "1784878798060",
+      "vestara-ai-core/packages/health/src/index.ts": "1784868806215",
+      "vestara-ai-core/packages/health/tsconfig.json": "1784806616432",
+      "vestara-ai-core/packages/health/tsconfig.tsbuildinfo": "1784806592545",
+      "vestara-ai-core/packages/kernel/README.md": "1784867125996",
+      "vestara-ai-core/packages/kernel/__tests__/index.test.d.ts": "1784878798080",
+      "vestara-ai-core/packages/kernel/__tests__/index.test.js": "1784878798080",
+      "vestara-ai-core/packages/kernel/__tests__/index.test.js.map": "1784878798080",
+      "vestara-ai-core/packages/kernel/__tests__/index.test.ts": "1784868806214",
+      "vestara-ai-core/packages/kernel/package.json": "1784868451098",
+      "vestara-ai-core/packages/kernel/src/index.d.ts": "1784878798195",
+      "vestara-ai-core/packages/kernel/src/index.js": "1784878798193",
+      "vestara-ai-core/packages/kernel/src/index.js.map": "1784878798192",
+      "vestara-ai-core/packages/kernel/src/index.ts": "1784870707196",
+      "vestara-ai-core/packages/kernel/tsconfig.json": "1784806616438",
+      "vestara-ai-core/packages/kernel/tsconfig.tsbuildinfo": "1784804199524",
+      "vestara-ai-core/packages/knowledge/README.md": "1784867126028",
+      "vestara-ai-core/packages/knowledge/__tests__/index.test.d.ts": "1784878798264",
+      "vestara-ai-core/packages/knowledge/__tests__/index.test.js": "1784878798264",
+      "vestara-ai-core/packages/knowledge/__tests__/index.test.js.map": "1784878798264",
+      "vestara-ai-core/packages/knowledge/__tests__/index.test.ts": "1784868806224",
+      "vestara-ai-core/packages/knowledge/package.json": "1784868457141",
+      "vestara-ai-core/packages/knowledge/src/index.d.ts": "1784878798079",
+      "vestara-ai-core/packages/knowledge/src/index.js": "1784878798075",
+      "vestara-ai-core/packages/knowledge/src/index.js.map": "1784878798075",
+      "vestara-ai-core/packages/knowledge/src/index.ts": "1784870078128",
+      "vestara-ai-core/packages/knowledge/src/sql.d.ts": "1784814432267",
+      "vestara-ai-core/packages/knowledge/tsconfig.json": "1784814432265",
+      "vestara-ai-core/packages/logger/README.md": "1784867126058",
+      "vestara-ai-core/packages/logger/__tests__/index.test.d.ts": "1784878798089",
+      "vestara-ai-core/packages/logger/__tests__/index.test.js": "1784878798089",
+      "vestara-ai-core/packages/logger/__tests__/index.test.js.map": "1784878798089",
+      "vestara-ai-core/packages/logger/__tests__/index.test.ts": "1784868806235",
+      "vestara-ai-core/packages/logger/package.json": "1784868451099",
+      "vestara-ai-core/packages/logger/src/index.d.ts": "1784878798285",
+      "vestara-ai-core/packages/logger/src/index.js": "1784878798284",
+      "vestara-ai-core/packages/logger/src/index.js.map": "1784878798283",
+      "vestara-ai-core/packages/logger/src/index.ts": "1784868865513",
+      "vestara-ai-core/packages/logger/tsconfig.json": "1784806616421",
+      "vestara-ai-core/packages/logger/tsconfig.tsbuildinfo": "1784806582677",
+      "vestara-ai-core/packages/memory/README.md": "1784867126089",
+      "vestara-ai-core/packages/memory/__tests__/index.test.d.ts": "1784878798080",
+      "vestara-ai-core/packages/memory/__tests__/index.test.js": "1784878798079",
+      "vestara-ai-core/packages/memory/__tests__/index.test.js.map": "1784878798079",
+      "vestara-ai-core/packages/memory/__tests__/index.test.ts": "1784868806263",
+      "vestara-ai-core/packages/memory/package.json": "1784868457141",
+      "vestara-ai-core/packages/memory/src/index.d.ts": "1784878798086",
+      "vestara-ai-core/packages/memory/src/index.js": "1784878798062",
+      "vestara-ai-core/packages/memory/src/index.js.map": "1784878798062",
+      "vestara-ai-core/packages/memory/src/index.ts": "1784868865529",
+      "vestara-ai-core/packages/memory/src/sql.d.ts": "1784813892099",
+      "vestara-ai-core/packages/memory/tsconfig.json": "1784813892098",
+      "vestara-ai-core/packages/metrics/README.md": "1784867126122",
+      "vestara-ai-core/packages/metrics/__tests__/index.test.d.ts": "1784878798159",
+      "vestara-ai-core/packages/metrics/__tests__/index.test.js": "1784878798159",
+      "vestara-ai-core/packages/metrics/__tests__/index.test.js.map": "1784878798158",
+      "vestara-ai-core/packages/metrics/__tests__/index.test.ts": "1784868806269",
+      "vestara-ai-core/packages/metrics/package.json": "1784868451099",
+      "vestara-ai-core/packages/metrics/src/index.d.ts": "1784878798183",
+      "vestara-ai-core/packages/metrics/src/index.js": "1784878798083",
+      "vestara-ai-core/packages/metrics/src/index.js.map": "1784878798083",
+      "vestara-ai-core/packages/metrics/src/index.ts": "1784868865545",
+      "vestara-ai-core/packages/metrics/tsconfig.json": "1784806616423",
+      "vestara-ai-core/packages/metrics/tsconfig.tsbuildinfo": "1784806585761",
+      "vestara-ai-core/packages/os-controller/README.md": "1784867126155",
+      "vestara-ai-core/packages/os-controller/__tests__/index.test.d.ts": "1784878798055",
+      "vestara-ai-core/packages/os-controller/__tests__/index.test.js": "1784878798054",
+      "vestara-ai-core/packages/os-controller/__tests__/index.test.js.map": "1784878798054",
+      "vestara-ai-core/packages/os-controller/__tests__/index.test.ts": "1784868806306",
+      "vestara-ai-core/packages/os-controller/__tests__/lifecycle.test.d.ts": "1784878798282",
+      "vestara-ai-core/packages/os-controller/__tests__/lifecycle.test.js": "1784878798185",
+      "vestara-ai-core/packages/os-controller/__tests__/lifecycle.test.js.map": "1784878798185",
+      "vestara-ai-core/packages/os-controller/__tests__/lifecycle.test.ts": "1784868865543",
+      "vestara-ai-core/packages/os-controller/__tests__/manifest.test.d.ts": "1784878798059",
+      "vestara-ai-core/packages/os-controller/__tests__/manifest.test.js": "1784878798058",
+      "vestara-ai-core/packages/os-controller/__tests__/manifest.test.js.map": "1784878798058",
+      "vestara-ai-core/packages/os-controller/__tests__/manifest.test.ts": "1784868806345",
+      "vestara-ai-core/packages/os-controller/package.json": "1784868457142",
+      "vestara-ai-core/packages/os-controller/src/index.d.ts": "1784878798062",
+      "vestara-ai-core/packages/os-controller/src/index.js": "1784878798061",
+      "vestara-ai-core/packages/os-controller/src/index.js.map": "1784878798061",
+      "vestara-ai-core/packages/os-controller/src/index.ts": "1784868865565",
+      "vestara-ai-core/packages/os-controller/src/lifecycle.d.ts": "1784878798224",
+      "vestara-ai-core/packages/os-controller/src/lifecycle.js": "1784878798222",
+      "vestara-ai-core/packages/os-controller/src/lifecycle.js.map": "1784878798222",
+      "vestara-ai-core/packages/os-controller/src/lifecycle.ts": "1784868806391",
+      "vestara-ai-core/packages/os-controller/src/manifest.d.ts": "1784878798198",
+      "vestara-ai-core/packages/os-controller/src/manifest.js": "1784878798197",
+      "vestara-ai-core/packages/os-controller/src/manifest.js.map": "1784878798197",
+      "vestara-ai-core/packages/os-controller/src/manifest.ts": "1784868806362",
+      "vestara-ai-core/packages/os-controller/tsconfig.json": "1784861686259",
+      "vestara-ai-core/packages/permission/README.md": "1784867126186",
+      "vestara-ai-core/packages/permission/__tests__/index.test.d.ts": "1784878798152",
+      "vestara-ai-core/packages/permission/__tests__/index.test.js": "1784878798150",
+      "vestara-ai-core/packages/permission/__tests__/index.test.js.map": "1784878798150",
+      "vestara-ai-core/packages/permission/__tests__/index.test.ts": "1784868806367",
+      "vestara-ai-core/packages/permission/package.json": "1784868457142",
+      "vestara-ai-core/packages/permission/src/index.d.ts": "1784878798227",
+      "vestara-ai-core/packages/permission/src/index.js": "1784878798226",
+      "vestara-ai-core/packages/permission/src/index.js.map": "1784878798226",
+      "vestara-ai-core/packages/permission/src/index.ts": "1784868865613",
+      "vestara-ai-core/packages/permission/tsconfig.json": "1784811190231",
+      "vestara-ai-core/packages/provider-runtime/README.md": "1784867126219",
+      "vestara-ai-core/packages/provider-runtime/__tests__/index.test.d.ts": "1784878798278",
+      "vestara-ai-core/packages/provider-runtime/__tests__/index.test.js": "1784878798275",
+      "vestara-ai-core/packages/provider-runtime/__tests__/index.test.js.map": "1784878798275",
+      "vestara-ai-core/packages/provider-runtime/__tests__/index.test.ts": "1784868806372",
+      "vestara-ai-core/packages/provider-runtime/package.json": "1784868451100",
+      "vestara-ai-core/packages/provider-runtime/src/index.d.ts": "1784878798072",
+      "vestara-ai-core/packages/provider-runtime/src/index.js": "1784878798071",
+      "vestara-ai-core/packages/provider-runtime/src/index.js.map": "1784878798070",
+      "vestara-ai-core/packages/provider-runtime/src/index.ts": "1784868806391",
+      "vestara-ai-core/packages/provider-runtime/tsconfig.json": "1784806616435",
+      "vestara-ai-core/packages/provider-runtime/tsconfig.tsbuildinfo": "1784804199314",
+      "vestara-ai-core/packages/providers/opencode/README.md": "1784867126447",
+      "vestara-ai-core/packages/providers/opencode/__tests__/index.test.d.ts": "1784878798228",
+      "vestara-ai-core/packages/providers/opencode/__tests__/index.test.js": "1784878798228",
+      "vestara-ai-core/packages/providers/opencode/__tests__/index.test.js.map": "1784878798227",
+      "vestara-ai-core/packages/providers/opencode/__tests__/index.test.ts": "1784868806382",
+      "vestara-ai-core/packages/providers/opencode/package.json": "1784868451101",
+      "vestara-ai-core/packages/providers/opencode/src/index.d.ts": "1784878798211",
+      "vestara-ai-core/packages/providers/opencode/src/index.js": "1784878798208",
+      "vestara-ai-core/packages/providers/opencode/src/index.js.map": "1784878798208",
+      "vestara-ai-core/packages/providers/opencode/src/index.ts": "1784871286420",
+      "vestara-ai-core/packages/providers/opencode/tsconfig.json": "1784806616443",
+      "vestara-ai-core/packages/providers/opencode/tsconfig.tsbuildinfo": "1784804265720",
+      "vestara-ai-core/packages/reasoning/README.md": "1784867126250",
+      "vestara-ai-core/packages/reasoning/__tests__/index.test.d.ts": "1784878798196",
+      "vestara-ai-core/packages/reasoning/__tests__/index.test.js": "1784878798196",
+      "vestara-ai-core/packages/reasoning/__tests__/index.test.js.map": "1784878798196",
+      "vestara-ai-core/packages/reasoning/__tests__/index.test.ts": "1784868806396",
+      "vestara-ai-core/packages/reasoning/package.json": "1784868457142",
+      "vestara-ai-core/packages/reasoning/src/index.d.ts": "1784878798171",
+      "vestara-ai-core/packages/reasoning/src/index.js": "1784878798168",
+      "vestara-ai-core/packages/reasoning/src/index.js.map": "1784878798149",
+      "vestara-ai-core/packages/reasoning/src/index.ts": "1784871279253",
+      "vestara-ai-core/packages/reasoning/tsconfig.json": "1784814921770",
+      "vestara-ai-core/packages/service-registry/README.md": "1784867126279",
+      "vestara-ai-core/packages/service-registry/__tests__/index.test.d.ts": "1784878798228",
+      "vestara-ai-core/packages/service-registry/__tests__/index.test.js": "1784878798228",
+      "vestara-ai-core/packages/service-registry/__tests__/index.test.js.map": "1784878798228",
+      "vestara-ai-core/packages/service-registry/__tests__/index.test.ts": "1784868806402",
+      "vestara-ai-core/packages/service-registry/package.json": "1784868451100",
+      "vestara-ai-core/packages/service-registry/src/index.d.ts": "1784878798277",
+      "vestara-ai-core/packages/service-registry/src/index.js": "1784878798268",
+      "vestara-ai-core/packages/service-registry/src/index.js.map": "1784878798268",
+      "vestara-ai-core/packages/service-registry/src/index.ts": "1784868865649",
+      "vestara-ai-core/packages/service-registry/tsconfig.json": "1784806616427",
+      "vestara-ai-core/packages/service-registry/tsconfig.tsbuildinfo": "1784806590357",
+      "vestara-ai-core/packages/shared/README.md": "1784867126309",
+      "vestara-ai-core/packages/shared/__tests__/index.test.d.ts": "1784878798073",
+      "vestara-ai-core/packages/shared/__tests__/index.test.js": "1784878798072",
+      "vestara-ai-core/packages/shared/__tests__/index.test.js.map": "1784878798072",
+      "vestara-ai-core/packages/shared/__tests__/index.test.ts": "1784868806428",
+      "vestara-ai-core/packages/shared/package.json": "1784868451100",
+      "vestara-ai-core/packages/shared/src/index.d.ts": "1784878798215",
+      "vestara-ai-core/packages/shared/src/index.js": "1784878798090",
+      "vestara-ai-core/packages/shared/src/index.js.map": "1784878798090",
+      "vestara-ai-core/packages/shared/src/index.ts": "1784870700224",
+      "vestara-ai-core/packages/shared/tsconfig.json": "1784806616417",
+      "vestara-ai-core/packages/shared/tsconfig.tsbuildinfo": "1784806574034",
+      "vestara-ai-core/packages/state-runtime/README.md": "1784867126343",
+      "vestara-ai-core/packages/state-runtime/__tests__/index.test.d.ts": "1784878798236",
+      "vestara-ai-core/packages/state-runtime/__tests__/index.test.js": "1784878798236",
+      "vestara-ai-core/packages/state-runtime/__tests__/index.test.js.map": "1784878798236",
+      "vestara-ai-core/packages/state-runtime/__tests__/index.test.ts": "1784868806435",
+      "vestara-ai-core/packages/state-runtime/package.json": "1784868457142",
+      "vestara-ai-core/packages/state-runtime/src/index.d.ts": "1784878798236",
+      "vestara-ai-core/packages/state-runtime/src/index.js": "1784878798233",
+      "vestara-ai-core/packages/state-runtime/src/index.js.map": "1784878798233",
+      "vestara-ai-core/packages/state-runtime/src/index.ts": "1784868806464",
+      "vestara-ai-core/packages/state-runtime/src/sql.d.ts": "1784813052102",
+      "vestara-ai-core/packages/state-runtime/tsconfig.json": "1784812546238",
+      "vestara-ai-core/packages/stream/README.md": "1784867126378",
+      "vestara-ai-core/packages/stream/__tests__/index.test.d.ts": "1784878798092",
+      "vestara-ai-core/packages/stream/__tests__/index.test.js": "1784878798092",
+      "vestara-ai-core/packages/stream/__tests__/index.test.js.map": "1784878798092",
+      "vestara-ai-core/packages/stream/__tests__/index.test.ts": "1784868806468",
+      "vestara-ai-core/packages/stream/package.json": "1784868457144",
+      "vestara-ai-core/packages/stream/src/index.d.ts": "1784878798241",
+      "vestara-ai-core/packages/stream/src/index.js": "1784878798239",
+      "vestara-ai-core/packages/stream/src/index.js.map": "1784878798239",
+      "vestara-ai-core/packages/stream/src/index.ts": "1784868806497",
+      "vestara-ai-core/packages/stream/tsconfig.json": "1784810361613",
+      "vestara-ai-core/packages/tools/filesystem/README.md": "1784867126470",
+      "vestara-ai-core/packages/tools/filesystem/__tests__/index.test.d.ts": "1784878798281",
+      "vestara-ai-core/packages/tools/filesystem/__tests__/index.test.js": "1784878798279",
+      "vestara-ai-core/packages/tools/filesystem/__tests__/index.test.js.map": "1784878798279",
+      "vestara-ai-core/packages/tools/filesystem/__tests__/index.test.ts": "1784868806474",
+      "vestara-ai-core/packages/tools/filesystem/package.json": "1784868457145",
+      "vestara-ai-core/packages/tools/filesystem/src/index.d.ts": "1784878798117",
+      "vestara-ai-core/packages/tools/filesystem/src/index.js": "1784878798116",
+      "vestara-ai-core/packages/tools/filesystem/src/index.js.map": "1784878798116",
+      "vestara-ai-core/packages/tools/filesystem/src/index.ts": "1784868865695",
+      "vestara-ai-core/packages/tools/filesystem/tsconfig.json": "1784811401153",
+      "vestara-ai-core/packages/tools/knowledge/README.md": "1784867126503",
+      "vestara-ai-core/packages/tools/knowledge/__tests__/index.test.d.ts": "1784878798137",
+      "vestara-ai-core/packages/tools/knowledge/__tests__/index.test.js": "1784878798137",
+      "vestara-ai-core/packages/tools/knowledge/__tests__/index.test.js.map": "1784878798137",
+      "vestara-ai-core/packages/tools/knowledge/__tests__/index.test.ts": "1784868806486",
+      "vestara-ai-core/packages/tools/knowledge/package.json": "1784868457145",
+      "vestara-ai-core/packages/tools/knowledge/src/index.d.ts": "1784878798242",
+      "vestara-ai-core/packages/tools/knowledge/src/index.js": "1784878798242",
+      "vestara-ai-core/packages/tools/knowledge/src/index.js.map": "1784878798242",
+      "vestara-ai-core/packages/tools/knowledge/src/index.ts": "1784811393786",
+      "vestara-ai-core/packages/tools/knowledge/tsconfig.json": "1784811393788",
+      "vestara-ai-core/packages/tools/memory/README.md": "1784867126538",
+      "vestara-ai-core/packages/tools/memory/__tests__/index.test.d.ts": "1784878798245",
+      "vestara-ai-core/packages/tools/memory/__tests__/index.test.js": "1784878798244",
+      "vestara-ai-core/packages/tools/memory/__tests__/index.test.js.map": "1784878798244",
+      "vestara-ai-core/packages/tools/memory/__tests__/index.test.ts": "1784868806490",
+      "vestara-ai-core/packages/tools/memory/package.json": "1784868457145",
+      "vestara-ai-core/packages/tools/memory/src/index.d.ts": "1784878798168",
+      "vestara-ai-core/packages/tools/memory/src/index.js": "1784878798161",
+      "vestara-ai-core/packages/tools/memory/src/index.js.map": "1784878798161",
+      "vestara-ai-core/packages/tools/memory/src/index.ts": "1784811393789",
+      "vestara-ai-core/packages/tools/memory/tsconfig.json": "1784811393790",
+      "vestara-ai-core/packages/tools/project/README.md": "1784867126571",
+      "vestara-ai-core/packages/tools/project/__tests__/index.test.d.ts": "1784878798171",
+      "vestara-ai-core/packages/tools/project/__tests__/index.test.js": "1784878798171",
+      "vestara-ai-core/packages/tools/project/__tests__/index.test.js.map": "1784878798171",
+      "vestara-ai-core/packages/tools/project/__tests__/index.test.ts": "1784868806502",
+      "vestara-ai-core/packages/tools/project/package.json": "1784868457145",
+      "vestara-ai-core/packages/tools/project/src/index.d.ts": "1784878798056",
+      "vestara-ai-core/packages/tools/project/src/index.js": "1784878798054",
+      "vestara-ai-core/packages/tools/project/src/index.js.map": "1784878798054",
+      "vestara-ai-core/packages/tools/project/src/index.ts": "1784811393792",
+      "vestara-ai-core/packages/tools/project/tsconfig.json": "1784811393793",
+      "vestara-ai-core/packages/tools/shell/README.md": "1784867126604",
+      "vestara-ai-core/packages/tools/shell/__tests__/index.test.d.ts": "1784878798056",
+      "vestara-ai-core/packages/tools/shell/__tests__/index.test.js": "1784878798055",
+      "vestara-ai-core/packages/tools/shell/__tests__/index.test.js.map": "1784878798055",
+      "vestara-ai-core/packages/tools/shell/__tests__/index.test.ts": "1784868806501",
+      "vestara-ai-core/packages/tools/shell/package.json": "1784868457146",
+      "vestara-ai-core/packages/tools/shell/src/index.d.ts": "1784878798138",
+      "vestara-ai-core/packages/tools/shell/src/index.js": "1784878798138",
+      "vestara-ai-core/packages/tools/shell/src/index.js.map": "1784878798137",
+      "vestara-ai-core/packages/tools/shell/src/index.ts": "1784811393783",
+      "vestara-ai-core/packages/tools/shell/tsconfig.json": "1784811393784",
+      "vestara-ai-core/packages/workspace/README.md": "1784867126412",
+      "vestara-ai-core/packages/workspace/__tests__/capability.test.d.ts": "1784878798140",
+      "vestara-ai-core/packages/workspace/__tests__/capability.test.js": "1784878798139",
+      "vestara-ai-core/packages/workspace/__tests__/capability.test.js.map": "1784878798139",
+      "vestara-ai-core/packages/workspace/__tests__/capability.test.ts": "1784868806514",
+      "vestara-ai-core/packages/workspace/__tests__/decision.test.d.ts": "1784878798116",
+      "vestara-ai-core/packages/workspace/__tests__/decision.test.js": "1784878798112",
+      "vestara-ai-core/packages/workspace/__tests__/decision.test.js.map": "1784878798112",
+      "vestara-ai-core/packages/workspace/__tests__/decision.test.ts": "1784868806518",
+      "vestara-ai-core/packages/workspace/__tests__/execution.test.d.ts": "1784878798122",
+      "vestara-ai-core/packages/workspace/__tests__/execution.test.js": "1784878798121",
+      "vestara-ai-core/packages/workspace/__tests__/execution.test.js.map": "1784878798121",
+      "vestara-ai-core/packages/workspace/__tests__/execution.test.ts": "1784868865743",
+      "vestara-ai-core/packages/workspace/__tests__/explain.test.d.ts": "1784878798242",
+      "vestara-ai-core/packages/workspace/__tests__/explain.test.js": "1784878798236",
+      "vestara-ai-core/packages/workspace/__tests__/explain.test.js.map": "1784878798236",
+      "vestara-ai-core/packages/workspace/__tests__/explain.test.ts": "1784868806528",
+      "vestara-ai-core/packages/workspace/__tests__/organization.test.d.ts": "1784878798241",
+      "vestara-ai-core/packages/workspace/__tests__/organization.test.js": "1784878798240",
+      "vestara-ai-core/packages/workspace/__tests__/organization.test.js.map": "1784878798240",
+      "vestara-ai-core/packages/workspace/__tests__/organization.test.ts": "1784868806531",
+      "vestara-ai-core/packages/workspace/__tests__/pipeline-integration.test.d.ts": "1784878798131",
+      "vestara-ai-core/packages/workspace/__tests__/pipeline-integration.test.js": "1784878798130",
+      "vestara-ai-core/packages/workspace/__tests__/pipeline-integration.test.js.map": "1784878798130",
+      "vestara-ai-core/packages/workspace/__tests__/pipeline-integration.test.ts": "1784869398613",
+      "vestara-ai-core/packages/workspace/__tests__/planning.test.d.ts": "1784878798179",
+      "vestara-ai-core/packages/workspace/__tests__/planning.test.js": "1784878798179",
+      "vestara-ai-core/packages/workspace/__tests__/planning.test.js.map": "1784878798179",
+      "vestara-ai-core/packages/workspace/__tests__/planning.test.ts": "1784868806540",
+      "vestara-ai-core/packages/workspace/__tests__/plugin.test.d.ts": "1784878798269",
+      "vestara-ai-core/packages/workspace/__tests__/plugin.test.js": "1784878798269",
+      "vestara-ai-core/packages/workspace/__tests__/plugin.test.js.map": "1784878798269",
+      "vestara-ai-core/packages/workspace/__tests__/plugin.test.ts": "1784868806553",
+      "vestara-ai-core/packages/workspace/__tests__/prediction.test.d.ts": "1784878798191",
+      "vestara-ai-core/packages/workspace/__tests__/prediction.test.js": "1784878798191",
+      "vestara-ai-core/packages/workspace/__tests__/prediction.test.js.map": "1784878798191",
+      "vestara-ai-core/packages/workspace/__tests__/prediction.test.ts": "1784868806550",
+      "vestara-ai-core/packages/workspace/__tests__/presenter.test.d.ts": "1784878798158",
+      "vestara-ai-core/packages/workspace/__tests__/presenter.test.js": "1784878798157",
+      "vestara-ai-core/packages/workspace/__tests__/presenter.test.js.map": "1784878798157",
+      "vestara-ai-core/packages/workspace/__tests__/presenter.test.ts": "1784868806555",
+      "vestara-ai-core/packages/workspace/__tests__/reliability.test.d.ts": "1784878798281",
+      "vestara-ai-core/packages/workspace/__tests__/reliability.test.js": "1784878798278",
+      "vestara-ai-core/packages/workspace/__tests__/reliability.test.js.map": "1784878798278",
+      "vestara-ai-core/packages/workspace/__tests__/reliability.test.ts": "1784872146296",
+      "vestara-ai-core/packages/workspace/__tests__/repository-intelligence.test.d.ts": "1784878798258",
+      "vestara-ai-core/packages/workspace/__tests__/repository-intelligence.test.js": "1784878798187",
+      "vestara-ai-core/packages/workspace/__tests__/repository-intelligence.test.js.map": "1784878798187",
+      "vestara-ai-core/packages/workspace/__tests__/repository-intelligence.test.ts": "1784868865865",
+      "vestara-ai-core/packages/workspace/__tests__/verification.test.d.ts": "1784878798168",
+      "vestara-ai-core/packages/workspace/__tests__/verification.test.js": "1784878798167",
+      "vestara-ai-core/packages/workspace/__tests__/verification.test.js.map": "1784878798167",
+      "vestara-ai-core/packages/workspace/__tests__/verification.test.ts": "1784868865762",
+      "vestara-ai-core/packages/workspace/__tests__/workflow-e2e.test.d.ts": "1784878798237",
+      "vestara-ai-core/packages/workspace/__tests__/workflow-e2e.test.js": "1784878798177",
+      "vestara-ai-core/packages/workspace/__tests__/workflow-e2e.test.js.map": "1784878798177",
+      "vestara-ai-core/packages/workspace/__tests__/workflow-e2e.test.ts": "1784872146289",
+      "vestara-ai-core/packages/workspace/package.json": "1784868457146",
+      "vestara-ai-core/packages/workspace/src/accuracy-storage.d.ts": "1784878798121",
+      "vestara-ai-core/packages/workspace/src/accuracy-storage.js": "1784878798121",
+      "vestara-ai-core/packages/workspace/src/accuracy-storage.js.map": "1784878798120",
+      "vestara-ai-core/packages/workspace/src/accuracy-storage.ts": "1784868806564",
+      "vestara-ai-core/packages/workspace/src/agent-coordinator.d.ts": "1784878798141",
+      "vestara-ai-core/packages/workspace/src/agent-coordinator.js": "1784878798140",
+      "vestara-ai-core/packages/workspace/src/agent-coordinator.js.map": "1784878798140",
+      "vestara-ai-core/packages/workspace/src/agent-coordinator.ts": "1784868865780",
+      "vestara-ai-core/packages/workspace/src/agent-permission.d.ts": "1784878798125",
+      "vestara-ai-core/packages/workspace/src/agent-permission.js": "1784878798124",
+      "vestara-ai-core/packages/workspace/src/agent-permission.js.map": "1784878798124",
+      "vestara-ai-core/packages/workspace/src/agent-permission.ts": "1784868806584",
+      "vestara-ai-core/packages/workspace/src/agent-runtime.d.ts": "1784878798159",
+      "vestara-ai-core/packages/workspace/src/agent-runtime.js": "1784878798157",
+      "vestara-ai-core/packages/workspace/src/agent-runtime.js.map": "1784878798157",
+      "vestara-ai-core/packages/workspace/src/agent-runtime.ts": "1784871279438",
+      "vestara-ai-core/packages/workspace/src/agent-storage.d.ts": "1784878798264",
+      "vestara-ai-core/packages/workspace/src/agent-storage.js": "1784878798263",
+      "vestara-ai-core/packages/workspace/src/agent-storage.js.map": "1784878798262",
+      "vestara-ai-core/packages/workspace/src/agent-storage.ts": "1784868865806",
+      "vestara-ai-core/packages/workspace/src/agent-worker.d.ts": "1784878798137",
+      "vestara-ai-core/packages/workspace/src/agent-worker.js": "1784878798135",
+      "vestara-ai-core/packages/workspace/src/agent-worker.js.map": "1784878798134",
+      "vestara-ai-core/packages/workspace/src/agent-worker.ts": "1784868865837",
+      "vestara-ai-core/packages/workspace/src/agent-workflow-service.d.ts": "1784878798188",
+      "vestara-ai-core/packages/workspace/src/agent-workflow-service.js": "1784878798186",
+      "vestara-ai-core/packages/workspace/src/agent-workflow-service.js.map": "1784878798186",
+      "vestara-ai-core/packages/workspace/src/agent-workflow-service.ts": "1784872865861",
+      "vestara-ai-core/packages/workspace/src/analytics-service.d.ts": "1784878798259",
+      "vestara-ai-core/packages/workspace/src/analytics-service.js": "1784878798258",
+      "vestara-ai-core/packages/workspace/src/analytics-service.js.map": "1784878798258",
+      "vestara-ai-core/packages/workspace/src/analytics-service.ts": "1784868806628",
+      "vestara-ai-core/packages/workspace/src/auto-index.d.ts": "1784878798284",
+      "vestara-ai-core/packages/workspace/src/auto-index.js": "1784878798283",
+      "vestara-ai-core/packages/workspace/src/auto-index.js.map": "1784878798283",
+      "vestara-ai-core/packages/workspace/src/auto-index.ts": "1784868865850",
+      "vestara-ai-core/packages/workspace/src/capability-service.d.ts": "1784878798249",
+      "vestara-ai-core/packages/workspace/src/capability-service.js": "1784878798248",
+      "vestara-ai-core/packages/workspace/src/capability-service.js.map": "1784878798248",
+      "vestara-ai-core/packages/workspace/src/capability-service.ts": "1784868806645",
+      "vestara-ai-core/packages/workspace/src/change-set-storage.d.ts": "1784878798194",
+      "vestara-ai-core/packages/workspace/src/change-set-storage.js": "1784878798192",
+      "vestara-ai-core/packages/workspace/src/change-set-storage.js.map": "1784878798192",
+      "vestara-ai-core/packages/workspace/src/change-set-storage.ts": "1784868806661",
+      "vestara-ai-core/packages/workspace/src/cloud-service.d.ts": "1784878798257",
+      "vestara-ai-core/packages/workspace/src/cloud-service.js": "1784878798256",
+      "vestara-ai-core/packages/workspace/src/cloud-service.js.map": "1784878798256",
+      "vestara-ai-core/packages/workspace/src/cloud-service.ts": "1784868865868",
+      "vestara-ai-core/packages/workspace/src/cloud-storage.d.ts": "1784878798195",
+      "vestara-ai-core/packages/workspace/src/cloud-storage.js": "1784878798194",
+      "vestara-ai-core/packages/workspace/src/cloud-storage.js.map": "1784878798194",
+      "vestara-ai-core/packages/workspace/src/cloud-storage.ts": "1784868806673",
+      "vestara-ai-core/packages/workspace/src/collaboration-service.d.ts": "1784878798201",
+      "vestara-ai-core/packages/workspace/src/collaboration-service.js": "1784878798200",
+      "vestara-ai-core/packages/workspace/src/collaboration-service.js.map": "1784878798200",
+      "vestara-ai-core/packages/workspace/src/collaboration-service.ts": "1784868806698",
+      "vestara-ai-core/packages/workspace/src/collaboration-storage.d.ts": "1784878798253",
+      "vestara-ai-core/packages/workspace/src/collaboration-storage.js": "1784878798251",
+      "vestara-ai-core/packages/workspace/src/collaboration-storage.js.map": "1784878798251",
+      "vestara-ai-core/packages/workspace/src/collaboration-storage.ts": "1784868865898",
+      "vestara-ai-core/packages/workspace/src/decision-service.d.ts": "1784878798106",
+      "vestara-ai-core/packages/workspace/src/decision-service.js": "1784878798105",
+      "vestara-ai-core/packages/workspace/src/decision-service.js.map": "1784878798105",
+      "vestara-ai-core/packages/workspace/src/decision-service.ts": "1784871279657",
+      "vestara-ai-core/packages/workspace/src/decision-storage.d.ts": "1784878798091",
+      "vestara-ai-core/packages/workspace/src/decision-storage.js": "1784878798091",
+      "vestara-ai-core/packages/workspace/src/decision-storage.js.map": "1784878798090",
+      "vestara-ai-core/packages/workspace/src/decision-storage.ts": "1784868806708",
+      "vestara-ai-core/packages/workspace/src/desktop-service.d.ts": "1784878798179",
+      "vestara-ai-core/packages/workspace/src/desktop-service.js": "1784878798160",
+      "vestara-ai-core/packages/workspace/src/desktop-service.js.map": "1784878798160",
+      "vestara-ai-core/packages/workspace/src/desktop-service.ts": "1784868806733",
+      "vestara-ai-core/packages/workspace/src/engineering-memory.d.ts": "1784878798166",
+      "vestara-ai-core/packages/workspace/src/engineering-memory.js": "1784878798164",
+      "vestara-ai-core/packages/workspace/src/engineering-memory.js.map": "1784878798164",
+      "vestara-ai-core/packages/workspace/src/engineering-memory.ts": "1784868806740",
+      "vestara-ai-core/packages/workspace/src/enterprise-service.d.ts": "1784878798172",
+      "vestara-ai-core/packages/workspace/src/enterprise-service.js": "1784878798171",
+      "vestara-ai-core/packages/workspace/src/enterprise-service.js.map": "1784878798171",
+      "vestara-ai-core/packages/workspace/src/enterprise-service.ts": "1784868806742",
+      "vestara-ai-core/packages/workspace/src/enterprise-storage.d.ts": "1784878798267",
+      "vestara-ai-core/packages/workspace/src/enterprise-storage.js": "1784878798267",
+      "vestara-ai-core/packages/workspace/src/enterprise-storage.js.map": "1784878798267",
+      "vestara-ai-core/packages/workspace/src/enterprise-storage.ts": "1784868806756",
+      "vestara-ai-core/packages/workspace/src/execution-engine.d.ts": "1784878798256",
+      "vestara-ai-core/packages/workspace/src/execution-engine.js": "1784878798255",
+      "vestara-ai-core/packages/workspace/src/execution-engine.js.map": "1784878798255",
+      "vestara-ai-core/packages/workspace/src/execution-engine.ts": "1784868865960",
+      "vestara-ai-core/packages/workspace/src/explain-service.d.ts": "1784878798195",
+      "vestara-ai-core/packages/workspace/src/explain-service.js": "1784878798193",
+      "vestara-ai-core/packages/workspace/src/explain-service.js.map": "1784878798193",
+      "vestara-ai-core/packages/workspace/src/explain-service.ts": "1784871279549",
+      "vestara-ai-core/packages/workspace/src/help-service.d.ts": "1784878798199",
+      "vestara-ai-core/packages/workspace/src/help-service.js": "1784878798198",
+      "vestara-ai-core/packages/workspace/src/help-service.js.map": "1784878798198",
+      "vestara-ai-core/packages/workspace/src/help-service.ts": "1784868806776",
+      "vestara-ai-core/packages/workspace/src/impact-storage.d.ts": "1784878798251",
+      "vestara-ai-core/packages/workspace/src/impact-storage.js": "1784878798250",
+      "vestara-ai-core/packages/workspace/src/impact-storage.js.map": "1784878798250",
+      "vestara-ai-core/packages/workspace/src/impact-storage.ts": "1784868806769",
+      "vestara-ai-core/packages/workspace/src/implementation-service.d.ts": "1784878798276",
+      "vestara-ai-core/packages/workspace/src/implementation-service.js": "1784878798274",
+      "vestara-ai-core/packages/workspace/src/implementation-service.js.map": "1784878798274",
+      "vestara-ai-core/packages/workspace/src/implementation-service.ts": "1784871279709",
+      "vestara-ai-core/packages/workspace/src/index.d.ts": "1784878798229",
+      "vestara-ai-core/packages/workspace/src/index.js": "1784878798225",
+      "vestara-ai-core/packages/workspace/src/index.js.map": "1784878798225",
+      "vestara-ai-core/packages/workspace/src/index.ts": "1784872877353",
+      "vestara-ai-core/packages/workspace/src/knowledge-graph-storage.d.ts": "1784878798182",
+      "vestara-ai-core/packages/workspace/src/knowledge-graph-storage.js": "1784878798181",
+      "vestara-ai-core/packages/workspace/src/knowledge-graph-storage.js.map": "1784878798181",
+      "vestara-ai-core/packages/workspace/src/knowledge-graph-storage.ts": "1784868866009",
+      "vestara-ai-core/packages/workspace/src/memory-service.d.ts": "1784878798220",
+      "vestara-ai-core/packages/workspace/src/memory-service.js": "1784878798206",
+      "vestara-ai-core/packages/workspace/src/memory-service.js.map": "1784878798206",
+      "vestara-ai-core/packages/workspace/src/memory-service.ts": "1784868866017",
+      "vestara-ai-core/packages/workspace/src/monitor-service.d.ts": "1784878798210",
+      "vestara-ai-core/packages/workspace/src/monitor-service.js": "1784878798209",
+      "vestara-ai-core/packages/workspace/src/monitor-service.js.map": "1784878798209",
+      "vestara-ai-core/packages/workspace/src/monitor-service.ts": "1784868865996",
+      "vestara-ai-core/packages/workspace/src/organization-service.d.ts": "1784878798217",
+      "vestara-ai-core/packages/workspace/src/organization-service.js": "1784878798215",
+      "vestara-ai-core/packages/workspace/src/organization-service.js.map": "1784878798215",
+      "vestara-ai-core/packages/workspace/src/organization-service.ts": "1784868865968",
+      "vestara-ai-core/packages/workspace/src/organization-storage.d.ts": "1784878798278",
+      "vestara-ai-core/packages/workspace/src/organization-storage.js": "1784878798277",
+      "vestara-ai-core/packages/workspace/src/organization-storage.js.map": "1784878798277",
+      "vestara-ai-core/packages/workspace/src/organization-storage.ts": "1784868806660",
+      "vestara-ai-core/packages/workspace/src/os-service.d.ts": "1784878798253",
+      "vestara-ai-core/packages/workspace/src/os-service.js": "1784878798253",
+      "vestara-ai-core/packages/workspace/src/os-service.js.map": "1784878798252",
+      "vestara-ai-core/packages/workspace/src/os-service.ts": "1784868806628",
+      "vestara-ai-core/packages/workspace/src/plan-storage.d.ts": "1784878798143",
+      "vestara-ai-core/packages/workspace/src/plan-storage.js": "1784878798142",
+      "vestara-ai-core/packages/workspace/src/plan-storage.js.map": "1784878798142",
+      "vestara-ai-core/packages/workspace/src/plan-storage.ts": "1784878626449",
+      "vestara-ai-core/packages/workspace/src/planning-service.d.ts": "1784878798116",
+      "vestara-ai-core/packages/workspace/src/planning-service.js": "1784878798114",
+      "vestara-ai-core/packages/workspace/src/planning-service.js.map": "1784878798114",
+      "vestara-ai-core/packages/workspace/src/planning-service.ts": "1784878630607",
+      "vestara-ai-core/packages/workspace/src/plugin-registry.d.ts": "1784878798238",
+      "vestara-ai-core/packages/workspace/src/plugin-registry.js": "1784878798237",
+      "vestara-ai-core/packages/workspace/src/plugin-registry.js.map": "1784878798237",
+      "vestara-ai-core/packages/workspace/src/plugin-registry.ts": "1784868865816",
+      "vestara-ai-core/packages/workspace/src/plugin-runtime.d.ts": "1784878798261",
+      "vestara-ai-core/packages/workspace/src/plugin-runtime.js": "1784878798169",
+      "vestara-ai-core/packages/workspace/src/plugin-runtime.js.map": "1784878798151",
+      "vestara-ai-core/packages/workspace/src/plugin-runtime.ts": "1784868806425",
+      "vestara-ai-core/packages/workspace/src/prediction-service.d.ts": "1784878798238",
+      "vestara-ai-core/packages/workspace/src/prediction-service.js": "1784878798207",
+      "vestara-ai-core/packages/workspace/src/prediction-service.js.map": "1784878798207",
+      "vestara-ai-core/packages/workspace/src/prediction-service.ts": "1784871279682",
+      "vestara-ai-core/packages/workspace/src/preference-service.d.ts": "1784878798097",
+      "vestara-ai-core/packages/workspace/src/preference-service.js": "1784878798096",
+      "vestara-ai-core/packages/workspace/src/preference-service.js.map": "1784878798096",
+      "vestara-ai-core/packages/workspace/src/preference-service.ts": "1784872085004",
+      "vestara-ai-core/packages/workspace/src/repository-discovery.d.ts": "1784878798190",
+      "vestara-ai-core/packages/workspace/src/repository-discovery.js": "1784878798189",
+      "vestara-ai-core/packages/workspace/src/repository-discovery.js.map": "1784878798188",
+      "vestara-ai-core/packages/workspace/src/repository-discovery.ts": "1784868865728",
+      "vestara-ai-core/packages/workspace/src/repository-fingerprint.d.ts": "1784878798094",
+      "vestara-ai-core/packages/workspace/src/repository-fingerprint.js": "1784878798093",
+      "vestara-ai-core/packages/workspace/src/repository-fingerprint.js.map": "1784878798093",
+      "vestara-ai-core/packages/workspace/src/repository-fingerprint.ts": "1784868865707",
+      "vestara-ai-core/packages/workspace/src/repository-intelligence.d.ts": "1784878798131",
+      "vestara-ai-core/packages/workspace/src/repository-intelligence.js": "1784878798127",
+      "vestara-ai-core/packages/workspace/src/repository-intelligence.js.map": "1784878798127",
+      "vestara-ai-core/packages/workspace/src/repository-intelligence.ts": "1784868865693",
+      "vestara-ai-core/packages/workspace/src/repository-presenter.d.ts": "1784878798219",
+      "vestara-ai-core/packages/workspace/src/repository-presenter.js": "1784878798213",
+      "vestara-ai-core/packages/workspace/src/repository-presenter.js.map": "1784878798213",
+      "vestara-ai-core/packages/workspace/src/repository-presenter.ts": "1784871279526",
+      "vestara-ai-core/packages/workspace/src/service-contract.d.ts": "1784878798236",
+      "vestara-ai-core/packages/workspace/src/service-contract.js": "1784878798236",
+      "vestara-ai-core/packages/workspace/src/service-contract.js.map": "1784878798236",
+      "vestara-ai-core/packages/workspace/src/service-contract.ts": "1784857613346",
+      "vestara-ai-core/packages/workspace/src/services.d.ts": "1784878798107",
+      "vestara-ai-core/packages/workspace/src/services.js": "1784878798104",
+      "vestara-ai-core/packages/workspace/src/services.js.map": "1784878798104",
+      "vestara-ai-core/packages/workspace/src/services.ts": "1784868806089",
+      "vestara-ai-core/packages/workspace/src/session-service.d.ts": "1784878798184",
+      "vestara-ai-core/packages/workspace/src/session-service.js": "1784878798182",
+      "vestara-ai-core/packages/workspace/src/session-service.js.map": "1784878798182",
+      "vestara-ai-core/packages/workspace/src/session-service.ts": "1784868865467",
+      "vestara-ai-core/packages/workspace/src/session-storage.d.ts": "1784878798136",
+      "vestara-ai-core/packages/workspace/src/session-storage.js": "1784878798135",
+      "vestara-ai-core/packages/workspace/src/session-storage.js.map": "1784878798134",
+      "vestara-ai-core/packages/workspace/src/session-storage.ts": "1784868806036",
+      "vestara-ai-core/packages/workspace/src/suggestion-service.d.ts": "1784878798165",
+      "vestara-ai-core/packages/workspace/src/suggestion-service.js": "1784878798163",
+      "vestara-ai-core/packages/workspace/src/suggestion-service.js.map": "1784878798163",
+      "vestara-ai-core/packages/workspace/src/suggestion-service.ts": "1784871279571",
+      "vestara-ai-core/packages/workspace/src/system-state.d.ts": "1784878798281",
+      "vestara-ai-core/packages/workspace/src/system-state.js": "1784878798280",
+      "vestara-ai-core/packages/workspace/src/system-state.js.map": "1784878798280",
+      "vestara-ai-core/packages/workspace/src/system-state.ts": "1784868865255",
+      "vestara-ai-core/packages/workspace/src/types.d.ts": "1784878798102",
+      "vestara-ai-core/packages/workspace/src/types.js": "1784878798088",
+      "vestara-ai-core/packages/workspace/src/types.js.map": "1784878798088",
+      "vestara-ai-core/packages/workspace/src/types.ts": "1784868805974",
+      "vestara-ai-core/packages/workspace/src/verification-service.d.ts": "1784878798266",
+      "vestara-ai-core/packages/workspace/src/verification-service.js": "1784878798188",
+      "vestara-ai-core/packages/workspace/src/verification-service.js.map": "1784878798188",
+      "vestara-ai-core/packages/workspace/src/verification-service.ts": "1784868865165",
+      "vestara-ai-core/packages/workspace/src/verification-storage.d.ts": "1784878798210",
+      "vestara-ai-core/packages/workspace/src/verification-storage.js": "1784878798210",
+      "vestara-ai-core/packages/workspace/src/verification-storage.js.map": "1784878798210",
+      "vestara-ai-core/packages/workspace/src/verification-storage.ts": "1784868865009",
+      "vestara-ai-core/packages/workspace/src/worker-bootstrap.d.ts": "1784878798018",
+      "vestara-ai-core/packages/workspace/src/worker-bootstrap.js": "1784878798018",
+      "vestara-ai-core/packages/workspace/src/worker-bootstrap.js.map": "1784878798018",
+      "vestara-ai-core/packages/workspace/src/worker-bootstrap.ts": "1784868805824",
+      "vestara-ai-core/packages/workspace/src/workflow-service.d.ts": "1784878798183",
+      "vestara-ai-core/packages/workspace/src/workflow-service.js": "1784878798178",
+      "vestara-ai-core/packages/workspace/src/workflow-service.js.map": "1784878798178",
+      "vestara-ai-core/packages/workspace/src/workflow-service.ts": "1784868805815",
+      "vestara-ai-core/packages/workspace/src/workspace-manifest.d.ts": "1784878798100",
+      "vestara-ai-core/packages/workspace/src/workspace-manifest.js": "1784878798099",
+      "vestara-ai-core/packages/workspace/src/workspace-manifest.js.map": "1784878798099",
+      "vestara-ai-core/packages/workspace/src/workspace-manifest.ts": "1784868805777",
+      "vestara-ai-core/packages/workspace/src/workspace-persistence.d.ts": "1784878798274",
+      "vestara-ai-core/packages/workspace/src/workspace-persistence.js": "1784878798266",
+      "vestara-ai-core/packages/workspace/src/workspace-persistence.js.map": "1784878798266",
+      "vestara-ai-core/packages/workspace/src/workspace-persistence.ts": "1784865023233",
+      "vestara-ai-core/packages/workspace/src/workspace-runtime.d.ts": "1784878798257",
+      "vestara-ai-core/packages/workspace/src/workspace-runtime.js": "1784878798246",
+      "vestara-ai-core/packages/workspace/src/workspace-runtime.js.map": "1784878798246",
+      "vestara-ai-core/packages/workspace/src/workspace-runtime.ts": "1784872134472",
+      "vestara-ai-core/packages/workspace/src/workspace-session.d.ts": "1784878798196",
+      "vestara-ai-core/packages/workspace/src/workspace-session.js": "1784878798144",
+      "vestara-ai-core/packages/workspace/src/workspace-session.js.map": "1784878798144",
+      "vestara-ai-core/packages/workspace/src/workspace-session.ts": "1784872114189",
+      "vestara-ai-core/packages/workspace/tsconfig.json": "1784822292983",
+      "vestara-ai-core/pnpm-workspace.yaml": "1784832342877",
+      "vestara-ai-core/scripts/benchmark-index.sh": "1784870087004",
+      "vestara-ai-core/scripts/benchmark.sh": "1784869303297",
+      "vestara-ai-core/scripts/ensure-docs.sh": "1784867119268",
+      "vestara-ai-core/scripts/generate-docs.sh": "1784869138516",
+      "vestara-ai-core/scripts/milestone-status.sh": "1784866942044",
+      "vestara-ai-core/tsconfig.json": "1784822588855",
+      "vestara-ai-core/tsconfig.tsbuildinfo": "1784878798326",
+      "vestara-ai-core/typedoc.json": "1784869131104",
+      "vestara-ai-core/vestara-ai-core/src": "1784877741046",
+      "vestara-ai-core/vestara-state.db": "1784872763929",
+      "vestara-ai-core/vitest.config.d.ts": "1784878798026",
+      "vestara-ai-core/vitest.config.js": "1784878798018",
+      "vestara-ai-core/vitest.config.js.map": "1784878798018",
+      "vestara-ai-core/vitest.config.ts": "1784868608449",
+      "vestara-blueprint/.github/copilot-instructions.md": "1784860527406",
+      "vestara-blueprint/.github/workflows/blueprint-ci.yml": "1784800436213",
+      "vestara-blueprint/.windsurfrules": "1784860545871",
+      "vestara-blueprint/00-governance/01-ai-constitution.md": "1784799416552",
+      "vestara-blueprint/00-governance/02-engineering-rules.md": "1784860277613",
+      "vestara-blueprint/00-governance/03-ai-development-lifecycle.md": "1784799416552",
+      "vestara-blueprint/00-governance/04-decision-log.md": "1784860262685",
+      "vestara-blueprint/00-governance/05-compatibility.md": "1784799416553",
+      "vestara-blueprint/00-governance/06-ai-development-framework.md": "1784800288445",
+      "vestara-blueprint/00-governance/README.md": "1784800473223",
+      "vestara-blueprint/01-company/01-mission-vision-values.md": "1784799416554",
+      "vestara-blueprint/01-company/README.md": "1784800473227",
+      "vestara-blueprint/02-business/01-business-model.md": "1784799416554",
+      "vestara-blueprint/02-business/README.md": "1784800473228",
+      "vestara-blueprint/03-product/01-product-strategy.md": "1784799416554",
+      "vestara-blueprint/03-product/README.md": "1784800458776",
+      "vestara-blueprint/04-platform/01-platform-overview.md": "1784799416554",
+      "vestara-blueprint/04-platform/PLATFORM_OVERVIEW.md": "1784800345900",
+      "vestara-blueprint/04-platform/README.md": "1784800063312",
+      "vestara-blueprint/05-ai-core/AI_CONSTITUTION.md": "1784800375449",
+      "vestara-blueprint/05-ai-core/AI_OVERVIEW.md": "1784800252859",
+      "vestara-blueprint/05-ai-core/BRAIN-ARCHITECTURE.md": "1784814108303",
+      "vestara-blueprint/05-ai-core/COGNITIVE-ARCHITECTURE.md": "1784814263436",
+      "vestara-blueprint/05-ai-core/README.md": "1784800074806",
+      "vestara-blueprint/05-ai-core/memory/01-memory-architecture.md": "1784800375451",
+      "vestara-blueprint/05-ai-core/providers/01-provider-manager.md": "1784800389431",
+      "vestara-blueprint/06-workspace/README.md": "1784800084224",
+      "vestara-blueprint/07-operating-system/README.md": "1784800100326",
+      "vestara-blueprint/08-cloud/README.md": "1784800108587",
+      "vestara-blueprint/09-mobile/README.md": "1784800458777",
+      "vestara-blueprint/10-developer-platform/README.md": "1784800116516",
+      "vestara-blueprint/11-security/README.md": "1784800125717",
+      "vestara-blueprint/12-data/README.md": "1784800140923",
+      "vestara-blueprint/13-user-experience/README.md": "1784800140924",
+      "vestara-blueprint/14-engineering/README.md": "1784800154352",
+      "vestara-blueprint/15-devops/README.md": "1784800154354",
+      "vestara-blueprint/16-operations/README.md": "1784800167318",
+      "vestara-blueprint/17-marketing/README.md": "1784800090331",
+      "vestara-blueprint/18-sales/README.md": "1784800090335",
+      "vestara-blueprint/19-investor/README.md": "1784800090337",
+      "vestara-blueprint/20-roadmaps/README.md": "1784800482415",
+      "vestara-blueprint/20-roadmaps/V1.0-ROADMAP.md": "1784860418296",
+      "vestara-blueprint/21-research/README.md": "1784800482417",
+      "vestara-blueprint/99-appendix/README.md": "1784800178490",
+      "vestara-blueprint/AGENTS.md": "1784799416554",
+      "vestara-blueprint/AI_AGENTS.md": "1784800322598",
+      "vestara-blueprint/AI_CONTEXT.md": "1784860507962",
+      "vestara-blueprint/AI_INSTRUCTION.md": "1784860332545",
+      "vestara-blueprint/AI_RULES.md": "1784800311269",
+      "vestara-blueprint/CLAUDE.md": "1784800408087",
+      "vestara-blueprint/README.md": "1784860623315",
+      "vestara-blueprint/VESTARA_CONSTITUTION.md": "1784800225981",
+      "vestara-foundation/README.md": "1784801348321",
+      "vestara-foundation/agent-catalog/AGENT-CATALOG.md": "1784801539526",
+      "vestara-foundation/interfaces/UNIVERSAL-INTERFACE.md": "1784801569851",
+      "vestara-foundation/mission-engine/MISSION-ENGINE.md": "1784801664733",
+      "vestara-foundation/object-model/VESTARA-OBJECT-MODEL.md": "1784801409889",
+      "vestara-foundation/plugin-sdk/PLUGIN-SDK.md": "1784801618780",
+      "vestara-foundation/provider-sdk/PROVIDER-SDK.md": "1784801595465",
+      "vestara-foundation/runtime-contracts/VESTARA-RUNTIME-ARCHITECTURE.md": "1784801443301",
+      "vestara-foundation/service-contracts/SERVICE-CATALOG.md": "1784801474053",
+      "vestara-foundation/tool-catalog/TOOL-CATALOG.md": "1784801504714",
+      "vestara-foundation/workflow-engine/WORKFLOW-ENGINE.md": "1784801638916",
+      "vestara-labs/README.md": "1784815988027",
+      "vestara-reference/README.md": "1784816211826",
+      "vestara-runtime/README.md": "1784801842850",
+      "vestara-runtime/architecture-v1.0/ARCHITECTURE-FREEZE.md": "1784801976286",
+      "vestara-runtime/architecture-v1.0/PLATFORM-ENGINEERING-GOVERNANCE.md": "1784815412616",
+      "vestara-runtime/diagnostics/VESTARA-DOCTOR.md": "1784801954014",
+      "vestara-runtime/kernel/VESTARA-KERNEL.md": "1784801867130",
+      "vestara-runtime/lifecycle/LIFECYCLE-SPECIFICATION.md": "1784801894063",
+      "vestara-runtime/logging/LOGGING-ARCHITECTURE.md": "1784801912281",
+      "vestara-runtime/metrics/METRICS-ARCHITECTURE.md": "1784801932239",
+      "vestara-specifications/README.md": "1784800805055",
+      "vestara-specifications/ai-capabilities/AI-CONTRACT-INDEX.md": "1784800961157",
+      "vestara-specifications/apis/API-CONTRACT-INDEX.md": "1784800923591",
+      "vestara-specifications/apis/PLATFORM-API.md": "1784815263994",
+      "vestara-specifications/capabilities/CAP-001-workspace-chat.md": "1784800854020",
+      "vestara-specifications/capabilities/INDEX.md": "1784800830070",
+      "vestara-specifications/data-models/DATA-DICTIONARY.md": "1784800995097",
+      "vestara-specifications/events/EVENT-CATALOG.md": "1784800888019",
+      "vestara-specifications/ui-design-system/DESIGN-SYSTEM-SPEC.md": "1784801034945",
+      "vestara-specifications/validation/blueprint-validation-cli.md": "1784801062836"
+    }
+  },
+  "narrativeCache": {
+    "purpose": "This repository appears to be building an AI core system with a monorepo structure, including a CLI for a REPL workspace. The large number of packages suggests a modular architecture aimed at providing a comprehensive development environment.",
+    "suggestedStartingPoints": [
+      "Explain the architecture of the 34-package monorepo and how they relate.",
+      "Show runtime lifecycle of the CLI, especially the repl-workspace.",
+      "Describe package relationships and dependencies among the packages.",
+      "Identify technical debt from large files (repl-workspace) and TODO hotspots.",
+      "Build a feature like adding tests to the workspace package."
+    ],
+    "keyObservations": [
+      "Monorepo with 34 packages but no detected package manager or test framework.",
+      "Large files (2362, 2404 lines) in the CLI repl-workspace suggest need for refactoring.",
+      "Missing tests in .opencode and workspace packages indicate potential technical debt."
+    ],
+    "cachedAt": "2026-07-24T07:54:23.634Z"
+  }
+}
