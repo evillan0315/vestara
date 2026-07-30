@@ -146,17 +146,11 @@ git branch -d feature/your-feature-name
 ## Quality Gates (Run Before Commit)
 
 ```bash
-# Lint (ESLint)
+# Lint + format (Biome)
 pnpm lint
 
-# Type check (TypeScript)
-pnpm typecheck
-
-# Format check (Prettier)
-pnpm format:check
-
 # Build all packages
-pnpm build
+bash build-order.sh
 
 # Run tests
 pnpm test
@@ -165,9 +159,8 @@ pnpm test
 **Shortcuts per package:**
 
 ```bash
-pnpm lint --filter=@vestara/api
-pnpm typecheck --filter=@vestara/web
-pnpm test --filter=@vestara/types
+pnpm --filter @vestara/api lint
+pnpm --filter @vestara/types test
 ```
 
 ---

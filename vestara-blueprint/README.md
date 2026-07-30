@@ -6,7 +6,7 @@
 
 ## 📚 Blueprint Structure
 
-This repository contains **22 volumes** organized into **6 Books**, forming the complete specification for Vestara AI OS — from vision to implementation to future technologies.
+This repository contains **24 volumes** organized into **6 Books**, forming the complete specification for Vestara AI OS — from vision to implementation to future technologies.
 
 ```text
 vestara-blueprint/
@@ -26,10 +26,11 @@ vestara-blueprint/
 ├── 📖 BOOK 3: AI Architecture
 │   ├── 05-ai-core/            # Core AI: conversation, memory, planning, reasoning
 │   ├── 08-cloud/              # Cloud AI, distributed inference, swarms
+│   ├── 14-conversation/       # Conversation runtime, agent collaboration, voice
 │   └── 21-research/           # AI research, evaluation, safety, future
 │
 ├── 📖 BOOK 4: Engineering
-│   ├── 13-user-experience/    # UX principles, design system, accessibility
+│   ├── 13-design-system/      # VDS — visual language, tokens, components, accessibility
 │   ├── 14-engineering/        # Engineering standards, practices, conventions
 │   └── 15-devops/             # Build, deploy, CI/CD, infrastructure
 │
@@ -105,19 +106,22 @@ This blueprint is the **supreme authority** for all Vestara decisions.
 - **10-developer-platform** — SDK, plugins, marketplace, API gateway
 - **12-data** — Data ownership, privacy, sync, local-first, encryption
 
-### Book 3: AI Architecture (Volumes 05, 08, 21)
+### Book 3: AI Architecture (Volumes 05, 08, 14, 21)
 *The brain of Vestara — every AI subsystem specified.*
 
-- **05-ai-core** — Conversation, Memory, Planning, Reasoning, Knowledge, Agents, Providers, Safety, Evaluation
+- **05-ai-core** — Memory, Planning, Reasoning, Knowledge, Agents, Providers, Safety, Evaluation
 - **08-cloud** — Distributed inference, swarms, cloud workers, edge-cloud hybrid
+- **14-conversation** — Conversation runtime, agent collaboration, group chat, voice, streaming, artifacts
 - **21-research** — Model eval, prompt engineering, safety, emerging capabilities
 
 ### Book 4: Engineering (Volumes 13, 14, 15)
 *How we build — standards, practices, tooling, quality.*
 
-- **13-user-experience** — Design system, accessibility, animations, voice, UX patterns
+- **13-design-system** — VDS: visual language, design tokens, components, accessibility, theme engine
 - **14-engineering** — TypeScript, React, Fastify, SQLite, testing, linting, architecture
 - **15-devops** — Docker, CI/CD, releases, monitoring, portable builds, SSD images
+
+> **Note**: Volume `13-user-experience` is superseded by `13-design-system` (VDS). The design system is the canonical visual specification. UX patterns are now covered across VDS and the conversation/workspace volumes.
 
 ### Book 5: Operations (Volumes 07, 09, 11, 16)
 *How Vestara runs — OS, mobile, security, operations.*
@@ -213,7 +217,8 @@ tags: ["tag1", "tag2"]
 | CLAUDE.md | This blueprint — Claude-specific |
 | blueprints/00-07 | Superseded by this blueprint |
 | services/*/src | Implementation follows these specs |
-| apps/dashboard/src | UI implements 13-user-experience specs |
+| apps/dashboard/src | UI implements VDS (13-design-system) specs |
+| packages/conversation-runtime | Implements 14-conversation runtime spec |
 | packages/* | Shared types follow 14-engineering standards |
 
 ---
@@ -222,6 +227,7 @@ tags: ["tag1", "tag2"]
 
 | Version | Date | Author | Changes |
 |---------|------|--------|---------|
+| 2.0.0 | 2025-07-30 | Chief Architect | Promoted VDS to 13-design-system, Conversation to 14-conversation; added 11-language governance doc |
 | 1.0.0 | 2025-07-23 | Chief Architect | Initial blueprint creation |
 
 ---

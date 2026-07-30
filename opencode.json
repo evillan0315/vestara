@@ -1,23 +1,566 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "default_agent": "vestara-build",
-  "agent": {
-    "vestara-build": {
-      "mode": "primary",
-      "model": "opencode/deepseek-v4-flash-free"
+  "default_agent": "agent.profiles.developer",
+  "model": "opencode/deepseek-v4-flash-free",
+  "plugin": [
+    "@opencode-ai/plugin"
+  ],
+  "provider": {
+    "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Ollama (local)",
+      "options": {
+        "baseURL": "http://localhost:11434/v1"
+      },
+      "models": {
+        "deepseek-coder:1.3b": {
+          "name": "DeepSeek Coder 1.3B"
+        }
+      }
     },
-    "vestara-plan": {
-      "mode": "primary",
-      "model": "opencode/deepseek-v4-flash-free"
+    "openai": {
+      "npm": "@ai-sdk/openai",
+      "name": "OpenAI",
+      "options": {
+        "apiKey": "${OPENAI_API_KEY}"
+      },
+      "models": {
+        "gpt-4o": {
+          "name": "GPT-4o"
+        },
+        "gpt-4o-mini": {
+          "name": "GPT-4o Mini"
+        },
+        "gpt-4-turbo": {
+          "name": "GPT-4 Turbo"
+        },
+        "gpt-3.5-turbo": {
+          "name": "GPT-3.5 Turbo"
+        },
+        "o1-preview": {
+          "name": "o1 Preview"
+        },
+        "o1-mini": {
+          "name": "o1 Mini"
+        }
+      }
     },
-    "vestara-review": {
-      "mode": "subagent",
-      "model": "opencode/deepseek-v4-flash-free"
+    "opencode": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "OpenCode (Free)",
+      "options": {
+        "baseURL": "https://opencode.ai/zen/v1",
+        "apiKey": "${OPENCODE_API_KEY}"
+      },
+      "models": {
+        "deepseek-v4-flash-free": {
+          "name": "DeepSeek V4 Flash (Free)"
+        },
+        "mimo-v2.5-free": {
+          "name": "Mimo V2.5 (Free)"
+        },
+        "nemotron-3-ultra-free": {
+          "name": "Nemotron 3 Ultra (Free)"
+        },
+        "north-mini-code-free": {
+          "name": "North Mini Code (Free)"
+        },
+        "big-pickle": {
+          "name": "Big Pickle"
+        }
+      }
+    },
+    "opencode-go": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "OpenCode (Go)",
+      "options": {
+        "baseURL": "https://opencode.ai/zen/go/v1"
+      },
+      "models": {
+        "deepseek-v4-flash": {
+          "name": "DeepSeek V4 Flash (Go)"
+        },
+        "mimo-v2.5": {
+          "name": "MiMo-V2.5 (Go)"
+        },
+        "nemotron-3-ultra-free": {
+          "name": "Nemotron 3 Ultra (Free)"
+        },
+        "north-mini-code-free": {
+          "name": "North Mini Code (Free)"
+        },
+        "big-pickle": {
+          "name": "Big Pickle"
+        }
+      }
+    },
+    "@vestara/*": {
+      "npm": "@vestara/provider-opencode",
+      "name": "Vestara Providers",
+      "options": {
+        "apiKey": "${OPENCODE_API_KEY}",
+        "baseURL": "${OPENCODE_BASE_URL}"
+      },
+      "models": {
+        "deepseek-v4-flash-free": {
+          "name": "DeepSeek V4 Flash (Free)"
+        },
+        "claude-v3": {
+          "name": "Claude V3"
+        },
+        "gpt4all-lora-quantized": {
+          "name": "GPT4All LoRA Quantized"
+        },
+        "gemini-3": {
+          "name": "Gemini 3"
+        },
+        "alibaba-3": {
+          "name": "Alibaba 3"
+        }
+      }
+    },
+    "allproviders": {
+      "npm": "@vestara/provider-runtime",
+      "name": "All Providers",
+      "options": {
+        "apiKey": "${OPENCODE_API_KEY}",
+        "baseURL": "${OPENCODE_BASE_URL}"
+      },
+      "models": {
+        "deepseek-v4-flash-free": {
+          "name": "DeepSeek V4 Flash (Free)"
+        },
+        "mimo-v2.5-free": {
+          "name": "Mimo V2.5 (Free)"
+        },
+        "nemotron-3-ultra-free": {
+          "name": "Nemotron 3 Ultra (Free)"
+        },
+        "north-mini-code-free": {
+          "name": "North Mini Code (Free)"
+        },
+        "big-pickle": {
+          "name": "Big Pickle"
+        },
+        "claude-v3": {
+          "name": "Claude V3"
+        },
+        "gpt4all-lora-quantized": {
+          "name": "GPT4All LoRA Quantized"
+        },
+        "gemini-3": {
+          "name": "Gemini 3"
+        },
+        "alibaba-3": {
+          "name": "Alibaba 3"
+        }
+      }
+    },
+    "anthropic": {
+      "npm": "@ai-sdk/anthropic",
+      "name": "Anthropic",
+      "options": {
+        "apiKey": "${ANTHROPIC_API_KEY}"
+      },
+      "models": {
+        "claude-v3": {
+          "name": "Claude V3"
+        }
+      }
+    },
+    "gpt4all": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "GPT4All",
+      "options": {
+        "apiKey": "${GPT4ALL_API_KEY}",
+        "baseURL": "${GPT4ALL_BASE_URL}"
+      },
+      "models": {
+        "gpt4all-lora-quantized": {
+          "name": "GPT4All LoRA Quantized"
+        }
+      }
+    },
+    "gemini": {
+      "npm": "@ai-sdk/google",
+      "name": "Gemini",
+      "options": {
+        "apiKey": "${GEMINI_API_KEY}",
+        "baseURL": "${GEMINI_BASE_URL}"
+      },
+      "models": {
+        "gemini-3": {
+          "name": "Gemini 3"
+        }
+      }
+    },
+    "alibaba": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Alibaba",
+      "options": {
+        "apiKey": "${ALIBAbA_API_KEY}",
+        "baseURL": "${ALIBAbA_BASE_URL}"
+      },
+      "models": {
+        "alibaba-3": {
+          "name": "Alibaba 3"
+        }
+      }
+    },
+    "google-cloud": {
+      "npm": "@ai-sdk/google",
+      "name": "Google Cloud",
+      "options": {
+        "apiKey": "${GOOGLE_CLOUD_API_KEY}"
+      },
+      "models": {
+        "gemini-3": {
+          "name": "Gemini 3"
+        }
+      }
+    }
+  },
+  "lsp": {
+    "typescript-language-server": {
+      "command": [
+        "typescript-language-server",
+        "--stdio"
+      ],
+      "extensions": [
+        ".ts",
+        ".tsx",
+        ".js",
+        ".jsx",
+        ".mts",
+        ".cts"
+      ],
+      "initializationOptions": {
+        "preferences": {
+          "importModuleSpecifier": "non-relative",
+          "includeInlayParameterNameHints": "all",
+          "includeInlayParameterNameHintsWhenArgumentMatchesName": true,
+          "includeInlayFunctionParameterTypeHints": true,
+          "includeInlayVariableTypeHints": true,
+          "includeInlayPropertyDeclarationTypeHints": true,
+          "includeInlayFunctionLikeReturnTypeHints": true,
+          "includeInlayEnumMemberValueHints": true
+        }
+      }
+    },
+    "tailwindcss": {
+      "command": [
+        "tailwindcss-language-server",
+        "--stdio"
+      ],
+      "extensions": [
+        ".ts",
+        ".tsx",
+        ".js",
+        ".jsx",
+        ".html",
+        ".css",
+        ".scss",
+        ".sass",
+        ".less"
+      ]
+    },
+    "vscode-css-language-server": {
+      "command": [
+        "vscode-css-language-server",
+        "--stdio"
+      ],
+      "extensions": [
+        ".css",
+        ".scss",
+        ".sass",
+        ".less"
+      ]
+    },
+    "vscode-json-language-server": {
+      "command": [
+        "vscode-json-language-server",
+        "--stdio"
+      ],
+      "extensions": [
+        ".json",
+        ".jsonc"
+      ]
+    },
+    "vscode-html-language-server": {
+      "command": [
+        "vscode-html-language-server",
+        "--stdio"
+      ],
+      "extensions": [
+        ".html",
+        ".htm"
+      ]
+    },
+    "docker-language-server": {
+      "command": [
+        "docker-langserver",
+        "--stdio"
+      ],
+      "extensions": [
+        ".dockerfile",
+        "Dockerfile"
+      ]
+    },
+    "yaml-language-server": {
+      "command": [
+        "yaml-language-server",
+        "--stdio"
+      ],
+      "extensions": [
+        ".yaml",
+        ".yml"
+      ]
+    },
+    "bash-language-server": {
+      "command": [
+        "bash-language-server",
+        "start"
+      ],
+      "extensions": [
+        ".sh",
+        ".bash",
+        ".zsh"
+      ]
     }
   },
   "instructions": [
     "AGENTS.md",
     "vestara-ai-core/README.md",
-    "vestara-ai-core/CONTRIBUTING.md"
-  ]
+    "vestara-ai-core/daily-engineering-planner-prompt.md",
+    "vestara-blueprint/AGENTS.md",
+    "vestara-blueprint/VESTARA_CONSTITUTION.md"
+  ],
+  "skills": {
+    "paths": [
+      ".opencode/skills"
+    ]
+  },
+  "agent": {
+    "profiles": {
+      "coder": {
+        "description": "Coder development agent",
+        "model": "opencode/deepseek-v4-flash-free",
+        "temperature": 0.7,
+        "maxTokens": 16384,
+        "tools": [
+          "read",
+          "write",
+          "edit",
+          "bash",
+          "glob",
+          "grep",
+          "task",
+          "lsp",
+          "patch"
+        ],
+        "permissions": {
+          "bash": [
+            "pnpm *",
+            "npm *",
+            "git *"
+          ],
+          "write": [
+            "vestara-ai-core/apps/**",
+            "vestara-ai-core/packages/**",
+            "vestara-ai-core/scripts/**"
+          ],
+          "edit": [
+            "vestara-ai-core/apps/**",
+            "vestara-ai-core/packages/**",
+            "vestara-ai-core/scripts/**"
+          ]
+        }
+      },
+      "developer": {
+        "description": "General purpose development agent",
+        "model": "opencode/deepseek-v4-flash-free",
+        "temperature": 0.7,
+        "maxTokens": 16384,
+        "tools": [
+          "read",
+          "write",
+          "edit",
+          "bash",
+          "glob",
+          "grep",
+          "task",
+          "lsp",
+          "patch"
+        ],
+        "permissions": {
+          "bash": [
+            "pnpm *",
+            "npm *",
+            "git *"
+          ],
+          "write": [
+            "vestara-ai-core/apps/**",
+            "vestara-ai-core/packages/**",
+            "vestara-ai-core/scripts/**"
+          ],
+          "edit": [
+            "vestara-ai-core/apps/**",
+            "vestara-ai-core/packages/**",
+            "vestara-ai-core/scripts/**"
+          ]
+        }
+      },
+      "context": {
+        "description": "Context discovery agent — discovers state, never plans or codes",
+        "model": "opencode/deepseek-v4-flash-free",
+        "temperature": 0.3,
+        "maxTokens": 16384,
+        "tools": [
+          "read",
+          "glob",
+          "grep",
+          "task",
+          "bash"
+        ],
+        "permissions": {
+          "bash": [
+            "pnpm *",
+            "npm *",
+            "git *"
+          ],
+          "read": [
+            "**"
+          ]
+        }
+      },
+      "planner": {
+        "description": "Planning and architecture agent — analyzes, prioritizes, never codes",
+        "model": "opencode/deepseek-v4-flash-free",
+        "temperature": 0.7,
+        "maxTokens": 16384,
+        "tools": [
+          "read",
+          "glob",
+          "grep",
+          "task",
+          "bash"
+        ],
+        "permissions": {
+          "bash": [
+            "pnpm *",
+            "npm *",
+            "git *"
+          ],
+          "read": [
+            "**"
+          ]
+        }
+      },
+      "engineer": {
+        "description": "Implementation agent — builds, refactors, fixes. Never invents scope.",
+        "model": "opencode/deepseek-v4-flash-free",
+        "temperature": 0.7,
+        "maxTokens": 16384,
+        "tools": [
+          "read",
+          "write",
+          "edit",
+          "bash",
+          "glob",
+          "grep",
+          "task",
+          "lsp",
+          "patch"
+        ],
+        "permissions": {
+          "bash": [
+            "pnpm *",
+            "npm *",
+            "git *"
+          ],
+          "write": [
+            "vestara-ai-core/apps/**",
+            "vestara-ai-core/packages/**",
+            "vestara-ai-core/scripts/**"
+          ],
+          "edit": [
+            "vestara-ai-core/apps/**",
+            "vestara-ai-core/packages/**",
+            "vestara-ai-core/scripts/**"
+          ]
+        }
+      },
+      "reviewer": {
+        "description": "Code review and quality assurance agent — inspects, never modifies",
+        "model": "opencode/deepseek-v4-flash-free",
+        "temperature": 0.1,
+        "maxTokens": 16384,
+        "tools": [
+          "read",
+          "glob",
+          "grep",
+          "lsp",
+          "bash"
+        ],
+        "permissions": {
+          "bash": [
+            "pnpm lint*",
+            "pnpm test*",
+            "pnpm build*"
+          ],
+          "read": [
+            "**"
+          ]
+        }
+      },
+      "verifier": {
+        "description": "Verification agent — proves correctness via evidence, never interprets",
+        "model": "opencode/deepseek-v4-flash-free",
+        "temperature": 0.1,
+        "maxTokens": 8192,
+        "tools": [
+          "read",
+          "glob",
+          "grep",
+          "bash",
+          "lsp"
+        ],
+        "permissions": {
+          "bash": [
+            "pnpm lint*",
+            "pnpm test*",
+            "pnpm build*",
+            "bash build*"
+          ],
+          "read": [
+            "**"
+          ]
+        }
+      },
+      "researcher": {
+        "description": "Research and documentation agent",
+        "model": "opencode/deepseek-v4-flash-free",
+        "temperature": 0.3,
+        "maxTokens": 16384,
+        "tools": [
+          "read",
+          "glob",
+          "grep",
+          "task",
+          "web",
+          "bash"
+        ],
+        "permissions": {
+          "bash": [
+            "curl *",
+            "wget *",
+            "git *"
+          ],
+          "web": [
+            "*"
+          ]
+        }
+      }
+    }
+  }
 }

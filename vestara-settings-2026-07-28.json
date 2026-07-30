@@ -1,0 +1,36 @@
+{
+  "version": "1.0.0",
+  "exportedAt": "2026-07-28T08:06:19.587Z",
+  "modules": [
+    {
+      "id": "sm_1785225773705_1",
+      "name": "AI",
+      "values": {}
+    },
+    {
+      "id": "sm_1785225773705_2",
+      "name": "Providers",
+      "values": {}
+    },
+    {
+      "id": "sm_1785225773705_3",
+      "name": "Routing",
+      "values": {}
+    },
+    {
+      "id": "sm_1785225773705_4",
+      "name": "Workspace",
+      "values": {}
+    },
+    {
+      "id": "sm_1785225773705_5",
+      "name": "Appearance",
+      "values": {}
+    },
+    {
+      "id": "sm_1785225773705_6",
+      "name": "System",
+      "values": {}
+    }
+  ]
+}

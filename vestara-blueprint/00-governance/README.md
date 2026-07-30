@@ -29,6 +29,18 @@ tags: ["governance", "constitution", "rules", "lifecycle"]
 ├── 04-decision-log.md                     ← Architectural Decision Records
 ├── 05-compatibility.md                    ← AI agent compatibility (Claude, OpenCode, etc.)
 ├── 06-ai-development-framework.md         ← VADF — Vestara AI Development Framework
+├── 07-ai-operating-system-architecture.md ← AI OS architecture
+├── 08-product-constitution.md             ← Product decision framework
+├── 09-capability-catalog.md              ← Capability specification catalog
+├── 10-capability-validation-framework.md  ← Capability validation methodology
+├── 11-language.md                         ← Terminology, naming conventions, event naming
+├── adr/                                   ← Architecture Knowledge Graph (AKG)
+│   ├── README.md                          ← AKG model, edge types, graph rules
+│   ├── ADR-100-ai-organization.md
+│   ├── ADR-101-conversation-architecture.md
+│   ├── ADR-102-vds-framework-agnostic.md
+│   ├── ADR-103-workspace-native-context.md
+│   └── ADR-104-evidence-based-verification.md
 ```
 
 ---
@@ -55,6 +67,16 @@ VESTARA_CONSTITUTION.md  ← Supreme authority (root level)
         │
         ▼
 06-ai-development-framework.md ← VADF methodology
+07-ai-operating-system-architecture.md ← AI OS architecture
+08-product-constitution.md ← Product decision framework
+09-capability-catalog.md ← Capability specification catalog
+10-capability-validation-framework.md ← Capability validation
+11-language.md ← Terminology & naming conventions
+adr/ADR-100-ai-organization.md ← AI Organization Over AI Assistant
+adr/ADR-101-conversation-architecture.md ← Conversation as Independent Architecture
+adr/ADR-102-vds-framework-agnostic.md ← Framework-Agnostic Design System
+adr/ADR-103-workspace-native-context.md ← Workspace-Native Context
+adr/ADR-104-evidence-based-verification.md ← Evidence-Based Verification
 ```
 
 ---

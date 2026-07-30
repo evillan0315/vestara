@@ -2,12 +2,12 @@
 title: "AI Development Lifecycle (AIDL) — Disciplined AI Engineering"
 volume: "00-governance"
 book: "Book 1: Vision & Business"
-version: "1.0.0"
+version: "1.3.0"
 status: "approved"
 owner: "@chief-architect"
-last-reviewed: "2025-07-23"
-next-review: "2026-01-23"
-tags: ["aidl", "lifecycle", "workflow", "ai-agents", "governance"]
+last-reviewed: "2026-07-30"
+next-review: "2027-01-23"
+tags: ["aidl", "lifecycle", "workflow", "ai-agents", "governance", "daily-operations", "eks"]
 ---
 
 # AI Development Lifecycle (AIDL)
@@ -33,6 +33,81 @@ Traditional SDLC assumes human developers. AIDL assumes **AI agents with special
 | Documentation after | Documentation **before** (Blueprint-first) |
 | Technical debt accidental | Technical debt **explicit** (tracked, approved) |
 | Architecture emerges | Architecture **governed** (ADR required) |
+
+---
+
+## ═══════════════════════════════════════════════════════════════════
+
+### 🧠 EPISTEMIC PRINCIPLES
+
+### ═══════════════════════════════════════════════════════════════════
+
+Every engineering organization must answer: *How do we know something? When do we trust it? Who decides it becomes knowledge? How does it evolve?* These principles define Vestara's approach.
+
+### The Four Layers
+
+The AIDL and its operational systems separate concerns into four independent layers:
+
+| Layer | Question | Owner | Example Artifact |
+|-------|----------|-------|------------------|
+| **Behavior** | How should I act? | Prompts, Agent configs | Agent instructions, Daily Planner prompt |
+| **Knowledge** | What do we know? | Engineering Knowledge System | EKS entries, ADRs, Blueprint |
+| **Confidence** | How strongly is it supported? | Confidence Model (derived) | Evidence counters, maturity stage |
+| **Governance** | Who can change what we know? | Promotion gate, Human approval | Review process, ADR approval |
+
+**Rules:**
+- No layer overlaps with another. Prompts never assert facts. Knowledge never decides behavior. Confidence never invents itself. Governance never generates content.
+- Each layer has exactly one owner — no shared responsibility.
+- A layer may only consume output from layers below it.
+
+### The Three Categories of Truth
+
+Vestara distinguishes three categories of truth that must never be conflated:
+
+| Category | Question | Storage | Persistence |
+|----------|----------|---------|-------------|
+| **Operational Truth** | What is true right now? | Repository state, build status, active branch | Ephemeral — changes minute to minute |
+| **Historical Truth** | What has happened? | Session logs, metrics, review records | 90 days to 12 months |
+| **Institutional Truth** | What has earned the organization's trust? | EKS knowledge entries, ADRs, Blueprint | Permanent (can be superseded) |
+
+Mixing these categories produces unreliable systems. A single observation (historical truth) is not the same as a verified practice (institutional truth). The promotion process exists to graduate knowledge from one category to the next.
+
+### The Derivation Principle
+
+> Prefer deriving information over storing duplicate state.
+
+This principle appears throughout the architecture:
+
+- The Planner does not invent priorities — it derives them from repository state and knowledge
+- The Verifier does not decide correctness — it derives it from objective evidence
+- The Confidence Model does not invent certainty — it derives it from accumulated evidence
+- Health (future) does not calculate anything new — it derives status from confidence
+
+A derived value has exactly one source of truth, eliminating inconsistency.
+
+### Epistemic Governance
+
+An observation is not automatically organizational truth. It must earn that status through a formal promotion process:
+
+```
+Observation (untrusted)
+    │
+    ▼
+Evidence accumulation (historical truth)
+    │
+    ▼
+Human review (governance gate)
+    │
+    ▼
+Approved entry (institutional truth)
+```
+
+This mirrors how mature institutions handle knowledge:
+- Scientific journals use peer review
+- Courts use standards of evidence
+- Engineering organizations use design reviews and RFCs
+
+The EKS promotion gate is Vestara's application of the same principle to AI-assisted engineering.
 
 ---
 
@@ -374,6 +449,384 @@ blueprint_ref: "05-ai-core/03-memory-engine.md"
 12. RELEASE (DevOps): Tag, build, deploy
 13. LEARNING (Research+PM): Usage metrics, accuracy feedback
 ```
+
+---
+
+## ═══════════════════════════════════════════════════════════════════
+
+### 🏗️ DAILY OPERATIONAL LIFECYCLE
+
+### ═══════════════════════════════════════════════════════════════════
+
+The AIDL defines the high-level feature lifecycle (Vision → Release → Learning). The **Daily Operational Lifecycle** is the rhythm that executes the Implementation, Review, and Testing phases on a day-to-day basis.
+
+> Agents don't perform work. They participate in a software development lifecycle.
+
+### Philosophy
+
+Vestara treats AI agents as members of an engineering organization rather than code-generation tools. Each agent has a single, well-defined responsibility. No agent crosses role boundaries.
+
+### The Daily Workflow
+
+```mermaid
+flowchart TD
+    A[Morning Briefing] --> B[Context Discovery]
+    B --> C[Planning]
+    C --> D{Human Approval}
+    D -->|Approved| E[Engineering]
+    D -->|Rejected| C
+    E --> F[Review]
+    F --> G[Verification]
+    G --> H{All Checks Pass?}
+    H -->|Yes| I[Evening Summary]
+    H -->|No| E
+    I --> A
+```
+
+### Agents
+
+| Agent | Role | Can Edit? | Can Plan? | Can Decide Scope? |
+|-------|------|-----------|-----------|-------------------|
+| **Context** | Discover | No | No | No |
+| **Planner** | Recommend | No | Yes | No |
+| **Engineer** | Implement | Yes | No | No |
+| **Reviewer** | Inspect | No | No | No |
+| **Verifier** | Prove | No | No | No |
+| **Human** | Approve | Yes | Yes | Yes |
+
+### Agent Responsibilities
+
+**Context Agent** — Discovery only. Answers *"What world am I entering?"*
+- Reads AGENTS.md, README.md, project docs
+- Scans project tree and architecture
+- Reviews recent commits and active branch
+- Checks build status, test results, lint state
+- Reads the roadmap and current milestone
+- Checks for unfinished work and open issues
+- Reads Engineering Knowledge for relevant lessons
+- Produces a Context Report passed to the Planner
+
+**Planner Agent** — Analysis and recommendation only. Never implements.
+- Receives Context Report
+- Applies the Daily Engineering Planner framework
+- Generates prioritized task list across all categories
+- For every task, answers: *Why should this exist? What problem does it solve? Who benefits? How difficult? What could break?*
+- Produces a prioritized plan for human approval
+
+**Engineer Agent** — Implementation only. Never invents scope.
+- Receives approved task from human
+- Implements with minimal scope, preserving conventions
+- Writes or updates tests
+- Removes stale build artifacts
+- Reports changes made, files touched, rationale
+
+**Reviewer Agent** — Inspection only. Never modifies code.
+- Inspects all changed files
+- Evaluates against six dimensions: architecture, conventions, correctness, complexity, completeness, risk
+- Reports issues with file:line references and severity
+- Does not edit, refactor, or suggest code inline
+
+**Verifier Agent** — Evidence only. Never interprets.
+- Executes: build, lint, format, tests
+- Checks for stale `.js`/`.d.ts` artifacts alongside `.ts` sources
+- Verifies documented files exist
+- Reports pass/fail facts only — no commentary, no interpretation
+- Output is machine-readable and objective
+
+### Daily Commands
+
+| Command | Workflow |
+|---------|----------|
+| `/init` | Full repository onboarding (Context Agent) |
+| `/morning` | Daily briefing (Context → Planner → human approval) |
+| `/work` | Execute approved task (Engineer Agent) |
+| `/review` | Inspect implementation (Reviewer Agent) |
+| `/verify` | Prove correctness via evidence (Verifier Agent) |
+| `/evening` | Capture session knowledge into EKS (Context + Planner) |
+
+### Daily Checklist
+
+Every agent executes this checklist before accepting work:
+
+```
+□ Read AGENTS.md
+□ Read project documentation
+□ Understand architecture
+□ Detect current milestone
+□ Identify active branch
+□ Review recent changes
+□ Identify today's priorities
+□ Check for unfinished work
+□ Read relevant Engineering Knowledge
+□ Generate recommendations (if applicable)
+□ Wait for approval
+```
+
+### Interaction Between AIDL and Daily Lifecycle
+
+The Daily Operational Lifecycle is nested within AIDL phases 6-10 (Planning → Implementation → Self Review → Security → Testing):
+
+```
+AIDL Phase 6-10: Planning → Implementation → Review → Security → Testing
+                              │
+                              ▼
+                    Daily Operational Lifecycle
+                    ┌─────────────────────────┐
+                    │  /morning               │
+                    │  /work (repeat per task) │
+                    │  /review                │
+                    │  /verify                │
+                    │  /evening               │
+                    └─────────────────────────┘
+                              │
+                              ▼
+AIDL Phase 11+: Documentation → Release → Learning
+```
+
+A single AIDL implementation phase may span multiple daily cycles. The `/evening` summary feeds into the AIDL phase handoff.
+
+---
+
+## ═══════════════════════════════════════════════════════════════════
+
+### 📚 ENGINEERING KNOWLEDGE SYSTEM (EKS)
+
+### ═══════════════════════════════════════════════════════════════════
+
+The Engineering Knowledge System is Vestara's organizational memory. It is not agent memory, not AI memory, and not RAG. It is **institutional knowledge** that belongs to Vestara regardless of which AI model serves as Planner, Engineer, Reviewer, or Verifier.
+
+### Principles
+
+1. **Knowledge belongs to the organization, not the agent.** If the Planner model is replaced, the knowledge remains.
+2. **Knowledge must be verified before promotion.** Session observations are not knowledge until reviewed and approved.
+3. **Knowledge is structured.** Raw text is not knowledge — categorized, reasoned observations are.
+4. **Knowledge must outlive its creator.** Consistent with Natural Law #3.
+
+### Structure
+
+```
+.vestara/
+  knowledge/
+    architecture/     ← Permanent architectural decisions and patterns
+    workflows/        ← Verified workflow improvements
+    lessons/          ← Verified lessons learned
+    decisions/        ← Engineering decisions (derived from ADRs)
+  sessions/           ← Daily session logs (temporary, archived after 90 days)
+    2026-07-30.md
+    2026-07-31.md
+  metrics/            ← Objective agent performance data
+    planner.json
+    reviewer.json
+    verifier.json
+```
+
+### Knowledge Categories
+
+| Category | Content | Retention |
+|----------|---------|-----------|
+| `architecture/` | Module boundaries, dependency patterns, integration strategies | Permanent |
+| `workflows/` | Verified multi-step processes, tool sequences | Permanent |
+| `lessons/` | What went wrong, what went right, root causes | Permanent |
+| `decisions/` | Engineering decisions with rationale (ADR-derived) | Permanent |
+| `sessions/` | Daily activity logs, context dumps | 90 days |
+| `metrics/` | Agent performance counters, accuracy rates | Rolling 12 months |
+
+### Knowledge Maturity Lifecycle
+
+Knowledge does not appear fully formed. It matures through stages as evidence accumulates:
+
+```
+Hypothesis
+    │   First observation, unverified
+    ▼
+Observation
+    │   Seen 2-5 times across sessions
+    ▼
+Emerging Pattern
+    │   Consistent across 5-20 sessions, some validation
+    ▼
+Verified Practice
+    │   Confirmed across 20+ sessions, multiple reviews
+    ▼
+Engineering Principle
+    │   Universal rule validated across the organization
+```
+
+Each stage represents a higher confidence tier. The Planner treats each stage differently:
+
+| Stage | Confidence | Planner Behavior |
+|-------|-----------|------------------|
+| Hypothesis | 0.0 – 0.2 | Flag for validation, do not act on |
+| Observation | 0.2 – 0.4 | Include in briefing as tentative |
+| Emerging Pattern | 0.4 – 0.7 | Recommend consideration, note uncertainty |
+| Verified Practice | 0.7 – 0.95 | Apply by default, note edge cases |
+| Engineering Principle | 0.95 – 1.0 | Treat as invariant, surface in every briefing |
+
+### Confidence Model
+
+Confidence is **derived**, not assigned. It is a function of objective evidence:
+
+```
+confidence = f(sessions, implementations, approvals, reviews, verifications, age, contradictions)
+```
+
+| Factor | Weight | Description |
+|--------|--------|-------------|
+| `sessions` | High | Number of independent sessions that observed the pattern |
+| `implementations` | High | Number of times the recommendation was successfully applied |
+| `approvals` | Medium | Number of human approvals |
+| `reviews` | Medium | Number of peer reviews that validated the entry |
+| `verifications` | Low | Number of automated verification passes |
+| `age` | Low | Time since last validation (recent = higher confidence) |
+| `contradictions` | Negative | Count of contradictory evidence (reduces confidence) |
+
+No single agent invents confidence. The Planner **consumes** it to weight recommendations. The Verifier **updates** evidence counters. The Reviewer **validates** the confidence level during review.
+
+### Knowledge Promotion Process
+
+Raw session observations must survive a review gate before becoming permanent knowledge. The promotion process also matures the confidence:
+
+```
+Session Log
+    │
+    ▼
+Observation (drafted by Context/Planner during /evening)
+    │  maturity: hypothesis | observation
+    ▼
+Human Review
+    │
+    ├── Approved ──► Knowledge Entry (permanent, versioned)
+    │                  maturity: emerging_pattern (minimum)
+    │
+    └── Rejected ──► Discarded or revised
+                         │
+                         ▼
+                  Revision may resubmit with
+                  additional evidence
+```
+
+An entry can only be promoted to permanent status if its maturity is at least `emerging_pattern`. Hypotheses and single observations are kept in session logs only — they are not promoted until the pattern repeats.
+
+### Knowledge Entry Format
+
+Every knowledge entry includes confidence, evidence, and validation metadata:
+
+```markdown
+---
+id: "EKS-2026-001"
+title: "Workspace Rewrites Require Incremental Migration"
+
+# Classification
+type: "lesson"                        # lesson | decision | workflow | architecture
+category: "architecture"
+tags: ["workspace", "migration", "initialization"]
+
+# Status
+status: "approved"                    # draft | approved | superseded
+maturity: "verified_practice"         # hypothesis | observation | emerging_pattern | verified_practice | engineering_principle
+
+# Confidence (derived, not assigned)
+confidence:
+  level: high                         # very_low | low | medium | high | very_high
+  score: 0.92                         # 0.0 – 1.0
+
+# Evidence (objective counters)
+evidence:
+  sessions: 47                        # independent sessions observing this
+  implementations: 12                 # times the recommendation was applied
+  approvals: 3                        # human approvals
+  reviews: 3                          # peer reviews
+  verifications: 8                    # automated verification passes
+  contradictions: 0                   # contradictory evidence count
+
+# Validation
+validation:
+  last_verified: 2026-07-30
+  verified_by: "Eddie Villanueva"
+  verification_method: "manual"       # manual | automated | both
+
+# Provenance
+author: "planner"                     # context | planner | engineer | reviewer | verifier
+created: 2026-07-30
+approved_by: "Eddie Villanueva"
+
+# Versioning
+supersedes: "EKS-2025-091"           # ID of superseded entry, if any
+superseded_by: null                   # ID of entry that supersedes this one, if any
+
+# Relationships
+related:
+  - "ADR-011: Workspace Runtime Architecture"
+  - "RFC-Workspace-Rewrite"
+---
+```
+
+### Knowledge Evolution Example
+
+An entry progresses naturally over months:
+
+```
+2026-08-02
+  maturity: observation
+  confidence: 0.25
+  evidence:
+    sessions: 1
+
+2026-08-15
+  maturity: emerging_pattern
+  confidence: 0.52
+  evidence:
+    sessions: 5
+    implementations: 2
+
+2026-09-10
+  maturity: verified_practice
+  confidence: 0.84
+  evidence:
+    sessions: 28
+    implementations: 9
+    approvals: 2
+
+2026-12-01
+  maturity: engineering_principle
+  confidence: 0.98
+  evidence:
+    sessions: 143
+    implementations: 47
+    approvals: 8
+    reviews: 12
+    contradictions: 0
+```
+
+### Agent Interaction with Confidence
+
+| Agent | Interaction |
+|-------|-------------|
+| Context | Reads all active entries; surfaces high-confidence ones in morning briefing |
+| Planner | Consumes confidence to weight recommendations; treats `very_low` as ignore, `medium` as flag, `very_high` as default |
+| Engineer | Checks relevant entries before implementation; notes when recommendations contradict high-confidence knowledge |
+| Reviewer | Validates confidence during review; may flag entries whose confidence no longer matches evidence |
+| Verifier | Updates evidence counters; increments `verifications` on each pass |
+| Human | Validates and approves; updates `verified_by` and `last_verified` |
+
+### Agent Access Patterns
+
+| Agent | Reads | Writes |
+|-------|-------|--------|
+| Context | All active knowledge entries | Session logs only |
+| Planner | All knowledge entries (weights by confidence) | Session observations (draft) |
+| Engineer | Relevant entries for task | Session log entry |
+| Reviewer | Entries related to changed code | Session log entry, confidence flags |
+| Verifier | (none — factual only) | Evidence counters, metrics |
+
+### Knowledge Expiration and Supersession
+
+- Knowledge entries are permanent but can be superseded
+- A superseded entry links to its replacement via `superseded_by`
+- Old entries remain for audit trail but are marked as inactive in queries
+- The Context Agent reads only active entries during `/morning`
+- Entries with `sessions == 1` (never promoted beyond observation) are automatically pruned after 90 days
+- Entries with no validation for 12+ months are flagged for re-validation
 
 ---
 

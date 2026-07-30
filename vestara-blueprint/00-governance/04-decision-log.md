@@ -23,8 +23,11 @@ tags: ["adr", "decisions", "architecture", "governance"]
 
 ```markdown
 ---
-adr: "ADR-XXX"
+id: "adr-xxx"              # immutable — does not change if filename changes
+adr: "ADR-XXX"             # human-readable label, may be renamed
 title: "Short descriptive title"
+category: "foundation | implementation | standard"
+version: 1.0
 date: "YYYY-MM-DD"
 status: "proposed | accepted | superseded | deprecated"
 author: "@role"
@@ -32,6 +35,18 @@ deciders: ["@chief-architect", "@engineering-manager"]
 consulted: ["@backend-engineer", "@ai-engineer"]
 informed: ["@team"]
 tags: ["database", "api", "security", "ai"]
+depends_on:
+  - id: "adr-yyy"
+    relationship: "explains why"  # optional: explains how this ADR relies on another
+referenced_by:
+  - type: "blueprint"
+    target: "XX-volume/YY-file.md"
+  - type: "constitution"
+    target: "CONSTITUTION_NAME"
+  - type: "runtime"
+    target: "RuntimeName"
+influences:
+  - "RoleName"  # organizational roles that must understand this ADR
 ---
 
 ## Context
@@ -101,6 +116,13 @@ What did we decide? Be specific.
 | ADR-020 | Workspace Kernel & Subsystem Architecture | accepted | 2026-07-27 | 06-workspace, 07-operating-system, 13-user-experience |
 | ADR-021 | Widget Manifest System & Dashboard Runtime | accepted | 2026-07-27 | 13-user-experience, 06-workspace |
 | ADR-022 | Standard Subsystem Directory Layout | accepted | 2026-07-27 | 14-engineering, all subsystems |
+| **ADR-100** | **AI Organization Over AI Assistant** | **accepted** | **2025-07-30** | **08-product-constitution, 14-conversation** |
+| **ADR-101** | **Conversation as Independent Architecture** | **accepted** | **2025-07-30** | **14-conversation, 05-ai-core** |
+| **ADR-102** | **Framework-Agnostic Design System (VDS)** | **accepted** | **2025-07-30** | **13-design-system** |
+| **ADR-103** | **Workspace-Native Context** | **accepted** | **2025-07-30** | **06-workspace, 08-product-constitution** |
+| **ADR-104** | **Evidence-Based Verification** | **accepted** | **2025-07-30** | **05-ai-core, 08-product-constitution** |
+
+> **Foundational ADRs (100+)** define the architectural philosophy that governs all other decisions. Each has a standalone document in `00-governance/adr/`.
 | ADR-023 | Core Runtime Model — Everything is a Runtime | accepted | 2026-07-27 | 07-operating-system, all subsystems |
 | ADR-024 | Job Model — Standard Operation Lifecycle | accepted | 2026-07-27 | 07-operating-system |
 | ADR-025 | Worker Model & Capability Scheduling | accepted | 2026-07-27 | 07-operating-system, 05-ai-core |

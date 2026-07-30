@@ -1,0 +1,21 @@
+{
+  "folders": [
+    {
+      "path": "."
+    },
+    {
+      "path": "vestara-ai-core"
+    }
+  ],
+  "settings": {
+    "chat.mcp.gallery.enabled": true,
+    "github.copilot.chat.githubMcpServer.enabled": true,
+    "opencodego.commitLanguage": "auto",
+    "opencodego.commitModel": "deepseek-v4-flash",
+    "opencodego.commitMessagePrompt": "",
+    "opencodego.requestTimeout": 600000,
+    "opencodego.recentCommitsCount": 10,
+    "opencodego.commitIncludeCommitDiff": false,
+    "opencodego.commitAttachContextFiles": true
+  },
+}
