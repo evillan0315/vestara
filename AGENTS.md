@@ -9,9 +9,9 @@ If docs conflict with code or scripts, trust the code.
 
 | Path | Role |
 |------|------|
-| `vestara-ai-core/` | **Sole code home** — pnpm monorepo, all source |
-| `vestara-blueprint/` | Frozen design docs — stale claims, verify before trusting |
-| `vestara-foundation/`, `vestara-runtime/`, `vestara-specifications/` | Architecture/strategy docs (read only if asked) |
+| `vestara-ai-core/` | **Sole code home** — pnpm monorepo, all source (gitlink to `evillan0315/vestara-ai-core`) |
+| `vestara-blueprint/` | Frozen design docs — stale claims, verify before trusting (gitlink to `evillan0315/vestara-blueprint`) |
+| `vestara-foundation/`, `vestara-runtime/`, `vestara-specifications/`, `vestara-labs/`, `vestara-reference/` | Architecture/strategy/research docs (read only if asked). Each is published as a standalone public repo under `github.com/evillan0315/` |
 | `.vestara/` | Runtime persistence (at repo root + `vestara-ai-core/` + `apps/api/`) |
 | `.opencode/` | OpenCode config: agents, skills, plugin deps |
 | Everything else at root | Config, instruction files, assets — **no `package.json`** |
@@ -51,7 +51,7 @@ The **kernel** (`@vestara/kernel`) orchestrates the boot sequence — job manage
 
 Every `Runtime` instance uses `@vestara/state-machine` for lifecycle state transitions (`created → initializing → running → stopped → ...`). The state machine is zero-dependency and generic.
 
-`@vestara/workspace` is the integration hub — every consumer (CLI, API, UI) imports this package and calls `WorkspaceRuntime.open()`. It exports 80+ services and is the only consumer of `@vestara/knowledge` and `@vestara/understanding` (it also depends on memory, but so does `@vestara/cognitive`). It does NOT depend on `@vestara/reasoning`.
+`@vestara/workspace` is the integration hub — every consumer (CLI, API, UI) imports this package and calls `WorkspaceRuntime.open()`. It exports 80+ services and is the only consumer of `@vestara/knowledge`; `@vestara/understanding` is also used by `@vestara/evaluation`. Workspace also depends on memory (but so does `@vestara/cognitive`). Nothing depends on `@vestara/reasoning`.
 
 `@vestara/events` defines the typed event system — `WorkspaceEvent` with 30+ event types across 10 categories (`conversation`, `workspace`, `planning`, `implementation`, `verification`, `collaboration`, `system`, `agent`, `memory`, `profile`). Used by `EventBus` for all inter-service communication.
 
@@ -102,7 +102,7 @@ No `pnpm typecheck` script exists.
 
 ## Build quirks
 
-- **`build-order.sh`** is the canonical build. Builds apps first (api, cli, onboarding-lab via `npx tsc -p`), then 46 packages in 7 dependency groups. Filters 3 known TS errors via `grep -v`: `TS6305`, `TS7016`, `TS2307`.
+- **`build-order.sh`** is the canonical build. Builds apps first (api, cli, onboarding-lab via `npx tsc -p`), then 47 packages in 7 dependency groups. Filters 3 known TS errors via `grep -v`: `TS6305`, `TS7016`, `TS2307`.
 - Does NOT build every package. Skipped (each builds via its own `tsc`): `settings-framework`, `providers/opencode`, `job`, `scheduler`, `worker`, and `tools/{knowledge,memory,project,shell}`. Note `tools/filesystem` **is** built (group 5).
 - `pnpm build` runs `tsc -b` from root — the root `tsconfig.json` has no project references, so this only compiles root-level files. Not useful.
 - `pnpm-lock.yaml` lives in `vestara-ai-core/`, not at repo root.
@@ -110,7 +110,7 @@ No `pnpm typecheck` script exists.
 - Shell scripts live in `scripts/`: `benchmark.sh`, `benchmark-index.sh`, `ensure-docs.sh`, `generate-docs.sh`, `milestone-status.sh`.
 - `vestara-ai-core/.gitignore` (475 lines) is comprehensive: ignores `*.js` / `*.d.ts` next to `.ts` sources (stale pre- `build-order.sh` artifacts), `dist/`, `.vestara/`, `*.db`. Workspace UI has its own `.gitignore`.
 - **Stale compiled artifacts** (`*.js`, `*.d.ts`, `*.js.map`) may linger next to `.ts` sources from prior `tsc` runs (gitignored via `vestara-ai-core/.gitignore`). Always read `.ts` — the `.js` may be stale. Applies to `src/` and `__tests__/` alike.
-- `apps/api/src/server.ts` is a compact raw Node.js `http` + `ws` request handler — no framework. Routes live in `apps/api/src/routes/` (18 route files), not in the server file.
+- `apps/api/src/server.ts` is a compact raw Node.js `http` + `ws` request handler — no framework. Routes live in `apps/api/src/routes/` (16 route handler files; `index.ts`/`types.ts` are shared helpers), not in the server file.
 - `apps/cli/src/index.ts` and `apps/cli/src/repl-workspace.ts` are the CLI entry points. The `commands/` subdirectory has ~20 sub-commands including `config`, `open`, `provider`, `doctor`, `validate`, `task`, `benchmark`, `demo`, `session`, etc.
 - Root `vite.config.ts` and `apps/workspace/vite.config.ts` differ: root targets `localhost:3000` with vitest globals/jsdom setup; workspace targets `localhost:3001` with dev proxy to the API. Don't confuse them.
 
@@ -121,7 +121,7 @@ No `pnpm typecheck` script exists.
 - **vitest aliases `@vestara/*` to `packages/*/dist/`** — tests resolve from pre-built dist, so `bash build-order.sh` must run first
 - 15s default timeout
 - Tests use explicit vitest imports (`import { describe, expect, it } from 'vitest'`), not globals.
-- Helper factories defined locally per test file (e.g. `createRuntime()`, `makeGroup()`). No shared test utilities or fixture directories.
+- Helper factories defined locally per test file (e.g. `createRuntime()`, `makeGroup()`). No shared test utilities. Exception: `packages/evaluation/fixtures/` ships fixture repos (`nestjs-monorepo`, `vite-react-basic`, `empty-project`) used by evaluation tests.
 - `__tests__/` directories also have stale `*.js`/`*.d.ts`/`*.js.map` from prior compilations. Always read the `.ts` version.
 
 ## Module system
