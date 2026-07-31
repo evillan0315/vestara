@@ -84,6 +84,10 @@ pnpm vestara architecture impact <id> # Impact analysis: what depends on an ADR
 pnpm vestara blueprint verify         # AKG integrity check (broken deps, cycles, duplicates)
 pnpm vestara ops demo                 # Engineering telemetry demo (feed + status)
 pnpm vestara ops status               # Live agent statuses
+pnpm vestara screenshots run          # Compare Workspace UI screenshots with approved baselines
+pnpm vestara screenshots update       # Explicitly update reviewed screenshot baselines
+pnpm vestara screenshots report       # Regenerate visual JSON/Markdown/HTML reports
+pnpm vestara screenshots check --json # Type-check screenshot automation through the CLI
 ```
 
 **All runtime commands (`pnpm vestara`, `doctor`, `conversation-audit`, `benchmark*`) run compiled JS and require `bash build-order.sh` first.**

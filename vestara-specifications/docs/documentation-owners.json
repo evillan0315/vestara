@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "approvedOwners": [
+    "@ai-core-team",
+    "@ai-engineer",
+    "@backend-engineer",
+    "@chief-architect",
+    "@frontend-engineer",
+    "@vestara-core"
+  ]
+}
