@@ -5,6 +5,9 @@
     },
     {
       "path": "vestara-ai-core"
+    },
+    {
+      "path": "vestara-blueprint"
     }
   ],
   "settings": {

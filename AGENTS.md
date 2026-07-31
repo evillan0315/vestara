@@ -42,7 +42,7 @@ If docs conflict with code or scripts, trust the code.
 |-------|-------------|-------------|
 | Execution | `RuntimeGroup` | `Runtime` instances |
 | Analysis | `WorkspaceRuntime` | Pipeline stages |
-| Knowledge | `UnderstandingAssembler` | `UnderstandingProducer` (7 producers) |
+| Knowledge | `UnderstandingAssembler` | `UnderstandingProducer` (8 producers) |
 | Evaluation | `EvaluationHarness` | Corpus entries |
 
 Rule: coordinators compose, specialists decide, every concern has one owner.
@@ -51,7 +51,7 @@ The **kernel** (`@vestara/kernel`) orchestrates the boot sequence — job manage
 
 Every `Runtime` instance uses `@vestara/state-machine` for lifecycle state transitions (`created → initializing → running → stopped → ...`). The state machine is zero-dependency and generic.
 
-`@vestara/workspace` is the integration hub — every consumer (CLI, API, UI) imports this package and calls `WorkspaceRuntime.open()`. It exports 80+ services and is the only package that imports knowledge, memory, and reasoning directly.
+`@vestara/workspace` is the integration hub — every consumer (CLI, API, UI) imports this package and calls `WorkspaceRuntime.open()`. It exports 80+ services and is the only consumer of `@vestara/knowledge` and `@vestara/understanding` (it also depends on memory, but so does `@vestara/cognitive`). It does NOT depend on `@vestara/reasoning`.
 
 `@vestara/events` defines the typed event system — `WorkspaceEvent` with 30+ event types across 10 categories (`conversation`, `workspace`, `planning`, `implementation`, `verification`, `collaboration`, `system`, `agent`, `memory`, `profile`). Used by `EventBus` for all inter-service communication.
 
@@ -92,7 +92,7 @@ pnpm vestara ops status               # Live agent statuses
 ```bash
 pnpm --filter @vestara/conversation test
 ```
-`pnpm test -- --filter <name>` passes `--filter` to vitest (filters test names, not packages). Use `pnpm --filter` for package filtering.
+`pnpm test -- <path>` filters vitest by test file path (positional filters). There is no vitest `--filter` flag. Use `pnpm --filter <package> test` for package filtering.
 
 ### Verification loop
 ```bash
@@ -102,15 +102,15 @@ No `pnpm typecheck` script exists.
 
 ## Build quirks
 
-- **`build-order.sh`** is the canonical build. Builds apps first (api, cli, onboarding-lab via `npx tsc -p`), then 44 packages in 7 dependency groups. Filters 3 known TS errors via `grep -v`: `TS6305`, `TS7016`, `TS2307`.
-- Does NOT build all packages — `settings-framework` and `tools/*` packages are built independently or via `tsc -b`.
+- **`build-order.sh`** is the canonical build. Builds apps first (api, cli, onboarding-lab via `npx tsc -p`), then 46 packages in 7 dependency groups. Filters 3 known TS errors via `grep -v`: `TS6305`, `TS7016`, `TS2307`.
+- Does NOT build every package. Skipped (each builds via its own `tsc`): `settings-framework`, `providers/opencode`, `job`, `scheduler`, `worker`, and `tools/{knowledge,memory,project,shell}`. Note `tools/filesystem` **is** built (group 5).
 - `pnpm build` runs `tsc -b` from root — the root `tsconfig.json` has no project references, so this only compiles root-level files. Not useful.
 - `pnpm-lock.yaml` lives in `vestara-ai-core/`, not at repo root.
 - pnpm workspace includes `packages/*`, `packages/providers/*`, `packages/tools/*`, and `apps/*`.
 - Shell scripts live in `scripts/`: `benchmark.sh`, `benchmark-index.sh`, `ensure-docs.sh`, `generate-docs.sh`, `milestone-status.sh`.
-- `vestara-ai-core/.gitignore` (475 lines) is comprehensive: ignores `*.js` / `*.d.ts` next to `.ts` sources (stale pre- `build-order.sh` artifacts), `dist/`, `.vestara/`, `vestara-state.db`. Workspace UI has its own `.gitignore`.
-- **Stale compiled artifacts** (`*.js`, `*.d.ts`, `*.js.map`) sit alongside `.ts` sources from prior `tsc` runs. They are gitignored but present on disk. Always read `.ts` — the `.js` may be stale. This applies to `src/` and `__tests__/` directories alike.
-- `apps/api/src/server.ts` is a compact raw Node.js `http` + `ws` request handler — no framework. Routes live in `apps/api/src/routes/` (~17 route files), not in the server file.
+- `vestara-ai-core/.gitignore` (475 lines) is comprehensive: ignores `*.js` / `*.d.ts` next to `.ts` sources (stale pre- `build-order.sh` artifacts), `dist/`, `.vestara/`, `*.db`. Workspace UI has its own `.gitignore`.
+- **Stale compiled artifacts** (`*.js`, `*.d.ts`, `*.js.map`) may linger next to `.ts` sources from prior `tsc` runs (gitignored via `vestara-ai-core/.gitignore`). Always read `.ts` — the `.js` may be stale. Applies to `src/` and `__tests__/` alike.
+- `apps/api/src/server.ts` is a compact raw Node.js `http` + `ws` request handler — no framework. Routes live in `apps/api/src/routes/` (18 route files), not in the server file.
 - `apps/cli/src/index.ts` and `apps/cli/src/repl-workspace.ts` are the CLI entry points. The `commands/` subdirectory has ~20 sub-commands including `config`, `open`, `provider`, `doctor`, `validate`, `task`, `benchmark`, `demo`, `session`, etc.
 - Root `vite.config.ts` and `apps/workspace/vite.config.ts` differ: root targets `localhost:3000` with vitest globals/jsdom setup; workspace targets `localhost:3001` with dev proxy to the API. Don't confuse them.
 
@@ -151,7 +151,7 @@ No `pnpm typecheck` script exists.
 | `VESTARA_API_PORT` | `3001` | API server (http + ws) |
 | `VESTARA_REPO` | `process.cwd()` | API workspace path |
 
-- `.vestara/` persists at repo root, `vestara-ai-core/`, and `apps/api/`. Contains `plans/`, `sessions/`, `knowledge/`, `memory/`, `prefs.db`, `workspace.json`.
+- `.vestara/` persists at repo root, `vestara-ai-core/`, and `apps/api/`. Contents vary by location: core + api have `prefs.db` and `workspace.json`; root has `metrics/` instead.
 - `vestara-ai-core/.vestara/workspace.json` contains the full machine-readable dependency graph (nodes + edges), package inventory, entry points, and risk analysis.
 - `vestara-ai-core/` is an **independent git repo** with its own origin (`vestara-ai-core.git`), not a submodule.
 - `.env` is gitignored. **Never commit, log, or reference its values** — it contains live API keys for ~7 AI providers.
@@ -180,6 +180,7 @@ No `pnpm typecheck` script exists.
   - `vestara-engineer.md` — implements approved tasks (primary)
   - `vestara-reviewer.md` — inspects implementations (subagent)
   - `vestara-verifier.md` — proves correctness via evidence (subagent)
+- `opencode.json` also defines 8 agent profiles (`coder`, `developer`, `context`, `planner`, `engineer`, `reviewer`, `verifier`, `researcher`). Edit/write permission for coding profiles is scoped to `vestara-ai-core/{apps,packages,scripts}` — which matches "work goes in `vestara-ai-core/`".
 - Skills in `.opencode/skills/`:
   - `vestara-lifecycle/SKILL.md` — daily development lifecycle (`/init`, `/morning`, `/work`, `/review`, `/verify`, `/evening`)
   - `testing-and-quality/SKILL.md` — test/lint/format workflow
