@@ -1,4 +1,10 @@
 # Vestara Runtime
+
+OS-0 host integration is implemented in the Core repository at `579df3f`.
+Linux/systemd provide the machine plane; Host Runtime supplies read-only machine
+inspection and Boot Runtime supplies durable ordered boot evidence. See
+`kernel/VESTARA-KERNEL.md`. This milestone does not produce a bootable image.
+
 ## The Execution Engine — Infrastructure That Never Cares About AI
 
 > **This repository defines the runtime infrastructure of the Vestara platform. The Kernel, lifecycle, configuration, logging, metrics, diagnostics — everything that makes the platform run but has nothing to do with AI features. The Runtime is a stable platform that could host any services, not just AI.**

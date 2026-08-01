@@ -424,6 +424,44 @@ indexes:
 
 ---
 
+## OS-0 Runtime State
+
+OS-0 state is file-backed runtime evidence rather than a relational entity.
+
+```typescript
+interface HostSnapshot {
+  readonly capturedAt: string;
+  readonly hostname: string;
+  readonly platform: string;
+  readonly architecture: string;
+  readonly kernelRelease: string;
+  readonly distribution?: string;
+  readonly cpu: { readonly model: string; readonly logicalCores: number; readonly loadAverage: readonly number[] };
+  readonly memory: { readonly totalBytes: number; readonly freeBytes: number };
+  readonly uptimeSeconds: number;
+  readonly devices: readonly HostDevice[];
+  readonly mounts: readonly HostMount[];
+  readonly network: readonly HostNetworkInterface[];
+  readonly systemdAvailable: boolean;
+}
+
+interface BootState {
+  readonly bootId: string;
+  readonly status: 'booting' | 'ready' | 'recovery' | 'failed';
+  readonly currentStage: string;
+  readonly startedAt: string;
+  readonly updatedAt: string;
+  readonly completedAt?: string;
+  readonly transitions: readonly BootTransition[];
+  readonly failure?: string;
+}
+```
+
+Boot state is atomically persisted at `.vestara/os/boot-state.json` with mode
+`0600`. It contains operational lifecycle evidence and must not contain secrets.
+Host snapshots are refreshed observations and are not authoritative hardware
+inventory history in OS-0.
+
 ## Entity Relationship Diagram (Text)
 
 ```

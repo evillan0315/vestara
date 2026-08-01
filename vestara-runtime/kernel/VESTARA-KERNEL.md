@@ -4,13 +4,18 @@ title: "Vestara Kernel — The Heart of the Runtime"
 owner: "@chief-architect"
 status: "ratified"
 blueprint-ref: "04-platform/01-platform-overview.md"
-runtime-version: "1.0.0"
+runtime-version: "1.1.0"
 ---
 
 # Vestara Kernel
 ## The Boot Manager, Lifecycle Orchestrator, and Heartbeat of the Platform
 
 > **The Kernel is the first thing that runs when Vestara starts and the last thing that stops when it shuts down. It manages the boot sequence, configuration, service lifecycle, health, and shutdown. Everything else is a component managed by the Kernel.**
+
+In OS-0, "first" means first within the Vestara user-space composition. Linux
+and systemd start before the Vestara kernel. Host Runtime and Boot Runtime then
+join the kernel service graph; this does not claim ownership of firmware,
+bootloader, kernel, or initramfs startup.
 
 ---
 
@@ -203,6 +208,28 @@ Powered-Off ──→ Booting ──→ Running ←── Degraded
 ---
 
 ## Boot Sequence (Orchestrated by Kernel)
+
+### OS-0 outer sequence
+
+```text
+Linux/systemd
+  -> Host Runtime (read-only inspection)
+  -> Boot Runtime (durable transition evidence)
+  -> Kernel service dependency graph
+  -> Workspace Runtime
+  -> kernel diagnosis
+  -> workspace-ready
+```
+
+Boot Runtime stages are strictly ordered:
+
+```text
+firmware-complete -> host-started -> storage-mounted -> identity-loaded
+  -> services-started -> runtime-composed -> health-verified
+  -> workspace-ready
+```
+
+Implementation evidence: `evillan0315/vestara-ai-core` at `579df3f`.
 
 ```
 1. Kernel.powerOn()

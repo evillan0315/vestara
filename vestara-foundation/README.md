@@ -71,6 +71,11 @@ AI Core → Workspace → OS → Cloud → Applications
 | Plugin SDK | `10-developer-platform/` | `apis/API-CONTRACT-INDEX.md` |
 | Universal Interface | `14-engineering/ARCHITECTURE.md` | `validation/blueprint-validation-cli.md` |
 
+OS-0 machine-plane contracts are recorded in the VRA: Linux/systemd host
+integration, read-only Host Runtime inspection, and durable Boot Runtime stages
+are implemented at `vestara-ai-core` reference `579df3f`. Bootable image,
+installer, A/B update, and Secure Boot contracts remain future work.
+
 ---
 
 *Vestara Foundation — Defining the language of the platform so every line of code speaks the same dialect.*

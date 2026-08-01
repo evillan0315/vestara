@@ -219,6 +219,36 @@ This enables questions like:
 
 ---
 
+## OS-0 host status API
+
+OS-0 exposes two read-only, provider-neutral status resources through the
+existing Workspace Runtime API gateway:
+
+```text
+GET /api/host
+GET /api/boot
+```
+
+`GET /api/host` returns runtime lifecycle information plus a `HostSnapshot`
+containing capture time, platform identity, CPU, memory, uptime, block-device
+names, mounts, network interfaces, and systemd availability.
+
+`GET /api/boot` returns runtime lifecycle information, the current `BootState`,
+and the previous persisted boot when available. `BootState` includes `bootId`,
+status, current stage, timestamps, ordered transitions, and an optional failure
+reason.
+
+These endpoints do not accept mutation. Reboot, shutdown, mounting, formatting,
+partitioning, service installation, and boot configuration are deliberately not
+part of the OS-0 HTTP contract.
+
+Implementation evidence:
+
+- Repository: `evillan0315/vestara-ai-core`
+- Reference: `579df3f`
+- Route: `apps/api/src/routes/host.ts`
+- Types: `packages/host-runtime`, `packages/boot-runtime`
+
 ## Platform API Versioning
 
 | Version | Changes | Status |
@@ -226,6 +256,7 @@ This enables questions like:
 | v0.1 | Initial conversation, memory, knowledge, action APIs | ✅ Complete |
 | v0.2 | Added reasoning API | ✅ Complete |
 | v0.3 | Knowledge graph, repository model, workspace context | 📋 Planned |
+| OS-0 | Read-only `/api/host` and `/api/boot` status | Implemented and verified |
 
 ---
 

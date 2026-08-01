@@ -99,11 +99,16 @@ Each capability is identified by a `CAP-XXX` ID and organized by domain. The sta
 
 | ID | Capability | Owner | Status | Generation | Blueprint Ref |
 |----|-----------|-------|--------|------------|---------------|
-| CAP-100 | OS.Boot | DevOps Team | 🔄 Draft | Gen 2 | 07-operating-system/boot-process/ |
+| CAP-099 | OS.HostInspection | DevOps Team | ✅ Complete | Gen 1 | 07-operating-system/os-0-host-integration.md |
+| CAP-100 | OS.BootEvidence | DevOps Team | ✅ Complete | Gen 2 foundation | 07-operating-system/os-0-host-integration.md |
 | CAP-101 | OS.Updates | DevOps Team | 📋 Planned | Gen 2 | 07-operating-system/updates/ |
 | CAP-102 | OS.Installer | DevOps Team | 🔄 Draft | Gen 2 | 07-operating-system/installer/ |
 | CAP-103 | OS.Hardware | DevOps Team | 📋 Planned | Gen 2 | 07-operating-system/drivers/ |
 | CAP-104 | OS.Recovery | DevOps Team | 📋 Planned | Gen 2 | 07-operating-system/updates/ |
+
+CAP-100 covers durable Vestara progress after Linux starts. It does not mean
+that ISO generation, bootloader/initramfs integration, portable persistence,
+Secure Boot, or an installer is implemented.
 
 ## ☁️ Cloud Capabilities
 
@@ -120,14 +125,14 @@ Each capability is identified by a `CAP-XXX` ID and organized by domain. The sta
 
 | Domain | Total | ✅ Complete | 🔄 Draft | 📋 Planned | 🔮 Future |
 |--------|-------|------------|----------|------------|-----------|
-| Workspace | 10 | 3 | 2 | 3 | 2 |
-| AI | 13 | 1 | 4 | 3 | 5 |
+| Workspace | 10 | 4 | 2 | 2 | 2 |
+| AI | 13 | 1 | 5 | 2 | 5 |
 | Developer | 8 | 0 | 1 | 3 | 4 |
 | Platform | 7 | 4 | 0 | 2 | 1 |
 | Security | 5 | 0 | 1 | 2 | 2 |
-| OS | 5 | 0 | 2 | 2 | 1 |
+| OS | 6 | 2 | 1 | 3 | 0 |
 | Cloud | 4 | 0 | 0 | 0 | 4 |
-| **Total** | **52** | **8** | **10** | **15** | **19** |
+| **Total** | **53** | **11** | **10** | **14** | **18** |
 
 **Target: 100-150 capability specifications at maturity.**
 

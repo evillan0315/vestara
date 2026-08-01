@@ -4,7 +4,7 @@ title: "Vestara Runtime Architecture (VRA) — What Runs Inside Vestara"
 owner: "@chief-architect"
 status: "ratified"
 blueprint-ref: "04-platform/01-platform-overview.md"
-foundation-version: "1.0.0"
+foundation-version: "1.1.0"
 ---
 
 # Vestara Runtime Architecture (VRA)
@@ -34,17 +34,37 @@ foundation-version: "1.0.0"
 │  Knowledge  │  Memory  │  Code  │  Terminal              │
 ├───────────────────────────────────────────────────────────┤
 │                   FOUNDATION LAYER                         │
-│  Kernel  │  Service Bus  │  Event Bus  │  Configuration   │
+│  Kernel  │  Host Runtime │  Boot Runtime │  Event Bus      │
 │  Logging  │  Observability  │  Plugin Loader             │
 ├───────────────────────────────────────────────────────────┤
 │                    OPERATING SYSTEM                        │
-│  Immutable A/B  │  Secure Boot  │  Filesystem  │  Network │
+│  Linux Host (OS-0) │ Future: Immutable A/B + Secure Boot  │
 └───────────────────────────────────────────────────────────┘
 ```
 
 ---
 
 ## 🔷 Runtime Components
+
+### OS-0 machine boundary
+
+OS-0 adds two implemented first-class runtimes beneath the workspace control
+plane:
+
+```text
+Linux/systemd -> Host Runtime -> Boot Runtime -> Kernel services -> Workspace
+```
+
+`HostRuntime` owns typed, read-only machine observation. `BootRuntime` owns
+durable ordered progress from `firmware-complete` through `workspace-ready`.
+Both join the kernel dependency graph through lifecycle adapters. Power
+operations are disabled by default and are not exposed through OS-0 API or CLI
+surfaces.
+
+Storage, devices, networking, identity, updates, and recovery remain services
+or adapters until they require independent durable lifecycle and recovery. A
+bootable ISO, installer, immutable A/B image, and Secure Boot are future layers,
+not OS-0 implementation claims.
 
 ### 1. Kernel
 
@@ -285,6 +305,8 @@ interface:
 
 ```
 Kernel ← depends on nothing (bootstraps everything)
+Host Runtime ← depends on: Kernel lifecycle services
+Boot Runtime ← depends on: Host Runtime
 ServiceBus ← depends on: Configuration
 Plugin Loader ← depends on: ServiceBus
 Memory Runtime ← depends on: ServiceBus (for events), Plugin Loader (for storage plugins)
@@ -294,6 +316,9 @@ Tool Runtime ← depends on: ServiceBus (for permission service)
 Workspace Runtime ← depends on: ServiceBus, Memory Runtime
 Application Runtime ← depends on: Workspace Runtime
 ```
+
+Implementation evidence: `evillan0315/vestara-ai-core` at `579df3f`,
+`packages/host-runtime`, `packages/boot-runtime`, and `os/systemd`.
 
 ## 🎯 Universal Interface (All Runtimes)
 

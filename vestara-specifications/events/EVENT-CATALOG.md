@@ -153,6 +153,38 @@ AUTOMATION_COMPLETED   automation:completed
 AUTOMATION_FAILED      automation:failed   
 ```
 
+### 🖥️ OS-0 Host and Boot Events
+
+The OS-0 runtimes emit the implementation's dot-delimited runtime event names.
+They are internal lifecycle evidence and carry runtime envelope metadata.
+
+```text
+host.snapshot.captured  Read-only host snapshot initialized
+host.power.requested    Authorized power operation reached execution boundary
+boot.stage.changed      Ordered boot stage persisted
+boot.completed          workspace-ready persisted
+boot.recovery.entered   Recovery state persisted with reason
+boot.failed             Terminal boot failure persisted with reason
+```
+
+Minimum Boot Runtime payload:
+
+```typescript
+interface BootRuntimeEventPayload {
+  readonly bootId: string;
+  readonly stage: string;
+  readonly status: 'booting' | 'ready' | 'recovery' | 'failed';
+  readonly runtimeId: string;
+  readonly severity: 'info' | 'warning' | 'error';
+}
+```
+
+`host.power.requested` is not reachable from OS-0 API or CLI surfaces. The Host
+Runtime emits it only after explicit enablement, per-request authorization, and
+policy permission succeed.
+
+Implementation reference: `evillan0315/vestara-ai-core@579df3f`.
+
 ### 🔒 Security Events
 
 ```

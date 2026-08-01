@@ -1,4 +1,11 @@
 # Vestara Specifications
+
+OS-0 contracts now include read-only Host Snapshot and durable Boot State
+surfaces. See `apis/PLATFORM-API.md`, `events/EVENT-CATALOG.md`, and
+`capabilities/INDEX.md`. Implementation reference:
+`evillan0315/vestara-ai-core@579df3f`. This status does not imply a bootable
+image or installer.
+
 ## Implementation-Ready Specifications for the Vestara Platform
 
 > **This repository defines WHAT must be built — precise, implementation-ready specifications for every capability, interface, event, API, and data model in the Vestara ecosystem. The Blueprint explains WHY. This repository specifies WHAT. Implementation repositories define HOW.**
