@@ -16,7 +16,8 @@
 - `packages/kernel/`: boot, service lifecycle, health, scheduling, recovery, workers, and provider orchestration; it coordinates services rather than implementing their domain logic.
 - `packages/runtime/`: generic runtime lifecycle implemented with `@vestara/state-machine`; `packages/shared/` owns the `VestaraService` contract.
 - `packages/agent-harness/`: the durable single-turn agent loop (model → tool → approval → verification → outcome). It is the execution path; `packages/workspace/src/agent-runtime.ts` is a thin adapter that delegates `run()` to it (durable thread + ExecutionSession).
-- `packages/engineering-event-store/`: temporal truth for engineering events; the harness projects `harness.*` events into it through `apps/api/src/bridges/harness-engineering-event-bridge.ts`. ThreadRuntime remains the authoritative execution history.
+- `packages/workflow-projections/`: canonical renderer-independent agent workflow projection (eight stages, agents, approvals, changes, verification, metrics) plus the incremental `workflow.*` envelope protocol. Both the TUI and Workspace consume it.
+- `packages/engineering-event-store/`: temporal truth for engineering events; the harness projects `harness.*` events into it through `apps/api/src/bridges/harness-engineering-event-bridge.ts`, and `apps/api/src/bridges/change-event-bridge.ts` projects `change.*` filesystem/diff events derived from actual filesystem + Git state. ThreadRuntime remains the authoritative execution history.
 
 ## Agent Type System
 
@@ -70,7 +71,7 @@ pnpm vestara doctor
 ## Runtime environment
 
 - API defaults: `VESTARA_API_PORT=3001`, `VESTARA_REPO=process.cwd()`. `VESTARA_API_URL` overrides the CLI/TUI endpoint.
-- Harness execution engine: `POST /api/agents/:agentId/runs` plus `GET|POST /api/agent-threads/:threadId[/items|/events|/approvals|/steer|/cancel|/resume]` and `POST /api/agent-threads/:threadId/approvals/:approvalId/resolve`. `AgentRuntime.run()` delegates to the harness; `harness.*` events project into the event store.
+- Harness execution engine: `POST /api/agents/:agentId/runs` plus `GET|POST /api/agent-threads/:threadId[/items|/events|/approvals|/steer|/cancel|/resume]` and `POST /api/agent-threads/:threadId/approvals/:approvalId/resolve`. `AgentRuntime.run()` delegates to the harness; `harness.*` events project into the event store. Workflow: `GET /api/workflow/:threadId` (canonical eight-stage projection) and `GET /api/workflow/:threadId/events?after=N` (incremental `workflow.*` envelopes with monotonic sequences); the TUI follows a workflow with `/workflow <threadId>`.
 - API startup searches upward for `.vestara/workspace.json` unless `VESTARA_REPO` is set; this matters when launching compiled output from a different working directory.
 - Use source `.ts`/`.tsx` files, not stale ignored `.js`, `.d.ts`, or source maps left by prior TypeScript builds. Generated output belongs in `dist/`.
 
