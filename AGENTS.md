@@ -15,6 +15,22 @@
 - `packages/workspace/`: integration hub. Consumers should use `WorkspaceRuntime.open()` rather than importing workspace-analysis concerns directly.
 - `packages/kernel/`: boot, service lifecycle, health, scheduling, recovery, workers, and provider orchestration; it coordinates services rather than implementing their domain logic.
 - `packages/runtime/`: generic runtime lifecycle implemented with `@vestara/state-machine`; `packages/shared/` owns the `VestaraService` contract.
+- `packages/agent-harness/`: the durable single-turn agent loop (model → tool → approval → verification → outcome). It is the execution path; `packages/workspace/src/agent-runtime.ts` is a thin adapter that delegates `run()` to it (durable thread + ExecutionSession).
+- `packages/engineering-event-store/`: temporal truth for engineering events; the harness projects `harness.*` events into it through `apps/api/src/bridges/harness-engineering-event-bridge.ts`. ThreadRuntime remains the authoritative execution history.
+
+## Agent Type System
+
+Agents are typed as either `workspace` (local) or `registry` (marketplace-installed):
+
+- **`AgentType`** = `'workspace' | 'registry'` (defined in `packages/workspace/src/types.ts:559`)
+- **`AgentDefinition.agentType`** — required field; defaults to `'workspace'` for backward compatibility
+- **Storage**: `agent_type TEXT DEFAULT 'workspace'` column in agents table (`packages/workspace/src/agent-storage.ts`)
+- **UI**: Agent Registry Modal (`apps/workspace/src/pages/Agents/AgentRegistryModal.tsx`) provides radio selector for type
+  - Workspace Agent: uses locally configured provider/model
+  - Registry Agent: uses marketplace package source/version
+- **API**: POST/PUT `/api/agents` handlers read `body.agentType` with workspace default
+
+Built-in agents (architect, developer, verifier, etc.) are workspace agents. Registry agents are installed from the marketplace and will have version tracking and update notifications in the future.
 
 ## Commands
 
@@ -30,6 +46,7 @@ pnpm format                   # Biome format --write
 pnpm test                     # Vitest; build first
 pnpm --filter @vestara/conversation test
 pnpm test -- path/to/file.test.ts
+pnpm check:source-artifacts    # fails if generated .js/.d.ts/.js.map appear under src/ or __tests__/
 pnpm dev                      # API + Workspace UI
 pnpm dev:api                 # API only; compiled output required
 pnpm dev:ui                  # Workspace UI only
@@ -53,6 +70,7 @@ pnpm vestara doctor
 ## Runtime environment
 
 - API defaults: `VESTARA_API_PORT=3001`, `VESTARA_REPO=process.cwd()`. `VESTARA_API_URL` overrides the CLI/TUI endpoint.
+- Harness execution engine: `POST /api/agents/:agentId/runs` plus `GET|POST /api/agent-threads/:threadId[/items|/events|/approvals|/steer|/cancel|/resume]` and `POST /api/agent-threads/:threadId/approvals/:approvalId/resolve`. `AgentRuntime.run()` delegates to the harness; `harness.*` events project into the event store.
 - API startup searches upward for `.vestara/workspace.json` unless `VESTARA_REPO` is set; this matters when launching compiled output from a different working directory.
 - Use source `.ts`/`.tsx` files, not stale ignored `.js`, `.d.ts`, or source maps left by prior TypeScript builds. Generated output belongs in `dist/`.
 
