@@ -1,0 +1,10 @@
+# Live provider credentials — never commit.
+.env
+.env.*
+
+# Vestara runtime state — regenerated per session.
+.vestara/
+.vestara-worktrees/
+
+# Editor/OS noise.
+.DS_Store
