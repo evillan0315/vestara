@@ -11,8 +11,8 @@
 
 - `apps/cli/src/index.ts`: `vestara` CLI and REPL; `pnpm vestara console` launches the interactive TUI.
 - `apps/api/src/index.ts`: API process; `apps/api/src/server.ts` is a raw Node `http` + `ws` gateway and delegates routes to `apps/api/src/routes/`.
-- `apps/workspace/src/main.tsx`: React 19/Vite UI entrypoint. The UI dev server is port `5173` and proxies `/api` and `/ws` to API port `3001`.
-- `packages/workspace/`: integration hub. Consumers should use `WorkspaceRuntime.open()` rather than importing workspace-analysis concerns directly.
+- `apps/workspace/` (package `@vestara/workspace-ui`): React 19/Vite UI. Entrypoint `apps/workspace/src/main.tsx`; dev server port `5173` proxies `/api` and `/ws` to API port `3001`. Do not confuse it with `packages/workspace/` (the integration hub below) — they are distinct packages that happen to share the name.
+- `packages/workspace/`: integration hub (package `@vestara/workspace`). Consumers should use `WorkspaceRuntime.open()` rather than importing workspace-analysis concerns directly.
 - `packages/kernel/`: boot, service lifecycle, health, scheduling, recovery, workers, and provider orchestration; it coordinates services rather than implementing their domain logic.
 - `packages/runtime/`: generic runtime lifecycle implemented with `@vestara/state-machine`; `packages/shared/` owns the `VestaraService` contract.
 - `packages/agent-harness/`: the durable single-turn agent loop (model → tool → approval → verification → outcome). It is the execution path; `packages/workspace/src/agent-runtime.ts` is a thin adapter that delegates `run()` to it (durable thread + ExecutionSession).
@@ -57,15 +57,17 @@ pnpm vestara doctor
 ```
 
 - The normal verification sequence is `pnpm lint && pnpm build && pnpm test`. There is no `pnpm typecheck` script.
+- Docs in `vestara-ai-core/docs/` are governed, not free-form: `pnpm docs:govern` (and `pnpm docs:validate`) run `scripts/docs-automation.mjs`, which requires YAML frontmatter with `title`, `version`, `status`, `owner`, `last-reviewed`, `next-review` (dates must be `YYYY-MM-DD`). Docs marked `status: implemented`/`verified` must also declare `implementation-repository` and an immutable commit SHA (`implementation-commit`) — a branch name or `HEAD` is a hard error. Run `pnpm docs:validate` on any `.md` you add or touch.
+- `tsconfig.references.json` is generated: `pnpm build` runs `scripts/workspace-architecture.mjs --generate` before `tsc -b`. Do not hand-edit it; the same script enforces `@vestara/*` imports during build (`--check` via `pnpm dependencies:check`). It only allows root-package specifiers — a deep internal import like `@vestara/foo/submodule` fails, and each `@vestara/*` import must be declared in that package's manifest. `@vestara/evaluation` is the sole licensed consumer of workspace-facade internals.
 - Runtime CLI commands execute `dist` JavaScript, so run `pnpm build` before `pnpm vestara`, `pnpm dev:api`, diagnostics, benchmarks, or documentation commands.
 - `pnpm --filter <workspace-package> test` selects a package. `pnpm test -- <path>` passes a positional test-file filter to Vitest; do not use a Vitest `--filter` flag for package selection.
-- `scripts/pre-commit.sh` runs staged-file Biome checks and the full test suite.
+- `scripts/pre-commit.sh` runs `biome check --staged --diagnostic-level=error` then the full test suite — staged-only lint but a full, slow `pnpm test`. If it rejects, fix the staged file's Biome violations and rerun.
 
 ## Tests and tooling
 
 - Vitest 4 is used. Tests normally live in each package/app's `__tests__/` directory as `*.test.ts`; Workspace UI tests are colocated under `apps/workspace/`.
 - Tests resolve `@vestara/*` packages from built `dist/` output, so a successful build is a prerequisite.
-- Database tests use `sql.js` WASM with in-memory SQLite; no external database service is required.
+- Database tests use `sql.js` WASM with in-memory SQLite; no external database service is required. `sql.js` ships no bundled types; a hand-written ambient shim lives at `types/sql-js.d.ts` and is wired via the root `tsconfig.json` `paths` map. Touch it (not the package) when sql.js typings need changing.
 - Workspace visual tests use Playwright. `pnpm screenshots` compares baselines; only use `pnpm screenshots:update` when intentionally reviewing and replacing approved baselines.
 - Biome is the only formatter/linter. The canonical JavaScript style is single quotes, trailing commas, and semicolons; workspace UI has its own Vite/Biome configuration.
 - Most packages emit CommonJS with TypeScript `module: nodenext`; `apps/workspace/` and `apps/console/` are ESM. Check the package manifest before changing module syntax or imports.
