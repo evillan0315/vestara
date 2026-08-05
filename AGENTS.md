@@ -1,39 +1,23 @@
-# Vestara agent instructions
+# Vestara Repository Instructions
 
-## Repository boundaries
+## Repository Boundaries
 
-- `vestara-ai-core/` is the only implementation repository. It is a separate git repository nested here; run code commands and inspect its git status from that directory.
-- `vestara-blueprint/` is a separate, frozen design-document repository. Treat it as context, not executable truth; verify claims against `vestara-ai-core/`.
-- The root repository contains configuration, instructions, assets, and design artifacts; it has no root `package.json` or root application.
-- Do not edit `.vestara/` runtime state or `.env`; `.env` contains live provider credentials and must never be logged or committed.
+- The root repository is a coordination repository: it has no root application or `package.json`.
+- `vestara-ai-core/` is a separate Git repository and the implementation target. Run its commands and inspect its Git status from that directory.
+- `vestara-ai-core/` and `vestara-blueprint/` are tracked in the root repo as pinned gitlinks, not files. Root `git status` shows them as modified whenever their nested `HEAD` differs; syncing one requires a root "bump" commit (see `git log` for the established pattern).
+- `vestara-blueprint/` is a separate, frozen design-document repository. Use it as context only; verify implementation claims in `vestara-ai-core/`.
+- The remaining `vestara-*` directories (foundation, labs, reference, runtime, specifications) are design/reference content tracked as regular files in the root repo, even though they each contain a nested `.git`. They are not the implementation target; do not apply `vestara-ai-core` commands there.
+- `react-dashboard/` is untracked WIP (its own Vite app, not part of the workspaces); treat as scratch until it is committed.
+- Never edit `.vestara/` or `.vestara-worktrees/` runtime state. Never commit `.env` (gitignored) or `vestara.env` (not gitignored); both hold credentials and must not be logged.
 
-## Code map
+## Core Layout
 
-- `apps/cli/src/index.ts`: `vestara` CLI and REPL; `pnpm vestara console` launches the interactive TUI.
-- `apps/api/src/index.ts`: API process; `apps/api/src/server.ts` is a raw Node `http` + `ws` gateway and delegates routes to `apps/api/src/routes/`.
-- `apps/workspace/` (package `@vestara/workspace-ui`): React 19/Vite UI. Entrypoint `apps/workspace/src/main.tsx`; dev server port `5173` proxies `/api` and `/ws` to API port `3001`. Do not confuse it with `packages/workspace/` (the integration hub below) — they are distinct packages that happen to share the name.
-- `packages/workspace/`: integration hub (package `@vestara/workspace`). Consumers should use `WorkspaceRuntime.open()` rather than importing workspace-analysis concerns directly.
-- `packages/kernel/`: boot, service lifecycle, health, scheduling, recovery, workers, and provider orchestration; it coordinates services rather than implementing their domain logic.
-- `packages/runtime/`: generic runtime lifecycle implemented with `@vestara/state-machine`; `packages/shared/` owns the `VestaraService` contract.
-- `packages/agent-harness/`: the durable single-turn agent loop (model → tool → approval → verification → outcome). It is the execution path; `packages/workspace/src/agent-runtime.ts` is a thin adapter that delegates `run()` to it (durable thread + ExecutionSession).
-- `packages/workflow-projections/`: canonical renderer-independent agent workflow projection (eight stages, agents, approvals, changes, verification, metrics) plus the incremental `workflow.*` envelope protocol. Both the TUI and Workspace consume it.
-- `packages/workflow-orchestrator/`: multi-agent workflow orchestration (ADR-004 / ADR-118 / PCS-025). `WorkflowOrchestrator` is the single writer of project/plan/task state (state machines, task/artifact/file-lock stores, review/test stages, Approval Gateway, parallel waves, token budgets, event-sourced `rebuild`/`reconcile`); `HarnessTaskDispatcher` (`packages/workspace/src/harness-task-dispatcher.ts`) executes each task as a durable harness thread with capability-based agent assignment; `MultiRepoOrchestrator` aggregates per-repo orchestrators; `src/distributed/` is the PCS-027 worker cluster (`WorkerCluster`, `WorkerNodeRuntime`, `RemoteWorkerDispatcher`, `WorkerRegistry`, `WorkerScheduler`, `WorkerStore`, `SubprocessTaskDispatcher`, WebSocket transport in `apps/api/src/worker/`). Exposed via `apps/api/src/routes/orchestration.ts` (`/api/orchestration/*`) and `apps/api/src/routes/workers.ts` (`/api/workers/*`), the `orchestration.*`/`worker.*` event bridges, and the Workspace Orchestration (`/orchestration`) + Workers (`/workers`) pages.
-- `packages/evidence/`: PCS-026 engineering evidence pipeline — `EvidencePipeline` (collectors → content-addressed artifacts → immutable manifest → `VerificationEvidenceBundle`), `ConfidenceEngine` (six derived factors), `VisualComparisonEngine` + `BaselineStore` (human-reviewed baselines), `BundleStore`. The harness verifier persists a bundle per run; exposed via `apps/api/src/routes/evidence.ts` (`/api/evidence/*`) and the Workspace Evidence page (`/evidence`).
-- `packages/engineering-event-store/`: temporal truth for engineering events; the harness projects `harness.*` events into it through `apps/api/src/bridges/harness-engineering-event-bridge.ts`, and `apps/api/src/bridges/change-event-bridge.ts` projects `change.*` filesystem/diff events derived from actual filesystem + Git state. ThreadRuntime remains the authoritative execution history.
-
-## Agent Type System
-
-Agents are typed as either `workspace` (local) or `registry` (marketplace-installed):
-
-- **`AgentType`** = `'workspace' | 'registry'` (defined in `packages/workspace/src/types.ts:559`)
-- **`AgentDefinition.agentType`** — required field; defaults to `'workspace'` for backward compatibility
-- **Storage**: `agent_type TEXT DEFAULT 'workspace'` column in agents table (`packages/workspace/src/agent-storage.ts`)
-- **UI**: Agent Registry Modal (`apps/workspace/src/pages/Agents/AgentRegistryModal.tsx`) provides radio selector for type
-  - Workspace Agent: uses locally configured provider/model
-  - Registry Agent: uses marketplace package source/version
-- **API**: POST/PUT `/api/agents` handlers read `body.agentType` with workspace default
-
-Built-in agents (architect, developer, verifier, etc.) are workspace agents. Registry agents are installed from the marketplace and will have version tracking and update notifications in the future.
+- `apps/api/src/index.ts` starts the raw Node HTTP + WebSocket gateway; route handlers live in `apps/api/src/routes/`.
+- `apps/cli/src/index.ts` is the CLI/REPL entrypoint; `apps/workspace/src/main.tsx` is the React/Vite UI entrypoint.
+- `packages/*`, `packages/providers/*`, `packages/tools/*`, and `apps/*` are pnpm workspaces. `packages/kernel/` coordinates lifecycle and providers; `packages/workspace/` is the integration hub.
+- `apps/workspace/` (package `@vestara/workspace-ui`) and `packages/workspace/` (package `@vestara/workspace`) are distinct packages sharing the "workspace" name; the UI app and the integration hub are not the same.
+- `packages/agent-harness/` owns the durable model/tool/approval/verification turn; `packages/workflow-orchestrator/` owns multi-agent project, plan, and task state.
+- Custom OpenCode agents and skills live in `.opencode/` (`agents/` defines the vestara-context/planner/engineer/reviewer/verifier roles; `skills/` holds repo-local skills).
 
 ## Commands
 
@@ -41,42 +25,33 @@ Run these from `vestara-ai-core/`:
 
 ```bash
 pnpm install
-pnpm build                    # generates workspace references, then tsc -b
-bash build-order.sh           # compatibility entrypoint for pnpm build
-pnpm lint                     # Biome check --write (mutates files)
+pnpm build                    # generates tsconfig.references.json, then runs tsc -b
 pnpm lint:check               # read-only Biome check
-pnpm format                   # Biome format --write
-pnpm test                     # Vitest; build first
+pnpm lint                     # Biome check --write; mutates files
+pnpm test
 pnpm --filter @vestara/conversation test
-pnpm test -- path/to/file.test.ts
-pnpm check:source-artifacts    # fails if generated .js/.d.ts/.js.map appear under src/ or __tests__/
-pnpm dev                      # API + Workspace UI
-pnpm dev:api                 # API only; compiled output required
-pnpm dev:ui                  # Workspace UI only
+pnpm test -- packages/foo/__tests__/thing.test.ts
+pnpm dev                      # API plus Workspace UI
 pnpm vestara doctor
 ```
 
-- The normal verification sequence is `pnpm lint && pnpm build && pnpm test`. There is no `pnpm typecheck` script.
-- Docs in `vestara-ai-core/docs/` are governed, not free-form: `pnpm docs:govern` (and `pnpm docs:validate`) run `scripts/docs-automation.mjs`, which requires YAML frontmatter with `title`, `version`, `status`, `owner`, `last-reviewed`, `next-review` (dates must be `YYYY-MM-DD`). Docs marked `status: implemented`/`verified` must also declare `implementation-repository` and an immutable commit SHA (`implementation-commit`) — a branch name or `HEAD` is a hard error. Run `pnpm docs:validate` on any `.md` you add or touch.
-- `tsconfig.references.json` is generated: `pnpm build` runs `scripts/workspace-architecture.mjs --generate` before `tsc -b`. Do not hand-edit it; the same script enforces `@vestara/*` imports during build (`--check` via `pnpm dependencies:check`). It only allows root-package specifiers — a deep internal import like `@vestara/foo/submodule` fails, and each `@vestara/*` import must be declared in that package's manifest. `@vestara/evaluation` is the sole licensed consumer of workspace-facade internals.
-- Runtime CLI commands execute `dist` JavaScript, so run `pnpm build` before `pnpm vestara`, `pnpm dev:api`, diagnostics, benchmarks, or documentation commands.
-- `pnpm --filter <workspace-package> test` selects a package. `pnpm test -- <path>` passes a positional test-file filter to Vitest; do not use a Vitest `--filter` flag for package selection.
-- `scripts/pre-commit.sh` runs `biome check --staged --diagnostic-level=error` then the full test suite — staged-only lint but a full, slow `pnpm test`. If it rejects, fix the staged file's Biome violations and rerun.
+- Build before testing or running compiled CLI/API commands: tests resolve workspace packages from `dist/`, and runtime commands execute compiled JavaScript.
+- The normal verification order is `pnpm lint:check && pnpm build && pnpm test`; there is no `typecheck` script.
+- `pnpm build` regenerates workspace references. Do not hand-edit `tsconfig.references.json`; use `pnpm dependencies:check` to check package import declarations.
+- `pnpm --filter <workspace-package> test` selects a package; `pnpm test -- <path>` filters Vitest by positional test path.
+- `scripts/pre-commit.sh` checks staged files with Biome and then runs the full test suite.
 
-## Tests and tooling
+## Generated Files And Tests
 
-- Vitest 4 is used. Tests normally live in each package/app's `__tests__/` directory as `*.test.ts`; Workspace UI tests are colocated under `apps/workspace/`.
-- Tests resolve `@vestara/*` packages from built `dist/` output, so a successful build is a prerequisite.
-- Database tests use `sql.js` WASM with in-memory SQLite; no external database service is required. `sql.js` ships no bundled types; a hand-written ambient shim lives at `types/sql-js.d.ts` and is wired via the root `tsconfig.json` `paths` map. Touch it (not the package) when sql.js typings need changing.
-- Workspace visual tests use Playwright. `pnpm screenshots` compares baselines; only use `pnpm screenshots:update` when intentionally reviewing and replacing approved baselines.
-- Biome is the only formatter/linter. The canonical JavaScript style is single quotes, trailing commas, and semicolons; workspace UI has its own Vite/Biome configuration.
-- Most packages emit CommonJS with TypeScript `module: nodenext`; `apps/workspace/` and `apps/console/` are ESM. Check the package manifest before changing module syntax or imports.
+- Do not edit generated `dist/` output or stale ignored `.js`, `.d.ts`, and source-map files next to TypeScript sources. Run `pnpm check:source-artifacts` when source artifacts may be present.
+- Vitest discovers tests under package/app `__tests__` directories and Workspace visual tests under `apps/workspace/tests/visual/__tests__`.
+- Workspace visual tests compare approved Playwright baselines by default; use `pnpm screenshots:update` only when intentionally replacing them.
+- Database tests use in-memory `sql.js`; its ambient type shim is `types/sql-js.d.ts`.
+- Biome is the formatter/linter. JavaScript uses single quotes, trailing commas, and semicolons; `apps/workspace/` has its own Vite/Biome scope.
 
-## Runtime environment
+## Runtime And Documentation
 
-- API defaults: `VESTARA_API_PORT=3001`, `VESTARA_REPO=process.cwd()`. `VESTARA_API_URL` overrides the CLI/TUI endpoint.
-- Harness execution engine: `POST /api/agents/:agentId/runs` plus `GET|POST /api/agent-threads/:threadId[/items|/events|/approvals|/steer|/cancel|/resume]` and `POST /api/agent-threads/:threadId/approvals/:approvalId/resolve`. `AgentRuntime.run()` delegates to the harness; `harness.*` events project into the event store. Workflow: `GET /api/workflow/:threadId` (canonical eight-stage projection with owning-agent attribution per stage) and `GET /api/workflow/:threadId/events?after=N` (incremental `workflow.*` envelopes with monotonic sequences); the TUI follows a workflow with `/workflow <threadId>`. Workspace surfaces share the same projection: Dashboard "Live Engineering Workflow", Sessions harness ExecutionSessions, Agent Control workflow rails, Artifacts "Live Change Projection", Documentation "System Milestones".
-- API startup searches upward for `.vestara/workspace.json` unless `VESTARA_REPO` is set; this matters when launching compiled output from a different working directory.
-- Use source `.ts`/`.tsx` files, not stale ignored `.js`, `.d.ts`, or source maps left by prior TypeScript builds. Generated output belongs in `dist/`.
-
-When documentation conflicts with manifests, scripts, or source, trust the executable sources and update this file only with facts that can be verified there.
+- The API defaults to `VESTARA_API_PORT=3001`; the Workspace dev server is `5173` and proxies `/api` and `/ws` to the API. `VESTARA_API_URL` overrides CLI/TUI connections, and `VESTARA_REPO` selects the workspace path.
+- API startup searches upward for `.vestara/workspace.json` unless `VESTARA_REPO` is set.
+- Docs under `vestara-ai-core/docs/` are governed. Run `pnpm docs:validate` for touched Markdown and `pnpm docs:govern` for strict validation; implemented/verified docs require an immutable implementation commit SHA.
+- When prose conflicts with manifests, scripts, or source, trust the executable files and update this guide only with verified facts.
