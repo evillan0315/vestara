@@ -15,14 +15,15 @@
 - `apps/api/src/index.ts` starts the raw Node HTTP + WebSocket gateway; route handlers live in `apps/api/src/routes/`.
 - `apps/cli/src/index.ts` is the CLI/REPL entrypoint; `apps/workspace/src/main.tsx` is the React/Vite UI entrypoint.
 - `apps/console/` is an empty stub (node_modules only). The keyboard-first "Console" is a CLI subcommand: `pnpm console` → `node apps/cli/dist/index.js console`.
+- `apps/onboarding-lab/` is a developer test rig for the conversational-onboarding stack, not a runtime entrypoint.
 - `packages/*`, `packages/providers/*`, `packages/tools/*`, and `apps/*` are pnpm workspaces. `packages/kernel/` coordinates lifecycle and providers; `packages/workspace/` is the integration hub.
 - `apps/workspace/` (package `@vestara/workspace-ui`) and `packages/workspace/` (package `@vestara/workspace`) are distinct packages sharing the "workspace" name; the UI app and the integration hub are not the same.
 - `packages/agent-harness/` owns the durable model/tool/approval/verification turn; `packages/workflow-orchestrator/` owns multi-agent project, plan, and task state.
-- Custom OpenCode agents and skills live in `.opencode/` (`agents/` defines the vestara-context/planner/engineer/reviewer/verifier roles; `skills/` holds repo-local skills).
+- Custom OpenCode agents and skills live in `.opencode/` in both the root and `vestara-ai-core/`. Agent roles are vestara-context/planner/developer/tester/reviewer/verifier (`vestara-engineer` was split into developer + tester). `vestara-ai-core/.opencode/` additionally holds repo-local `command/` (markdown slash-commands: `context`, `test`, `commit`, ...), `skills/`, `tool/`, and `context/`.
 
 ## Commands
 
-Run these from `vestara-ai-core/`:
+Run these from `vestara-ai-core/`. Requires Node 22+ and pnpm (CI pins Node 22).
 
 ```bash
 pnpm install
@@ -33,7 +34,7 @@ pnpm test
 pnpm --filter @vestara/conversation test
 pnpm test -- packages/foo/__tests__/thing.test.ts
 pnpm dev                      # API plus Workspace UI
-pnpm vestara doctor
+pnpm vestara doctor           # compiled CLI: doctor, console, routing, screenshots, ...
 ```
 
 - Build before testing or running compiled CLI/API commands: tests resolve workspace packages from `dist/`, and runtime commands execute compiled JavaScript.
@@ -47,6 +48,7 @@ pnpm vestara doctor
 - Do not edit generated `dist/` output or stale ignored `.js`, `.d.ts`, and source-map files next to TypeScript sources. Run `pnpm check:source-artifacts` when source artifacts may be present.
 - Vitest discovers tests under package/app `__tests__` directories (`packages/*`, `packages/{providers,tools}/*`, `apps/*`) and Workspace visual tests under `apps/workspace/tests/visual/__tests__`. Tests resolve `@vestara/*` imports from `dist/` via aliases, so a stale build produces misleading failures.
 - Workspace visual tests compare approved Playwright baselines by default; use `pnpm screenshots:update` only when intentionally replacing them.
+- Do not confuse `pnpm test:e2e:workflow` (Vitest run of `packages/workflow-orchestrator/__tests__/e2e`, part of the suite) with `pnpm test:e2e:workflow:real-agent` (a live agent trial against real LLM providers using `.env` credentials, empty env or credentials will hang/fail). The live trial lives under `scripts/`, not `__tests__`, is excluded from `pnpm test`, and should not be run casually.
 - Database tests use in-memory `sql.js`; its ambient type shim is `types/sql-js.d.ts`.
 - Biome is the formatter/linter. JavaScript uses single quotes, trailing commas, and semicolons; `apps/workspace/` has its own Vite/Biome scope.
 
@@ -65,9 +67,11 @@ The CI workflow (`.github/workflows/ci.yml`) runs on push/PR to `main`:
 
 The pre-commit hook scripts (`.githooks/pre-commit` → `scripts/pre-commit.sh`) run Biome on staged files and the full test suite, but they are not active in this checkout (no `core.hooksPath` and no `.git/hooks/pre-commit`); run them manually if needed.
 
+`visual-regression.yml` is a separate CI gate for the Workspace UI: installs Chromium, builds `@vestara/workspace-ui`, runs `pnpm screenshots:ci`, and fails the PR on regressions. Playwright owns `apps/workspace/tests/visual/*.spec.*`; vitest excludes them (only the visual framework's `__tests__` run under vitest).
+
 ## Runtime And Documentation
 
-- The API defaults to `VESTARA_API_PORT=3001`; the Workspace dev server is `5173` and proxies `/api` and `/ws` to the API. `VESTARA_API_URL` overrides CLI/TUI connections, and `VESTARA_REPO` selects the workspace path.
+- The API defaults to `VESTARA_API_PORT=3001`; the Workspace dev server is `5173` and proxies `/api` and `/ws` to the API. `VESTARA_API_URL` overrides CLI/TUI connections, and `VESTARA_REPO` selects the workspace path. The root-level `vite.config.ts` is a stale leftover that probes port `3000`; ignore it — the real proxy lives in `apps/workspace/vite.config.ts`.
 - API startup searches upward for `.vestara/workspace.json` unless `VESTARA_REPO` is set.
 - Docs under `vestara-ai-core/docs/` are governed. Run `pnpm docs:validate` for touched Markdown and `pnpm docs:govern` for strict validation; implemented/verified docs require an immutable implementation commit SHA.
 - When prose conflicts with manifests, scripts, or source, trust the executable files and update this guide only with verified facts.
